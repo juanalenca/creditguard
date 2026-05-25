@@ -1,30 +1,39 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Sidebar from './components/Sidebar';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import Login from './components/Login';
+import Layout from './components/Layout';
 import Dashboard from './pages/Dashboard';
-
 import Clientes from './pages/Clientes';
+import ClienteDetail from './pages/ClienteDetail';
 import Alertas from './pages/Alertas';
-import Relatorios from './pages/Relatorios';
-import Configuracoes from './pages/Configuracoes';
+import Analytics from './pages/Analytics';
 
-function App() {
+const PrivateRoute = ({ children }) => {
+  const token = localStorage.getItem('token');
+  return token ? children : <Navigate to="/login" />;
+};
+
+const App = () => {
   return (
-    <Router>
-      <div className="flex min-h-screen bg-slate-50">
-        <Sidebar />
-        <main className="flex-1 p-8">
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/clientes" element={<Clientes />} />
-            <Route path="/alertas" element={<Alertas />} />
-            <Route path="/relatorios" element={<Relatorios />} />
-            <Route path="/configuracoes" element={<Configuracoes />} />
-          </Routes>
-        </main>
-      </div>
-    </Router>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="/"
+          element={
+            <PrivateRoute>
+              <Layout />
+            </PrivateRoute>
+          }
+        >
+          <Route index element={<Dashboard />} />
+          <Route path="clientes" element={<Clientes />} />
+          <Route path="clientes/:id" element={<ClienteDetail />} />
+          <Route path="alertas" element={<Alertas />} />
+          <Route path="analytics" element={<Analytics />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;

@@ -1,32 +1,41 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, ResponsiveContainer, BarChart, Bar } from 'recharts';
+import { AlertCircle, TrendingUp, Clock, DollarSign, Download } from 'lucide-react';
 import KpiCard from '../components/KpiCard';
-import { DollarSign, AlertCircle, Clock, TrendingUp } from 'lucide-react';
-import {
-  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer,
-  BarChart, Bar, Legend
-} from 'recharts';
+import { exportToCsv } from '../utils/exportCsv';
+
+const API = 'http://localhost:5000/api';
 
 const Dashboard = () => {
   const [kpis, setKpis] = useState(null);
+  const [tendencias, setTendencias] = useState(null);
   const [evolucao, setEvolucao] = useState([]);
   const [riscoRegional, setRiscoRegional] = useState([]);
+  const [alertas, setAlertas] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const token = localStorage.getItem('token');
+  const headers = { Authorization: `Bearer ${token}` };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [kpisRes, evolucaoRes, riscoRes] = await Promise.all([
-          axios.get('http://localhost:5000/api/kpis'),
-          axios.get('http://localhost:5000/api/dashboard/evolucao'),
-          axios.get('http://localhost:5000/api/dashboard/risco-regional')
+        const [kpiRes, trendRes, evoRes, riscoRes, alertasRes] = await Promise.all([
+          axios.get(`${API}/kpis`, { headers }),
+          axios.get(`${API}/tendencias`, { headers }).catch(() => ({ data: null })),
+          axios.get(`${API}/dashboard/evolucao`, { headers }),
+          axios.get(`${API}/dashboard/risco-regional`, { headers }),
+          axios.get(`${API}/alertas?limit=5`, { headers })
         ]);
-        
-        setKpis(kpisRes.data);
-        setEvolucao(evolucaoRes.data.map(item => ({...item, total: parseFloat(item.total)})));
-        setRiscoRegional(riscoRes.data.map(item => ({...item, total: parseFloat(item.total)})));
-      } catch (error) {
-        console.error("Error fetching dashboard data", error);
+
+        setKpis(kpiRes.data);
+        setTendencias(trendRes.data);
+        setEvolucao(evoRes.data);
+        setRiscoRegional(riscoRes.data);
+        setAlertas(alertasRes.data.data || []);
+      } catch (err) {
+        console.error("Erro ao carregar dados", err);
       } finally {
         setLoading(false);
       }
@@ -35,87 +44,154 @@ const Dashboard = () => {
     fetchData();
   }, []);
 
-  const formatCurrency = (value) => {
-    return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
+  const handleExportKpis = () => {
+    if (!kpis) return;
+    exportToCsv([{
+      'Inadimplência Total': kpis.inadimplencia_total,
+      'Recuperação no Mês': kpis.recuperacao_mes,
+      'Atraso Médio (dias)': Number(kpis.atraso_medio).toFixed(1),
+      'Clientes Críticos': kpis.clientes_criticos
+    }], 'kpis_creditguard.csv');
   };
 
-  if (loading) {
-    return <div className="flex h-full items-center justify-center">Carregando dashboard...</div>;
-  }
+  const formatTrend = (key) => {
+    if (!tendencias || !tendencias[key]) return {};
+    const t = tendencias[key];
+    return {
+      trend: t.direcao,
+      trendValue: `${t.variacao_pct > 0 ? '+' : ''}${Number(t.variacao_pct).toFixed(1)}%`
+    };
+  };
+
+  if (loading) return (
+    <div className="flex items-center justify-center h-full">
+      <div className="text-xl font-semibold text-gray-400 animate-pulse">Carregando painel executivo...</div>
+    </div>
+  );
 
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center">
+    <div className="space-y-8 pb-10">
+      <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-slate-800">Dashboard Executivo</h2>
-          <p className="text-slate-500 text-sm mt-1">Visão geral da carteira de crédito e recuperação</p>
+          <h2 className="text-3xl font-bold text-white tracking-tight">Visão Geral - KPIs</h2>
+          <p className="text-gray-400 mt-1">Métricas de risco de crédito e recuperação</p>
         </div>
+        <button
+          onClick={handleExportKpis}
+          className="flex items-center px-4 py-2 bg-gray-800 border border-gray-700 text-gray-300 rounded-lg hover:bg-gray-700 transition-colors"
+        >
+          <Download className="w-4 h-4 mr-2" />
+          Exportar KPIs
+        </button>
       </div>
 
-      {/* KPI Cards */}
+      {/* Cards de KPI com tendências */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <KpiCard 
-          title="Inadimplência Total" 
-          value={formatCurrency(kpis?.inadimplencia_total || 0)} 
-          subtitle="Parcelas vencidas em aberto"
-          icon={DollarSign}
-          colorClass="text-red-500"
-        />
-        <KpiCard 
-          title="Recuperação no Mês" 
-          value={formatCurrency(kpis?.recuperacao_mes || 0)} 
-          subtitle="Atrasados pagos neste mês"
-          icon={TrendingUp}
-          colorClass="text-emerald-500"
-        />
-        <KpiCard 
-          title="Atraso Médio" 
-          value={`${Math.round(kpis?.atraso_medio || 0)} dias`} 
-          subtitle="Média das parcelas abertas"
-          icon={Clock}
-          colorClass="text-yellow-500"
-        />
-        <KpiCard 
-          title="Clientes Críticos" 
-          value={kpis?.clientes_criticos || 0} 
-          subtitle="Alerta de risco gerado"
+        <KpiCard
+          title="Inadimplência Total"
+          value={`R$ ${Number(kpis?.inadimplencia_total || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`}
           icon={AlertCircle}
-          colorClass="text-red-600"
+          colorClass="text-red-400 border-red-500/30"
+          borderClass="border-red-500"
+          {...formatTrend('inadimplencia')}
+        />
+        <KpiCard
+          title="Recuperação no Mês"
+          value={`R$ ${Number(kpis?.recuperacao_mes || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`}
+          icon={DollarSign}
+          colorClass="text-emerald-400 border-emerald-500/30"
+          borderClass="border-emerald-500"
+          {...formatTrend('recuperacao')}
+        />
+        <KpiCard
+          title="Atraso Médio"
+          value={`${Number(kpis?.atraso_medio || 0).toFixed(1)} dias`}
+          icon={Clock}
+          colorClass="text-amber-400 border-amber-500/30"
+          borderClass="border-amber-500"
+          {...formatTrend('atraso_medio')}
+        />
+        <KpiCard
+          title="Clientes Críticos"
+          value={kpis?.clientes_criticos || 0}
+          icon={TrendingUp}
+          colorClass="text-blue-400 border-blue-500/30"
+          borderClass="border-blue-500"
+          {...formatTrend('novos_alertas')}
         />
       </div>
 
-      {/* Charts */}
+      {/* Gráficos */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Gráfico Temporal */}
-        <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-          <h3 className="text-lg font-semibold text-slate-800 mb-4">Tendência Temporal de Inadimplência</h3>
-          <div className="h-72">
+        <div className="bg-gray-800 p-6 rounded-xl border border-gray-700 shadow-lg">
+          <h3 className="text-lg font-bold text-gray-200 mb-6">Evolução de Inadimplência (Últimos 6 meses)</h3>
+          <div className="h-80">
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={evolucao} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
-                <XAxis dataKey="mes" axisLine={false} tickLine={false} tick={{fill: '#64748b'}} />
-                <YAxis axisLine={false} tickLine={false} tick={{fill: '#64748b'}} tickFormatter={(val) => `R$${(val/1000)}k`} />
-                <RechartsTooltip formatter={(value) => formatCurrency(value)} />
-                <Line type="monotone" dataKey="total" stroke="#3b82f6" strokeWidth={3} dot={{r: 4}} activeDot={{r: 6}} />
+              <LineChart data={evolucao}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                <XAxis dataKey="mes" stroke="#9ca3af" fontSize={12} />
+                <YAxis stroke="#9ca3af" tickFormatter={(v) => `R$${(v / 1000).toFixed(0)}k`} fontSize={12} />
+                <RechartsTooltip
+                  formatter={(value) => [`R$ ${Number(value).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`, 'Inadimplência']}
+                  contentStyle={{ backgroundColor: '#1f2937', borderColor: '#374151', color: '#fff', borderRadius: 8 }}
+                />
+                <Legend />
+                <Line type="monotone" dataKey="total" name="Valor (R$)" stroke="#ef4444" strokeWidth={3} dot={{ r: 5, fill: '#ef4444', stroke: '#1f2937', strokeWidth: 2 }} activeDot={{ r: 8, stroke: '#ef4444', strokeWidth: 2 }} />
               </LineChart>
             </ResponsiveContainer>
           </div>
         </div>
 
-        {/* Gráfico Risco Regional */}
-        <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-          <h3 className="text-lg font-semibold text-slate-800 mb-4">Risco Regional (Inadimplência por Cidade)</h3>
-          <div className="h-72">
+        <div className="bg-gray-800 p-6 rounded-xl border border-gray-700 shadow-lg">
+          <h3 className="text-lg font-bold text-gray-200 mb-6">Risco Regional (Dívidas por Cidade)</h3>
+          <div className="h-80">
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={riscoRegional.slice(0, 5)} layout="vertical" margin={{ top: 5, right: 30, left: 40, bottom: 5 }}>
-                <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#e2e8f0" />
-                <XAxis type="number" axisLine={false} tickLine={false} tick={{fill: '#64748b'}} tickFormatter={(val) => `R$${(val/1000)}k`} />
-                <YAxis dataKey="cidade" type="category" axisLine={false} tickLine={false} tick={{fill: '#64748b', fontSize: 12}} width={100} />
-                <RechartsTooltip formatter={(value) => formatCurrency(value)} />
-                <Bar dataKey="total" fill="#f43f5e" radius={[0, 4, 4, 0]} barSize={24} />
+              <BarChart data={riscoRegional} layout="vertical">
+                <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                <XAxis type="number" stroke="#9ca3af" tickFormatter={(v) => `R$${(v / 1000).toFixed(0)}k`} fontSize={12} />
+                <YAxis type="category" dataKey="cidade" stroke="#9ca3af" width={90} fontSize={12} />
+                <RechartsTooltip
+                  formatter={(value) => [`R$ ${Number(value).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`, 'Inadimplência']}
+                  contentStyle={{ backgroundColor: '#1f2937', borderColor: '#374151', color: '#fff', borderRadius: 8 }}
+                  cursor={{ fill: '#374151' }}
+                />
+                <Bar dataKey="total" name="Inadimplência (R$)" fill="#3b82f6" radius={[0, 4, 4, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
+        </div>
+      </div>
+
+      {/* Tabela de Alertas */}
+      <div className="bg-gray-800 p-6 rounded-xl border border-gray-700 shadow-lg">
+        <h3 className="text-lg font-bold text-gray-200 mb-4">Últimos Alertas de Risco</h3>
+        <div className="overflow-x-auto">
+          <table className="min-w-full divide-y divide-gray-700">
+            <thead>
+              <tr>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Cliente</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Nível</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Descrição</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Data</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-700">
+              {alertas.map((alerta) => (
+                <tr key={alerta.id} className="hover:bg-gray-700/50 transition-colors">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-200">{alerta.cliente_nome}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <span className={`px-2.5 py-1 inline-flex text-xs leading-5 font-semibold rounded-full border ${alerta.nivel_risco === 'Alto' ? 'bg-red-900/50 text-red-400 border-red-800' : alerta.nivel_risco === 'Medio' ? 'bg-amber-900/50 text-amber-400 border-amber-800' : 'bg-emerald-900/50 text-emerald-400 border-emerald-800'}`}>
+                      {alerta.nivel_risco}
+                    </span>
+                  </td>
+                  <td className="px-6 py-4 text-sm text-gray-400 max-w-xs truncate">{alerta.descricao}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    {new Date(alerta.criado_em).toLocaleDateString('pt-BR')}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
