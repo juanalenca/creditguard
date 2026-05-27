@@ -136,11 +136,12 @@ const Analytics = () => {
               <p className="text-2xl font-bold text-red-400 mt-1">{kpisAvancados.contratos_em_risco || 0}</p>
             </div>
             <div className="bg-gray-800 p-5 rounded-xl border border-gray-700 border-t-4 border-t-blue-500">
-              <p className="text-xs font-medium text-gray-400 uppercase">Variação Mensal</p>
+              <p className="text-xs font-medium text-gray-400 uppercase">Variação da Inadimplência</p>
               <p className={`text-2xl font-bold mt-1 flex items-center ${Number(kpisAvancados.variacao_mensal) > 0 ? 'text-red-400' : 'text-emerald-400'}`}>
                 {Number(kpisAvancados.variacao_mensal) > 0 ? <TrendingUp className="w-5 h-5 mr-1" /> : <TrendingDown className="w-5 h-5 mr-1" />}
                 {Number(kpisAvancados.variacao_mensal || 0).toFixed(1)}%
               </p>
+              <p className="text-[10px] text-gray-500 mt-1">Queda indica melhoria vs mês anterior</p>
             </div>
             <div className="bg-gray-800 p-5 rounded-xl border border-gray-700 border-t-4 border-t-purple-500">
               <p className="text-xs font-medium text-gray-400 uppercase">Regiões Monitoradas</p>
@@ -160,7 +161,7 @@ const Analytics = () => {
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
-                    data={kpisAvancados.inadimplencia_por_regiao}
+                    data={kpisAvancados.inadimplencia_por_regiao.map(d => ({...d, total: Number(d.total)}))}
                     dataKey="total"
                     nameKey="regiao"
                     cx="50%"
@@ -192,7 +193,7 @@ const Analytics = () => {
               <LineChart data={evolucao}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
                 <XAxis dataKey="mes" stroke="#9ca3af" fontSize={12} />
-                <YAxis stroke="#9ca3af" tickFormatter={(v) => `R$${(v / 1000).toFixed(0)}k`} fontSize={12} />
+                <YAxis stroke="#9ca3af" tickFormatter={(v) => v >= 1000000 ? `R$${(v / 1000000).toFixed(1)}M` : `R$${(v / 1000).toFixed(0)}K`} fontSize={12} />
                 <RechartsTooltip
                   formatter={(value) => [`R$ ${Number(value).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`, 'Valor']}
                   contentStyle={{ backgroundColor: '#1f2937', borderColor: '#374151', color: '#fff', borderRadius: 8 }}

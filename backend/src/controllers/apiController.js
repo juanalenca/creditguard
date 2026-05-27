@@ -75,7 +75,7 @@ exports.getClientes = async (req, res) => {
     const limit = parseInt(req.query.limit) || 10;
     const filters = {
       regiao: req.query.regiao || null,
-      estado: req.query.estado || null,
+      status: req.query.status || null,
       busca: req.query.busca || null
     };
     const result = await kpiService.getClientes(page, limit, filters);

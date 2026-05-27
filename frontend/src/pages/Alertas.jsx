@@ -21,7 +21,7 @@ const Alertas = () => {
       setLoading(true);
       try {
         const params = new URLSearchParams({ page, limit });
-        if (nivel) params.append('nivel', nivel);
+        if (nivel) params.append('nivel_risco', nivel);
 
         const res = await axios.get(`${API}/alertas?${params}`, { headers });
         setAlertas(res.data.data);
@@ -38,7 +38,9 @@ const Alertas = () => {
   const handleExport = () => {
     exportToCsv(alertas.map(a => ({
       Data: new Date(a.criado_em).toLocaleString('pt-BR'),
-      Cliente: a.cliente_nome,
+      Contrato: a.id_contrato,
+      Região: a.regiao,
+      Assessoria: a.nome_assessoria,
       'Nível de Risco': a.nivel_risco,
       Descrição: a.descricao
     })), 'alertas_creditguard.csv');
@@ -86,26 +88,30 @@ const Alertas = () => {
           <table className="min-w-full divide-y divide-gray-700">
             <thead className="bg-gray-900/50">
               <tr>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Data do Alerta</th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Cliente Afetado</th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Nível de Risco</th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Descrição</th>
+                <th className="px-5 py-4 text-left text-xs font-semibold text-gray-400 uppercase">Data</th>
+                <th className="px-5 py-4 text-left text-xs font-semibold text-gray-400 uppercase">Contrato</th>
+                <th className="px-5 py-4 text-left text-xs font-semibold text-gray-400 uppercase">Região</th>
+                <th className="px-5 py-4 text-left text-xs font-semibold text-gray-400 uppercase">Nível</th>
+                <th className="px-5 py-4 text-left text-xs font-semibold text-gray-400 uppercase">Descrição</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-700">
               {loading ? (
-                <tr><td colSpan={4} className="px-6 py-12 text-center text-gray-500 animate-pulse">Monitorando risco de crédito...</td></tr>
+                <tr><td colSpan={5} className="px-6 py-12 text-center text-gray-500 animate-pulse">Monitorando risco de crédito...</td></tr>
               ) : alertas.length === 0 ? (
-                <tr><td colSpan={4} className="px-6 py-12 text-center text-gray-500">Nenhum alerta encontrado para este filtro.</td></tr>
+                <tr><td colSpan={5} className="px-6 py-12 text-center text-gray-500">Nenhum alerta encontrado para este filtro.</td></tr>
               ) : alertas.map((alerta) => (
                 <tr key={alerta.id} className="hover:bg-gray-700/40 transition-colors">
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
+                  <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-400">
                     {new Date(alerta.criado_em).toLocaleString('pt-BR')}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-200">
-                    {alerta.cliente_nome}
+                  <td className="px-5 py-4 whitespace-nowrap text-sm font-mono text-blue-400">
+                    {alerta.id_contrato}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-300">
+                    {alerta.regiao}
+                  </td>
+                  <td className="px-5 py-4 whitespace-nowrap">
                     <span className={`px-3 py-1 inline-flex text-xs leading-5 font-bold rounded-full border ${
                       alerta.nivel_risco === 'Alto'
                         ? 'bg-red-900/40 text-red-400 border-red-800'
@@ -116,7 +122,7 @@ const Alertas = () => {
                       {alerta.nivel_risco}
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-sm text-gray-300 max-w-md truncate">
+                  <td className="px-5 py-4 text-sm text-gray-300 max-w-sm truncate">
                     {alerta.descricao}
                   </td>
                 </tr>

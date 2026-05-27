@@ -1,176 +1,207 @@
 const pool = require('../config/db');
 
-// ─── KPIs básicos ───────────────────────────────────────────────────────────────
-
+// =============================================
+// KPIs BÁSICOS
+// =============================================
 exports.getKpis = async () => {
+  const refRes = await pool.query("SELECT MAX(data_vencimento) as ref_date FROM pagamentos");
+  const refDate = refRes.rows[0].ref_date;
+  
   const result = await pool.query(`
     SELECT 
-      (SELECT COALESCE(SUM(valor_parcela), 0) FROM pagamentos WHERE data_pagamento IS NULL AND data_vencimento < CURRENT_DATE) as inadimplencia_total,
-      (SELECT COALESCE(SUM(valor_parcela), 0) FROM pagamentos WHERE data_pagamento > data_vencimento AND DATE_TRUNC('month', data_pagamento) = DATE_TRUNC('month', CURRENT_DATE)) as recuperacao_mes,
-      (SELECT COALESCE(AVG(CURRENT_DATE - data_vencimento), 0) FROM pagamentos WHERE data_pagamento IS NULL AND data_vencimento < CURRENT_DATE) as atraso_medio,
-      (SELECT COUNT(DISTINCT cliente_id) FROM alertas_risco) as clientes_criticos
-  `);
+      (SELECT COALESCE(SUM(valor_parcela), 0) FROM pagamentos WHERE data_pagamento IS NULL AND data_vencimento <= $1) as inadimplencia_total,
+      (SELECT COALESCE(SUM(valor_pago), 0) FROM pagamentos WHERE data_pagamento IS NOT NULL AND data_pagamento > data_vencimento AND DATE_TRUNC('month', data_pagamento) = DATE_TRUNC('month', $1::date)) as recuperacao_mes,
+      (SELECT COALESCE(AVG($1::date - data_vencimento), 0) FROM pagamentos WHERE data_pagamento IS NULL AND data_vencimento <= $1) as atraso_medio,
+      (SELECT COUNT(DISTINCT id_contrato) FROM alertas_risco WHERE nivel_risco = 'Alto') as clientes_criticos
+  `, [refDate]);
   return result.rows[0];
 };
 
-// ─── Evolução da inadimplência (com filtro opcional por região) ─────────────────
-
+// =============================================
+// EVOLUÇÃO TEMPORAL
+// =============================================
 exports.getEvolucao = async (regiao) => {
-  const params = [];
-  let whereExtra = '';
-
-  if (regiao) {
-    params.push(regiao);
-    whereExtra = `AND c.regiao = $${params.length}`;
-  }
-
-  const result = await pool.query(`
+  const refRes = await pool.query("SELECT MAX(data_vencimento) as ref_date FROM pagamentos");
+  const refDate = refRes.rows[0].ref_date;
+  let query = `
     SELECT * FROM (
       SELECT TO_CHAR(p.data_vencimento, 'YYYY-MM') as mes, SUM(p.valor_parcela) as total
       FROM pagamentos p
-      JOIN contratos ct ON p.contrato_id = ct.id
-      JOIN clientes c ON ct.cliente_id = c.id
-      WHERE p.data_pagamento IS NULL AND p.data_vencimento < CURRENT_DATE
-      ${whereExtra}
+  `;
+  const params = [refDate];
+  
+  if (regiao) {
+    query += ` JOIN contratos c ON p.id_contrato = c.id_contrato`;
+  }
+  
+  query += ` WHERE p.data_pagamento IS NULL AND p.data_vencimento <= $1::date`;
+  
+  if (regiao) {
+    params.push(regiao);
+    query += ` AND c.regiao = $${params.length}`;
+  }
+  
+  query += `
       GROUP BY TO_CHAR(p.data_vencimento, 'YYYY-MM')
       ORDER BY mes DESC
       LIMIT 6
     ) sub
     ORDER BY mes ASC
-  `, params);
+  `;
+  
+  const result = await pool.query(query, params);
   return result.rows;
 };
 
-// ─── Risco regional (com filtro opcional por região) ────────────────────────────
-
+// =============================================
+// RISCO REGIONAL
+// =============================================
 exports.getRiscoRegional = async (regiao) => {
-  const params = [];
-  let whereExtra = '';
-
+  const refRes = await pool.query("SELECT MAX(data_vencimento) as ref_date FROM pagamentos");
+  const refDate = refRes.rows[0].ref_date;
+  let query = `
+    SELECT c.regiao, SUM(p.valor_parcela) as total
+    FROM contratos c
+    JOIN pagamentos p ON c.id_contrato = p.id_contrato
+    WHERE p.data_pagamento IS NULL AND p.data_vencimento <= $1::date
+  `;
+  const params = [refDate];
+  
   if (regiao) {
     params.push(regiao);
-    whereExtra = `AND c.regiao = $${params.length}`;
+    query += ` AND c.regiao = $${params.length}`;
   }
-
-  const result = await pool.query(`
-    SELECT c.cidade, SUM(p.valor_parcela) as total
-    FROM clientes c
-    JOIN contratos ct ON c.id = ct.cliente_id
-    JOIN pagamentos p ON ct.id = p.contrato_id
-    WHERE p.data_pagamento IS NULL AND p.data_vencimento < CURRENT_DATE
-    ${whereExtra}
-    GROUP BY c.cidade
-    ORDER BY total DESC
-  `, params);
+  
+  query += ` GROUP BY c.regiao ORDER BY total DESC`;
+  
+  const result = await pool.query(query, params);
   return result.rows;
 };
 
-// ─── Clientes com filtros (regiao, estado, busca) ───────────────────────────────
-
+// =============================================
+// CONTRATOS (antigo "Clientes")
+// =============================================
 exports.getClientes = async (page = 1, limit = 10, filters = {}) => {
   const offset = (page - 1) * limit;
-  const conditions = [];
-  const params = [];
-
+  let where = [];
+  let params = [];
+  
   if (filters.regiao) {
     params.push(filters.regiao);
-    conditions.push(`regiao = $${params.length}`);
+    where.push(`regiao = $${params.length}`);
   }
-
-  if (filters.estado) {
-    params.push(filters.estado);
-    conditions.push(`estado = $${params.length}`);
+  if (filters.status) {
+    params.push(filters.status);
+    where.push(`status_cobranca = $${params.length}`);
   }
-
   if (filters.busca) {
     params.push(`%${filters.busca}%`);
-    conditions.push(`(nome ILIKE $${params.length} OR cpf_cnpj ILIKE $${params.length})`);
+    where.push(`(id_contrato ILIKE $${params.length} OR nome_assessoria ILIKE $${params.length})`);
   }
-
-  const whereClause = conditions.length > 0
-    ? 'WHERE ' + conditions.join(' AND ')
-    : '';
-
-  // Parâmetros de paginação sempre por último
+  
+  const whereClause = where.length > 0 ? 'WHERE ' + where.join(' AND ') : '';
+  
   params.push(limit);
-  const limitIdx = params.length;
+  const limitParam = `$${params.length}`;
   params.push(offset);
-  const offsetIdx = params.length;
-
+  const offsetParam = `$${params.length}`;
+  
   const result = await pool.query(
-    `SELECT * FROM clientes ${whereClause} ORDER BY id LIMIT $${limitIdx} OFFSET $${offsetIdx}`,
+    `SELECT * FROM contratos ${whereClause} ORDER BY id LIMIT ${limitParam} OFFSET ${offsetParam}`,
     params
   );
-
-  // Contagem usa os mesmos filtros, sem paginação
+  
   const countParams = params.slice(0, params.length - 2);
-  const countRes = await pool.query(
-    `SELECT COUNT(*) FROM clientes ${whereClause}`,
-    countParams
-  );
-
+  const countRes = await pool.query(`SELECT COUNT(*) FROM contratos ${whereClause}`, countParams);
+  
   return { data: result.rows, total: parseInt(countRes.rows[0].count) };
 };
 
-// ─── Clientes críticos ──────────────────────────────────────────────────────────
-
+// =============================================
+// CONTRATOS CRÍTICOS
+// =============================================
 exports.getClientesCriticos = async () => {
+  const refRes = await pool.query("SELECT MAX(data_vencimento) as ref_date FROM pagamentos");
+  const refDate = refRes.rows[0].ref_date;
   const result = await pool.query(`
-    SELECT DISTINCT c.* 
-    FROM clientes c
-    JOIN contratos ct ON c.id = ct.cliente_id
-    JOIN pagamentos p ON ct.id = p.contrato_id
+    SELECT DISTINCT c.*
+    FROM contratos c
+    JOIN pagamentos p ON c.id_contrato = p.id_contrato
     WHERE p.data_pagamento IS NULL 
-    AND CURRENT_DATE - p.data_vencimento > 60
-  `);
+    AND $1::date - p.data_vencimento > 60
+    ORDER BY c.valor_inadimplente DESC
+    LIMIT 50
+  `, [refDate]);
   return result.rows;
 };
 
-// ─── Alertas com filtro por nível de risco ──────────────────────────────────────
+// =============================================
+// DETALHE DO CONTRATO
+// =============================================
+exports.getClienteById = async (id) => {
+  const contrato = await pool.query('SELECT * FROM contratos WHERE id = $1', [id]);
+  if (contrato.rows.length === 0) return null;
+  
+  const parcelas = await pool.query(
+    'SELECT * FROM pagamentos WHERE id_contrato = $1 ORDER BY numero_parcela ASC',
+    [contrato.rows[0].id_contrato]
+  );
+  
+  const alertas = await pool.query(
+    'SELECT * FROM alertas_risco WHERE id_contrato = $1 ORDER BY criado_em DESC',
+    [contrato.rows[0].id_contrato]
+  );
+  
+  return {
+    ...contrato.rows[0],
+    parcelas: parcelas.rows,
+    alertas: alertas.rows
+  };
+};
 
-exports.getAlertas = async (page = 1, limit = 10, nivelRisco) => {
+// =============================================
+// ALERTAS
+// =============================================
+exports.getAlertas = async (page = 1, limit = 10, nivelRisco = null) => {
   const offset = (page - 1) * limit;
+  let where = '';
   const params = [];
-  let whereExtra = '';
-
+  
   if (nivelRisco) {
     params.push(nivelRisco);
-    whereExtra = `WHERE a.nivel_risco = $${params.length}`;
+    where = `WHERE a.nivel_risco = $${params.length}`;
   }
-
+  
   params.push(limit);
-  const limitIdx = params.length;
+  const limitParam = `$${params.length}`;
   params.push(offset);
-  const offsetIdx = params.length;
-
+  const offsetParam = `$${params.length}`;
+  
   const result = await pool.query(`
-    SELECT a.*, c.nome as cliente_nome
+    SELECT a.*, c.regiao, c.nome_assessoria, c.valor_inadimplente
     FROM alertas_risco a
-    JOIN clientes c ON a.cliente_id = c.id
-    ${whereExtra}
+    JOIN contratos c ON a.id_contrato = c.id_contrato
+    ${where}
     ORDER BY a.criado_em DESC
-    LIMIT $${limitIdx} OFFSET $${offsetIdx}
+    LIMIT ${limitParam} OFFSET ${offsetParam}
   `, params);
-
+  
   const countParams = nivelRisco ? [nivelRisco] : [];
   const countWhere = nivelRisco ? 'WHERE nivel_risco = $1' : '';
-  const countRes = await pool.query(
-    `SELECT COUNT(*) FROM alertas_risco ${countWhere}`,
-    countParams
-  );
-
+  const countRes = await pool.query(`SELECT COUNT(*) FROM alertas_risco ${countWhere}`, countParams);
+  
   return { data: result.rows, total: parseInt(countRes.rows[0].count) };
 };
 
-// ─── Pagamentos ─────────────────────────────────────────────────────────────────
-
+// =============================================
+// PAGAMENTOS
+// =============================================
 exports.getPagamentos = async (page = 1, limit = 20) => {
   const offset = (page - 1) * limit;
   const result = await pool.query(`
-    SELECT p.*, c.nome as cliente_nome, ct.valor_total
+    SELECT p.*, c.regiao, c.nome_assessoria
     FROM pagamentos p
-    JOIN contratos ct ON p.contrato_id = ct.id
-    JOIN clientes c ON ct.cliente_id = c.id
+    JOIN contratos c ON p.id_contrato = c.id_contrato
     ORDER BY p.data_vencimento DESC
     LIMIT $1 OFFSET $2
   `, [limit, offset]);
@@ -178,312 +209,221 @@ exports.getPagamentos = async (page = 1, limit = 20) => {
   return { data: result.rows, total: parseInt(countRes.rows[0].count) };
 };
 
-// ─── Autenticação ───────────────────────────────────────────────────────────────
-
+// =============================================
+// AUTENTICAÇÃO
+// =============================================
 exports.getUserByEmail = async (email) => {
   const result = await pool.query('SELECT * FROM usuarios WHERE email = $1', [email]);
   return result.rows[0];
 };
 
-// ─── Detalhe do cliente ─────────────────────────────────────────────────────────
-
-exports.getClienteById = async (id) => {
-  const cliente = await pool.query('SELECT * FROM clientes WHERE id = $1', [id]);
-  if (cliente.rows.length === 0) return null;
-  
-  const contratos = await pool.query('SELECT * FROM contratos WHERE cliente_id = $1 ORDER BY data_contrato DESC', [id]);
-  
-  for (let contrato of contratos.rows) {
-    const parcelas = await pool.query('SELECT * FROM pagamentos WHERE contrato_id = $1 ORDER BY data_vencimento ASC', [contrato.id]);
-    contrato.parcelas = parcelas.rows;
-  }
-  
-  return { ...cliente.rows[0], contratos: contratos.rows };
-};
-
-// ─── KPIs Avançados ─────────────────────────────────────────────────────────────
-
+// =============================================
+// KPIs AVANÇADOS
+// =============================================
 exports.getKpisAvancados = async () => {
-  // Taxa de recuperação: % de parcelas vencidas que foram pagas neste mês
-  const taxaRecuperacao = await pool.query(`
-    SELECT
-      CASE
-        WHEN total_vencidas = 0 THEN 0
-        ELSE ROUND((recuperadas::numeric / total_vencidas) * 100, 2)
-      END as taxa_recuperacao
+  const refRes = await pool.query("SELECT MAX(data_vencimento) as ref_date FROM pagamentos");
+  const refDate = refRes.rows[0].ref_date;
+
+  // Taxa de recuperação: % de parcelas vencidas que foram pagas (mesmo que atrasadas)
+  const recup = await pool.query(`
+    SELECT 
+      COUNT(*) FILTER (WHERE data_pagamento IS NOT NULL AND data_pagamento > data_vencimento) as recuperadas,
+      COUNT(*) FILTER (WHERE data_vencimento <= $1::date) as vencidas
+    FROM pagamentos
+  `, [refDate]);
+  const taxa_recuperacao = recup.rows[0].vencidas > 0 
+    ? (recup.rows[0].recuperadas / recup.rows[0].vencidas * 100) 
+    : 0;
+
+  // Contratos reincidentes (com mais de 3 parcelas atrasadas)
+  const reincid = await pool.query(`
+    SELECT COUNT(DISTINCT id_contrato) as total
     FROM (
-      SELECT
-        (SELECT COUNT(*) FROM pagamentos WHERE data_vencimento < CURRENT_DATE AND data_pagamento IS NOT NULL) as recuperadas,
-        (SELECT COUNT(*) FROM pagamentos WHERE data_vencimento < CURRENT_DATE) as total_vencidas
+      SELECT id_contrato, COUNT(*) as parcelas_atrasadas
+      FROM pagamentos
+      WHERE data_pagamento IS NULL AND data_vencimento <= $1::date
+      GROUP BY id_contrato
+      HAVING COUNT(*) > 3
     ) sub
-  `);
+  `, [refDate]);
 
-  // Clientes reincidentes: clientes com mais de 1 contrato com parcelas vencidas não pagas
-  const reincidentes = await pool.query(`
-    SELECT COUNT(*) as clientes_reincidentes
-    FROM (
-      SELECT ct.cliente_id
-      FROM contratos ct
-      JOIN pagamentos p ON ct.id = p.contrato_id
-      WHERE p.data_pagamento IS NULL AND p.data_vencimento < CURRENT_DATE
-      GROUP BY ct.cliente_id
-      HAVING COUNT(DISTINCT ct.id) > 1
-    ) sub
-  `);
+  // Contratos em risco (com pelo menos uma parcela vencida não paga)
+  const em_risco = await pool.query(`
+    SELECT COUNT(DISTINCT id_contrato) as total
+    FROM pagamentos
+    WHERE data_pagamento IS NULL AND data_vencimento <= $1::date
+  `, [refDate]);
 
-  // Contratos em risco: contratos ativos com pelo menos uma parcela vencida não paga
-  const contratosEmRisco = await pool.query(`
-    SELECT COUNT(DISTINCT ct.id) as contratos_em_risco
-    FROM contratos ct
-    JOIN pagamentos p ON ct.id = p.contrato_id
-    WHERE ct.status = 'ativo'
-    AND p.data_pagamento IS NULL
-    AND p.data_vencimento < CURRENT_DATE
-  `);
-
-  // Inadimplência por região: soma dos valores vencidos não pagos por região
-  const inadimplenciaPorRegiao = await pool.query(`
-    SELECT c.regiao, COALESCE(SUM(p.valor_parcela), 0) as total
-    FROM clientes c
-    JOIN contratos ct ON c.id = ct.cliente_id
-    JOIN pagamentos p ON ct.id = p.contrato_id
-    WHERE p.data_pagamento IS NULL AND p.data_vencimento < CURRENT_DATE
+  // Inadimplência por região
+  const por_regiao = await pool.query(`
+    SELECT c.regiao, SUM(p.valor_parcela) as total
+    FROM contratos c
+    JOIN pagamentos p ON c.id_contrato = p.id_contrato
+    WHERE p.data_pagamento IS NULL AND p.data_vencimento <= $1::date
     GROUP BY c.regiao
     ORDER BY total DESC
-  `);
+  `, [refDate]);
 
-  // Variação mensal: diferença percentual do total de inadimplência entre o mês atual e o anterior
-  const variacaoMensal = await pool.query(`
-    SELECT
-      COALESCE(SUM(CASE WHEN DATE_TRUNC('month', p.data_vencimento) = DATE_TRUNC('month', CURRENT_DATE) THEN p.valor_parcela END), 0) as mes_atual,
-      COALESCE(SUM(CASE WHEN DATE_TRUNC('month', p.data_vencimento) = DATE_TRUNC('month', CURRENT_DATE - INTERVAL '1 month') THEN p.valor_parcela END), 0) as mes_anterior
-    FROM pagamentos p
-    WHERE p.data_pagamento IS NULL AND p.data_vencimento < CURRENT_DATE
-  `);
 
-  const mesAtual = parseFloat(variacaoMensal.rows[0].mes_atual);
-  const mesAnterior = parseFloat(variacaoMensal.rows[0].mes_anterior);
-  const variacao = mesAnterior === 0
-    ? (mesAtual > 0 ? 100 : 0)
-    : parseFloat((((mesAtual - mesAnterior) / mesAnterior) * 100).toFixed(2));
+  // Variação mensal
+  const variacao = await pool.query(`
+    SELECT 
+      COALESCE(SUM(CASE WHEN TO_CHAR(data_vencimento, 'YYYY-MM') = TO_CHAR($1::date, 'YYYY-MM') 
+        THEN valor_parcela ELSE 0 END), 0) as mes_atual,
+      COALESCE(SUM(CASE WHEN TO_CHAR(data_vencimento, 'YYYY-MM') = TO_CHAR($1::date - INTERVAL '1 month', 'YYYY-MM') 
+        THEN valor_parcela ELSE 0 END), 0) as mes_anterior
+    FROM pagamentos
+    WHERE data_pagamento IS NULL AND data_vencimento <= $1::date
+  `, [refDate]);
+  
+  const atual = parseFloat(variacao.rows[0].mes_atual);
+  const anterior = parseFloat(variacao.rows[0].mes_anterior);
+  const variacao_mensal = anterior > 0 ? ((atual - anterior) / anterior * 100) : 0;
 
   return {
-    taxa_recuperacao: parseFloat(taxaRecuperacao.rows[0].taxa_recuperacao),
-    clientes_reincidentes: parseInt(reincidentes.rows[0].clientes_reincidentes),
-    contratos_em_risco: parseInt(contratosEmRisco.rows[0].contratos_em_risco),
-    inadimplencia_por_regiao: inadimplenciaPorRegiao.rows,
-    variacao_mensal: variacao
+    taxa_recuperacao,
+    clientes_reincidentes: parseInt(reincid.rows[0].total),
+    contratos_em_risco: parseInt(em_risco.rows[0].total),
+    inadimplencia_por_regiao: por_regiao.rows,
+    variacao_mensal
   };
 };
 
-// ─── Insights inteligentes ──────────────────────────────────────────────────────
-
+// =============================================
+// INSIGHTS AUTOMÁTICOS
+// =============================================
 exports.getInsights = async () => {
+  const refRes = await pool.query("SELECT MAX(data_vencimento) as ref_date FROM pagamentos");
+  const refDate = refRes.rows[0].ref_date;
   const insights = [];
 
-  // 1. Cidade com maior % de inadimplência total
-  const cidadeResult = await pool.query(`
-    WITH inadimplencia_cidade AS (
-      SELECT c.cidade, SUM(p.valor_parcela) as total_cidade
-      FROM clientes c
-      JOIN contratos ct ON c.id = ct.cliente_id
-      JOIN pagamentos p ON ct.id = p.contrato_id
-      WHERE p.data_pagamento IS NULL AND p.data_vencimento < CURRENT_DATE
-      GROUP BY c.cidade
-    ),
-    total AS (
-      SELECT COALESCE(SUM(total_cidade), 1) as total_geral FROM inadimplencia_cidade
-    )
-    SELECT ic.cidade, ROUND((ic.total_cidade / t.total_geral) * 100, 1) as percentual
-    FROM inadimplencia_cidade ic, total t
-    ORDER BY ic.total_cidade DESC
+  // 1. Cidade/Região com maior concentração
+  const conc = await pool.query(`
+    SELECT c.regiao, SUM(p.valor_parcela) as total
+    FROM contratos c
+    JOIN pagamentos p ON c.id_contrato = p.id_contrato
+    WHERE p.data_pagamento IS NULL AND p.data_vencimento <= $1::date
+    GROUP BY c.regiao
+    ORDER BY total DESC
     LIMIT 1
-  `);
-
-  if (cidadeResult.rows.length > 0) {
-    const { cidade, percentual } = cidadeResult.rows[0];
+  `, [refDate]);
+  const totalInad = await pool.query(`
+    SELECT SUM(valor_parcela) as total FROM pagamentos WHERE data_pagamento IS NULL AND data_vencimento <= $1::date
+  `, [refDate]);
+  if (conc.rows.length > 0 && totalInad.rows[0].total > 0) {
+    const pct = (parseFloat(conc.rows[0].total) / parseFloat(totalInad.rows[0].total) * 100).toFixed(1);
     insights.push({
       tipo: 'concentracao',
-      texto: `${cidade} concentra ${percentual}% da inadimplência total.`,
-      icone: 'MapPin'
+      texto: `A região ${conc.rows[0].regiao} concentra ${pct}% da inadimplência total do portfólio.`,
     });
   }
 
-  // 2. Risco de clientes com >2 contratos vs <=2
-  const riscoContratos = await pool.query(`
-    WITH clientes_info AS (
-      SELECT
-        ct.cliente_id,
-        COUNT(DISTINCT ct.id) as total_contratos,
-        COUNT(DISTINCT CASE WHEN p.data_pagamento IS NULL AND p.data_vencimento < CURRENT_DATE THEN p.id END) as parcelas_inadimplentes,
-        COUNT(DISTINCT p.id) as total_parcelas
-      FROM contratos ct
-      JOIN pagamentos p ON ct.id = p.contrato_id
-      GROUP BY ct.cliente_id
-    )
-    SELECT
-      CASE WHEN SUM(CASE WHEN total_contratos > 2 THEN total_parcelas END) = 0 THEN 0
-           ELSE ROUND(
-             (SUM(CASE WHEN total_contratos > 2 THEN parcelas_inadimplentes END)::numeric /
-              NULLIF(SUM(CASE WHEN total_contratos > 2 THEN total_parcelas END), 0)) * 100, 1
-           )
-      END as taxa_mais_2,
-      CASE WHEN SUM(CASE WHEN total_contratos <= 2 THEN total_parcelas END) = 0 THEN 0
-           ELSE ROUND(
-             (SUM(CASE WHEN total_contratos <= 2 THEN parcelas_inadimplentes END)::numeric /
-              NULLIF(SUM(CASE WHEN total_contratos <= 2 THEN total_parcelas END), 0)) * 100, 1
-           )
-      END as taxa_ate_2
-    FROM clientes_info
-  `);
-
-  if (riscoContratos.rows.length > 0) {
-    const { taxa_mais_2, taxa_ate_2 } = riscoContratos.rows[0];
-    const taxaMais = parseFloat(taxa_mais_2) || 0;
-    const taxaAte = parseFloat(taxa_ate_2) || 0;
-    const diff = taxaAte === 0 ? 0 : parseFloat((((taxaMais - taxaAte) / taxaAte) * 100).toFixed(1));
-    insights.push({
-      tipo: 'reincidencia',
-      texto: `Clientes com mais de 2 contratos apresentam risco ${Math.abs(diff)}% ${diff >= 0 ? 'maior' : 'menor'}.`,
-      icone: 'AlertTriangle'
-    });
-  }
-
-  // 3. Região com maior crescimento mês a mês na inadimplência
-  const crescimentoRegiao = await pool.query(`
-    WITH mensal AS (
-      SELECT
-        c.regiao,
-        COALESCE(SUM(CASE WHEN DATE_TRUNC('month', p.data_vencimento) = DATE_TRUNC('month', CURRENT_DATE) THEN p.valor_parcela END), 0) as atual,
-        COALESCE(SUM(CASE WHEN DATE_TRUNC('month', p.data_vencimento) = DATE_TRUNC('month', CURRENT_DATE - INTERVAL '1 month') THEN p.valor_parcela END), 0) as anterior
-      FROM clientes c
-      JOIN contratos ct ON c.id = ct.cliente_id
-      JOIN pagamentos p ON ct.id = p.contrato_id
-      WHERE p.data_pagamento IS NULL AND p.data_vencimento < CURRENT_DATE
-      GROUP BY c.regiao
-    )
-    SELECT regiao,
-      CASE WHEN anterior = 0 THEN 0
-           ELSE ROUND(((atual - anterior) / anterior) * 100, 1)
-      END as variacao
-    FROM mensal
-    ORDER BY variacao DESC
+  // 2. Assessoria com melhor recuperação
+  const assess = await pool.query(`
+    SELECT c.nome_assessoria,
+      COUNT(*) FILTER (WHERE c.status_cobranca = 'Acordo Firmado') as acordos,
+      COUNT(*) as total
+    FROM contratos c
+    GROUP BY c.nome_assessoria
+    ORDER BY (COUNT(*) FILTER (WHERE c.status_cobranca = 'Acordo Firmado'))::float / NULLIF(COUNT(*), 0) DESC
     LIMIT 1
   `);
-
-  if (crescimentoRegiao.rows.length > 0) {
-    const { regiao, variacao } = crescimentoRegiao.rows[0];
+  if (assess.rows.length > 0) {
+    const taxaAcordo = (assess.rows[0].acordos / assess.rows[0].total * 100).toFixed(1);
     insights.push({
-      tipo: 'crescimento',
-      texto: `A região ${regiao} apresentou crescimento de ${variacao}% na inadimplência.`,
-      icone: 'TrendingUp'
+      tipo: 'reincidencia',
+      texto: `${assess.rows[0].nome_assessoria} possui a maior taxa de acordo: ${taxaAcordo}% dos contratos sob sua gestão.`,
     });
+  }
+
+  // 3. Status da carteira
+  const status = await pool.query(`
+    SELECT status_cobranca, COUNT(*) as total FROM contratos GROUP BY status_cobranca ORDER BY total DESC
+  `);
+  if (status.rows.length > 0) {
+    const emAberto = status.rows.find(r => r.status_cobranca === 'Em Aberto');
+    if (emAberto) {
+      const pctAberto = (parseInt(emAberto.total) / 10000 * 100).toFixed(1);
+      insights.push({
+        tipo: 'crescimento',
+        texto: `${pctAberto}% dos contratos permanecem "Em Aberto", representando ${parseInt(emAberto.total).toLocaleString()} contratos sem resolução.`,
+      });
+    }
   }
 
   // 4. Clientes com atraso > 90 dias
-  const atraso90 = await pool.query(`
-    SELECT COUNT(DISTINCT ct.cliente_id) as total
-    FROM contratos ct
-    JOIN pagamentos p ON ct.id = p.contrato_id
-    WHERE p.data_pagamento IS NULL
-    AND CURRENT_DATE - p.data_vencimento > 90
-  `);
-
+  const criticos = await pool.query(`
+    SELECT COUNT(DISTINCT id_contrato) as total
+    FROM pagamentos 
+    WHERE data_pagamento IS NULL AND $1::date - data_vencimento > 90
+  `, [refDate]);
   insights.push({
-    tipo: 'atraso_grave',
-    texto: `${atraso90.rows[0].total} clientes possuem atraso superior a 90 dias.`,
-    icone: 'Clock'
+    tipo: 'critico',
+    texto: `${criticos.rows[0].total} contratos possuem parcelas com atraso superior a 90 dias.`,
   });
 
-  // 5. Média de inadimplência por cliente por região (mostra a maior)
-  const mediaRegiao = await pool.query(`
-    WITH inad_por_cliente AS (
-      SELECT c.regiao, ct.cliente_id, SUM(p.valor_parcela) as total_inad
-      FROM clientes c
-      JOIN contratos ct ON c.id = ct.cliente_id
-      JOIN pagamentos p ON ct.id = p.contrato_id
-      WHERE p.data_pagamento IS NULL AND p.data_vencimento < CURRENT_DATE
-      GROUP BY c.regiao, ct.cliente_id
-    )
-    SELECT regiao, ROUND(AVG(total_inad), 2) as media
-    FROM inad_por_cliente
-    GROUP BY regiao
+  // 5. Média de inadimplência por região
+  const media = await pool.query(`
+    SELECT c.regiao, ROUND(AVG(c.valor_inadimplente)::numeric, 2) as media
+    FROM contratos c
+    WHERE c.valor_inadimplente > 0
+    GROUP BY c.regiao
     ORDER BY media DESC
     LIMIT 1
   `);
-
-  if (mediaRegiao.rows.length > 0) {
-    const { regiao, media } = mediaRegiao.rows[0];
-    const mediaFormatada = parseFloat(media).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+  if (media.rows.length > 0) {
     insights.push({
-      tipo: 'media_regional',
-      texto: `A média de inadimplência por cliente na região ${regiao} é de R$ ${mediaFormatada}.`,
-      icone: 'DollarSign'
+      tipo: 'media',
+      texto: `A região ${media.rows[0].regiao} possui o maior ticket médio de inadimplência: R$ ${Number(media.rows[0].media).toLocaleString('pt-BR', {minimumFractionDigits: 2})}.`,
     });
   }
 
   return insights;
 };
 
-// ─── Tendências (mês atual vs anterior) ─────────────────────────────────────────
-
+// =============================================
+// TENDÊNCIAS
+// =============================================
 exports.getTendencias = async () => {
-  // Inadimplência: soma das parcelas vencidas não pagas
-  const inadimplencia = await pool.query(`
-    SELECT
-      COALESCE(SUM(CASE WHEN DATE_TRUNC('month', data_vencimento) = DATE_TRUNC('month', CURRENT_DATE) THEN valor_parcela END), 0) as atual,
-      COALESCE(SUM(CASE WHEN DATE_TRUNC('month', data_vencimento) = DATE_TRUNC('month', CURRENT_DATE - INTERVAL '1 month') THEN valor_parcela END), 0) as anterior
-    FROM pagamentos
-    WHERE data_pagamento IS NULL AND data_vencimento < CURRENT_DATE
-  `);
+  const refRes = await pool.query("SELECT MAX(data_vencimento) as ref_date FROM pagamentos");
+  const refDate = refRes.rows[0].ref_date;
 
-  // Recuperação: soma das parcelas pagas após o vencimento
-  const recuperacao = await pool.query(`
+  const result = await pool.query(`
     SELECT
-      COALESCE(SUM(CASE WHEN DATE_TRUNC('month', data_pagamento) = DATE_TRUNC('month', CURRENT_DATE) THEN valor_parcela END), 0) as atual,
-      COALESCE(SUM(CASE WHEN DATE_TRUNC('month', data_pagamento) = DATE_TRUNC('month', CURRENT_DATE - INTERVAL '1 month') THEN valor_parcela END), 0) as anterior
+      COALESCE(SUM(CASE WHEN TO_CHAR(data_vencimento, 'YYYY-MM') = TO_CHAR($1::date, 'YYYY-MM') AND data_pagamento IS NULL AND data_vencimento <= $1::date THEN valor_parcela END), 0) as inadimpl_atual,
+      COALESCE(SUM(CASE WHEN TO_CHAR(data_vencimento, 'YYYY-MM') = TO_CHAR($1::date - INTERVAL '1 month', 'YYYY-MM') AND data_pagamento IS NULL AND data_vencimento <= $1::date THEN valor_parcela END), 0) as inadimpl_anterior,
+      COALESCE(SUM(CASE WHEN TO_CHAR(data_pagamento, 'YYYY-MM') = TO_CHAR($1::date, 'YYYY-MM') AND data_pagamento > data_vencimento THEN valor_pago END), 0) as recup_atual,
+      COALESCE(SUM(CASE WHEN TO_CHAR(data_pagamento, 'YYYY-MM') = TO_CHAR($1::date - INTERVAL '1 month', 'YYYY-MM') AND data_pagamento > data_vencimento THEN valor_pago END), 0) as recup_anterior
     FROM pagamentos
-    WHERE data_pagamento IS NOT NULL AND data_pagamento > data_vencimento
-  `);
+  `, [refDate]);
 
-  // Atraso médio (em dias) das parcelas vencidas não pagas
-  const atrasoMedio = await pool.query(`
+  const atraso = await pool.query(`
     SELECT
-      COALESCE(AVG(CASE WHEN DATE_TRUNC('month', data_vencimento) = DATE_TRUNC('month', CURRENT_DATE) THEN CURRENT_DATE - data_vencimento END), 0) as atual,
-      COALESCE(AVG(CASE WHEN DATE_TRUNC('month', data_vencimento) = DATE_TRUNC('month', CURRENT_DATE - INTERVAL '1 month') THEN CURRENT_DATE - data_vencimento END), 0) as anterior
+      COALESCE(AVG(CASE WHEN TO_CHAR(data_vencimento, 'YYYY-MM') = TO_CHAR($1::date, 'YYYY-MM') AND data_pagamento IS NULL AND data_vencimento <= $1::date THEN $1::date - data_vencimento END), 0) as atraso_atual,
+      COALESCE(AVG(CASE WHEN TO_CHAR(data_vencimento, 'YYYY-MM') = TO_CHAR($1::date - INTERVAL '1 month', 'YYYY-MM') AND data_pagamento IS NULL AND data_vencimento <= $1::date THEN $1::date - data_vencimento END), 0) as atraso_anterior
     FROM pagamentos
-    WHERE data_pagamento IS NULL AND data_vencimento < CURRENT_DATE
-  `);
+  `, [refDate]);
 
-  // Novos alertas de risco
-  const novosAlertas = await pool.query(`
+  const alertasQ = await pool.query(`
     SELECT
-      COUNT(CASE WHEN DATE_TRUNC('month', criado_em) = DATE_TRUNC('month', CURRENT_DATE) THEN 1 END) as atual,
-      COUNT(CASE WHEN DATE_TRUNC('month', criado_em) = DATE_TRUNC('month', CURRENT_DATE - INTERVAL '1 month') THEN 1 END) as anterior
+      COUNT(*) FILTER (WHERE DATE_TRUNC('month', criado_em) >= DATE_TRUNC('month', $1::date)) as alertas_atual,
+      COUNT(*) FILTER (WHERE DATE_TRUNC('month', criado_em) = DATE_TRUNC('month', $1::date - INTERVAL '1 month')) as alertas_anterior
     FROM alertas_risco
-  `);
+  `, [refDate]);
 
-  /**
-   * Calcula variação percentual e direção entre dois valores.
-   */
+  const r = result.rows[0];
+  const a = atraso.rows[0];
+  const al = alertasQ.rows[0];
+
   const calcVariacao = (atual, anterior) => {
-    const a = parseFloat(atual);
-    const b = parseFloat(anterior);
-    const variacao = b === 0
-      ? (a > 0 ? 100 : 0)
-      : parseFloat((((a - b) / b) * 100).toFixed(2));
-    return {
-      atual: a,
-      anterior: b,
-      variacao_pct: Math.abs(variacao),
-      direcao: a >= b ? 'up' : 'down'
-    };
+    const v = anterior > 0 ? ((atual - anterior) / anterior * 100) : 0;
+    return { atual, anterior, variacao_pct: v, direcao: atual >= anterior ? 'up' : 'down' };
   };
 
   return {
-    inadimplencia: calcVariacao(inadimplencia.rows[0].atual, inadimplencia.rows[0].anterior),
-    recuperacao: calcVariacao(recuperacao.rows[0].atual, recuperacao.rows[0].anterior),
-    atraso_medio: calcVariacao(atrasoMedio.rows[0].atual, atrasoMedio.rows[0].anterior),
-    novos_alertas: calcVariacao(novosAlertas.rows[0].atual, novosAlertas.rows[0].anterior)
+    inadimplencia: calcVariacao(parseFloat(r.inadimpl_atual), parseFloat(r.inadimpl_anterior)),
+    recuperacao: calcVariacao(parseFloat(r.recup_atual), parseFloat(r.recup_anterior)),
+    atraso_medio: calcVariacao(parseFloat(a.atraso_atual), parseFloat(a.atraso_anterior)),
+    novos_alertas: calcVariacao(parseInt(al.alertas_atual), parseInt(al.alertas_anterior)),
   };
 };
