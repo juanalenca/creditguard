@@ -1,7 +1,7 @@
 # 🏗️ Arquitetura do Sistema — CreditGuard AI
 
 > Documento de Arquitetura Técnica  
-> Versão 1.0 · Maio 2026
+> Versão 2.0 · Maio 2026
 
 ---
 
@@ -18,7 +18,7 @@
 
 ## 1. Diagrama de Arquitetura do Sistema
 
-Visão macro dos quatro pilares tecnológicos e seus protocolos de comunicação.
+Visão macro dos quatro pilares tecnológicos e seus protocolos de comunicação. O pipeline de dados agora parte de **datasets reais** fornecidos pelo professor, processados por um script ETL em Python.
 
 ```mermaid
 flowchart TB
@@ -51,28 +51,31 @@ flowchart TB
     subgraph DATABASE["🗄️ Banco de Dados"]
         DB_PG["PostgreSQL — Supabase"]
         DB_TB1["usuarios"]
-        DB_TB2["clientes"]
-        DB_TB3["contratos"]
-        DB_TB4["pagamentos"]
-        DB_TB5["alertas_risco"]
+        DB_TB2["contratos"]
+        DB_TB3["pagamentos"]
+        DB_TB4["alertas_risco"]
         DB_PG --- DB_TB1
         DB_PG --- DB_TB2
         DB_PG --- DB_TB3
         DB_PG --- DB_TB4
-        DB_PG --- DB_TB5
     end
 
-    subgraph DATASCIENCE["🔬 Data Science — Python"]
-        DS_PY["Python 3 + Faker"]
-        DS_PD["Pandas — Análise Exploratória"]
-        DS_NB["Jupyter Notebooks"]
-        DS_PY --- DS_PD
-        DS_PD --- DS_NB
+    subgraph DATASCIENCE["🔬 Data Science — ETL Pipeline"]
+        DS_SRC["Dados Reais do Professor"]
+        DS_CSV["cobranca_assessorias.csv"]
+        DS_XLS["fluxo_pagamentos.xlsx"]
+        DS_ETL["etl_real.py — Python 3 + Pandas"]
+        DS_SQL["seed_real.sql — ~14MB"]
+        DS_SRC --- DS_CSV
+        DS_SRC --- DS_XLS
+        DS_CSV --- DS_ETL
+        DS_XLS --- DS_ETL
+        DS_ETL --- DS_SQL
     end
 
     FE_AX -- "HTTP REST / JSON\nPorta 5000" --> BE_SRV
     BE_SVC -- "SQL via pg Pool\nPorta 6543" --> DB_PG
-    DS_PY -- "CSV / DataFrame\nseed.sql" --> DB_PG
+    DS_SQL -- "INSERT statements\nseed_real.sql" --> DB_PG
 
     style FRONTEND fill:#1e3a5f,stroke:#60a5fa,color:#e0f2fe
     style BACKEND fill:#1a3320,stroke:#4ade80,color:#dcfce7
@@ -86,7 +89,7 @@ flowchart TB
 |--------|---------|-----------|---------|
 | Frontend | Backend | HTTP REST / JSON | Axios → Express na porta 5000 |
 | Backend | PostgreSQL | SQL / TCP | pg Pool → Supabase na porta 6543 |
-| Data Science | PostgreSQL | SQL / Seed | Faker gera CSV → seed.sql → PostgreSQL |
+| ETL Python | PostgreSQL | SQL / Seed | CSV/XLSX → etl_real.py → seed_real.sql → PostgreSQL |
 
 ---
 
@@ -101,19 +104,20 @@ flowchart LR
     C -- "❌ Credenciais Inválidas" --> B
     C -- "✅ Token Gerado" --> D["📊 Dashboard"]
 
-    D --> E["👥 Clientes"]
+    D --> E["📋 Contratos"]
     D --> F["⚠️ Alertas de Risco"]
-    D --> G["📈 Inteligência Analítica"]
+    D --> G["📈 Analytics"]
 
-    E --> H["🔍 Detalhe do Cliente"]
-    H --> I["📄 Contratos e Parcelas"]
+    E --> H["🔍 Detalhe do Contrato"]
+    H --> I["📄 Parcelas e Pagamentos"]
     E --> J["📥 Exportar CSV"]
 
     F --> K["🏷️ Filtro por Nível"]
     K --> L["Baixo / Médio / Alto"]
 
     G --> M["📉 Evolução da Inadimplência"]
-    G --> N["🗺️ Risco Regional por Cidade"]
+    G --> N["🗺️ Risco Regional"]
+    G --> O["💡 Insights e Tendências"]
 
     style A fill:#0ea5e9,stroke:#0284c7,color:#fff
     style C fill:#f59e0b,stroke:#d97706,color:#fff
@@ -126,37 +130,39 @@ flowchart LR
 |------|-----------|-----------|:------------:|
 | `/login` | `Login.jsx` | Tela de autenticação | ❌ Pública |
 | `/` | `Dashboard.jsx` | Painel principal com KPIs e gráficos | ✅ JWT |
-| `/clientes` | `Clientes.jsx` | Lista paginada de clientes | ✅ JWT |
-| `/clientes/:id` | `ClienteDetail.jsx` | Ficha completa do cliente | ✅ JWT |
+| `/clientes` | `Clientes.jsx` | Lista paginada de contratos com filtros | ✅ JWT |
+| `/clientes/:id` | `ClienteDetail.jsx` | Ficha completa do contrato com parcelas | ✅ JWT |
 | `/alertas` | `Alertas.jsx` | Central de alertas de risco | ✅ JWT |
+| `/analytics` | `Analytics.jsx` | Inteligência analítica e tendências | ✅ JWT |
 
 ---
 
 ## 3. Fluxo ETL — Pipeline de Dados
 
-Pipeline completo desde a geração sintética de dados até a visualização no painel React.
+Pipeline completo desde os **dados reais** fornecidos pelo professor até a visualização no painel React. Os dados sintéticos foram substituídos por dois datasets de produção.
 
 ```mermaid
 flowchart LR
-    subgraph GERACAO["1️⃣ Geração de Dados"]
-        G1["Python 3 + Faker"]
-        G2["01_gerador_mock.py"]
-        G1 --> G2
+    subgraph FONTES["1️⃣ Fontes de Dados Reais"]
+        F1["cobranca_assessorias.csv\n10.000 contratos"]
+        F2["fluxo_pagamentos.xlsx\n100.000 parcelas"]
     end
 
-    subgraph TRANSFORMACAO["2️⃣ Transformação"]
-        T1["Pandas DataFrame"]
-        T2["Limpeza e Validação"]
-        T3["Análise Exploratória"]
-        T4["02_analise_exploratoria.ipynb"]
-        T1 --> T2
-        T2 --> T3
-        T3 --> T4
+    subgraph ETL["2️⃣ ETL — Python"]
+        E1["etl_real.py"]
+        E2["Pandas — Leitura CSV/XLSX"]
+        E3["Limpeza e Normalização"]
+        E4["Geração de score_risco"]
+        E5["Geração de alertas_risco"]
+        E1 --> E2
+        E2 --> E3
+        E3 --> E4
+        E4 --> E5
     end
 
     subgraph CARGA["3️⃣ Carga"]
-        C1["seed.sql gerado"]
-        C2["schema.sql — DDL"]
+        C1["seed_real.sql — ~14MB"]
+        C2["schema_real.sql — DDL"]
         C3["PostgreSQL Supabase"]
         C2 --> C3
         C1 --> C3
@@ -170,12 +176,13 @@ flowchart LR
         CO2 --> CO3
     end
 
-    G2 -- "CSV / DataFrame" --> T1
-    T2 -- "INSERT statements" --> C1
+    F1 -- "CSV" --> E2
+    F2 -- "XLSX" --> E2
+    E5 -- "INSERT statements" --> C1
     C3 -- "pg Pool — SQL" --> CO1
 
-    style GERACAO fill:#7c3aed,stroke:#6d28d9,color:#fff
-    style TRANSFORMACAO fill:#2563eb,stroke:#1d4ed8,color:#fff
+    style FONTES fill:#7c3aed,stroke:#6d28d9,color:#fff
+    style ETL fill:#2563eb,stroke:#1d4ed8,color:#fff
     style CARGA fill:#ea580c,stroke:#c2410c,color:#fff
     style CONSUMO fill:#059669,stroke:#047857,color:#fff
 ```
@@ -184,18 +191,38 @@ flowchart LR
 
 | Etapa | Ferramenta | Artefato Produzido | Localização |
 |-------|-----------|-------------------|-------------|
-| Geração | Python + Faker | Dados sintéticos realistas | `data-science/notebooks/01_gerador_mock.py` |
-| Análise | Pandas + Jupyter | Relatório exploratório | `data-science/notebooks/02_analise_exploratoria.ipynb` |
-| Esquema DDL | SQL | Estrutura das 5 tabelas | `database/schema.sql` |
-| Carga Seed | SQL | ~350KB de dados mock | `database/seed.sql` |
+| Fonte — Contratos | CSV do professor | 10.000 contratos de assessorias | `data-science/cobranca_assessorias.csv` |
+| Fonte — Pagamentos | XLSX do professor | 100.000 parcelas de pagamento | `data-science/fluxo_pagamentos.xlsx` |
+| ETL | Python 3 + Pandas | Transformação, score e alertas | `data-science/etl_real.py` |
+| Esquema DDL | SQL | Estrutura das 4 tabelas | `database/schema_real.sql` |
+| Carga Seed | SQL | ~14MB de dados reais | `database/seed_real.sql` |
 | API REST | Express + pg | Endpoints JSON | `backend/src/` |
 | Visualização | React + Recharts | Dashboard interativo | `frontend/src/` |
+
+### Dados de Origem
+
+| Dataset | Formato | Volume | Conteúdo |
+|---------|---------|--------|----------|
+| `cobranca_assessorias.csv` | CSV | 10.000 registros | Contratos enviados para assessorias de cobrança |
+| `fluxo_pagamentos.xlsx` | XLSX | 100.000 registros | Fluxo de parcelas e pagamentos realizados |
+
+### Assessorias de Cobrança
+
+O sistema recebe dados de **4 assessorias** de cobrança que operam em **5 regiões** do Brasil:
+
+| Regiões |
+|---------|
+| Nordeste |
+| Sudeste |
+| Sul |
+| Norte |
+| Centro-Oeste |
 
 ---
 
 ## 4. Modelo Lógico — Diagrama ER
 
-Modelo entidade-relacionamento completo com as cinco tabelas do sistema e seus relacionamentos.
+Modelo entidade-relacionamento com as **quatro tabelas** do sistema e seus relacionamentos. A tabela `clientes` foi eliminada — o contrato é agora a entidade central, referenciado diretamente pelas demais tabelas.
 
 ```mermaid
 erDiagram
@@ -207,96 +234,88 @@ erDiagram
         varchar perfil
     }
 
-    CLIENTES {
-        serial id PK
-        varchar nome
-        varchar cpf_cnpj UK
-        varchar telefone
-        varchar regiao
-        varchar cidade
-        varchar estado
-        date data_cadastro
-    }
-
     CONTRATOS {
         serial id PK
-        integer cliente_id FK
-        decimal valor_total
-        decimal saldo_devedor
-        date data_contrato
-        varchar status
+        varchar id_contrato UK
+        varchar nome_assessoria
+        date data_envio_assessoria
+        integer dias_atraso_inicial
+        decimal valor_inadimplente
+        varchar status_cobranca
+        decimal score_risco
+        varchar regiao
     }
 
     PAGAMENTOS {
         serial id PK
-        integer contrato_id FK
-        decimal valor_parcela
+        varchar id_pagamento UK
+        varchar id_contrato FK
+        integer numero_parcela
         date data_vencimento
         date data_pagamento
+        decimal valor_parcela
+        decimal valor_pago
+        varchar forma_pagamento
+        boolean indicador_contemplado
     }
 
     ALERTAS_RISCO {
         serial id PK
-        integer cliente_id FK
+        varchar id_contrato FK
         varchar nivel_risco
         text descricao
         timestamp criado_em
     }
 
-    CLIENTES ||--o{ CONTRATOS : "possui"
-    CONTRATOS ||--o{ PAGAMENTOS : "gera"
-    CLIENTES ||--o{ ALERTAS_RISCO : "dispara"
+    CONTRATOS ||--o{ PAGAMENTOS : "gera parcelas"
+    CONTRATOS ||--o{ ALERTAS_RISCO : "dispara alertas"
 ```
 
 ### Dicionário de Dados
 
 #### Tabela `usuarios`
 | Coluna | Tipo | Restrições | Descrição |
-|--------|------|-----------|-----------|
+|--------|------|-----------|-----------| 
 | `id` | `SERIAL` | PK | Identificador único |
 | `nome` | `VARCHAR(100)` | NOT NULL | Nome completo do operador |
 | `email` | `VARCHAR(100)` | UNIQUE, NOT NULL | Email para login |
 | `senha_hash` | `VARCHAR(255)` | NOT NULL | Hash bcrypt da senha |
 | `perfil` | `VARCHAR(20)` | DEFAULT 'analista' | Papel no sistema |
 
-#### Tabela `clientes`
-| Coluna | Tipo | Restrições | Descrição |
-|--------|------|-----------|-----------|
-| `id` | `SERIAL` | PK | Identificador único |
-| `nome` | `VARCHAR(150)` | NOT NULL | Nome ou razão social |
-| `cpf_cnpj` | `VARCHAR(20)` | UNIQUE, NOT NULL | Documento fiscal |
-| `telefone` | `VARCHAR(20)` | — | Contato telefônico |
-| `regiao` | `VARCHAR(50)` | — | Região geográfica |
-| `cidade` | `VARCHAR(100)` | — | Cidade do cliente |
-| `estado` | `VARCHAR(2)` | — | UF do cliente |
-| `data_cadastro` | `DATE` | DEFAULT CURRENT_DATE | Data de inclusão |
-
 #### Tabela `contratos`
 | Coluna | Tipo | Restrições | Descrição |
-|--------|------|-----------|-----------|
-| `id` | `SERIAL` | PK | Identificador único |
-| `cliente_id` | `INTEGER` | FK → clientes | Referência ao cliente |
-| `valor_total` | `DECIMAL(12,2)` | NOT NULL | Valor original do contrato |
-| `saldo_devedor` | `DECIMAL(12,2)` | NOT NULL | Saldo remanescente |
-| `data_contrato` | `DATE` | NOT NULL | Data de assinatura |
-| `status` | `VARCHAR(20)` | DEFAULT 'ativo' | ativo / quitado / inadimplente |
+|--------|------|-----------|-----------| 
+| `id` | `SERIAL` | PK | Identificador sequencial |
+| `id_contrato` | `VARCHAR(20)` | UNIQUE, NOT NULL | Código do contrato (CONTR_2026_XXXXX) |
+| `nome_assessoria` | `VARCHAR(150)` | — | Assessoria de cobrança responsável |
+| `data_envio_assessoria` | `DATE` | — | Data de envio para a assessoria |
+| `dias_atraso_inicial` | `INTEGER` | DEFAULT 0 | Dias de atraso na entrada |
+| `valor_inadimplente` | `DECIMAL(12,2)` | DEFAULT 0 | Valor total inadimplente |
+| `status_cobranca` | `VARCHAR(30)` | — | Em Aberto / Acordo Firmado / Insucesso / Ajuizado |
+| `score_risco` | `DECIMAL(5,2)` | — | Score de risco calculado (0–100) |
+| `regiao` | `VARCHAR(50)` | — | Região geográfica (Nordeste, Sudeste, Sul, Norte, Centro-Oeste) |
 
 #### Tabela `pagamentos`
 | Coluna | Tipo | Restrições | Descrição |
-|--------|------|-----------|-----------|
-| `id` | `SERIAL` | PK | Identificador único |
-| `contrato_id` | `INTEGER` | FK → contratos | Referência ao contrato |
-| `valor_parcela` | `DECIMAL(12,2)` | NOT NULL | Valor da parcela |
-| `data_vencimento` | `DATE` | NOT NULL | Data de vencimento |
+|--------|------|-----------|-----------| 
+| `id` | `SERIAL` | PK | Identificador sequencial |
+| `id_pagamento` | `VARCHAR(20)` | UNIQUE, NOT NULL | Código do pagamento (PAG_XXXXXXX) |
+| `id_contrato` | `VARCHAR(20)` | FK → contratos(id_contrato) | Referência ao contrato |
+| `numero_parcela` | `INTEGER` | — | Número sequencial da parcela |
+| `data_vencimento` | `DATE` | NOT NULL | Data de vencimento da parcela |
 | `data_pagamento` | `DATE` | NULLABLE | Data efetiva do pagamento |
+| `valor_parcela` | `DECIMAL(12,2)` | NOT NULL | Valor nominal da parcela |
+| `valor_pago` | `DECIMAL(12,2)` | DEFAULT 0 | Valor efetivamente pago |
+| `forma_pagamento` | `VARCHAR(30)` | — | Boleto / Pix / Débito Automático |
+| `indicador_contemplado` | `BOOLEAN` | DEFAULT FALSE | Se a parcela foi contemplada |
 
 > **Regra de negócio:** Se `data_pagamento IS NULL` e `data_vencimento < CURRENT_DATE`, a parcela é considerada **em atraso**.
 
 #### Tabela `alertas_risco`
 | Coluna | Tipo | Restrições | Descrição |
-|--------|------|-----------|-----------|
+|--------|------|-----------|-----------| 
 | `id` | `SERIAL` | PK | Identificador único |
-| `cliente_id` | `INTEGER` | FK → clientes | Referência ao cliente |
+| `id_contrato` | `VARCHAR(20)` | FK → contratos(id_contrato) | Referência ao contrato |
 | `nivel_risco` | `VARCHAR(20)` | — | Baixo / Medio / Alto |
 | `descricao` | `TEXT` | — | Descrição narrativa do risco |
 | `criado_em` | `TIMESTAMP` | DEFAULT CURRENT_TIMESTAMP | Data/hora de criação |
@@ -379,65 +398,79 @@ flowchart LR
 
 ### Regras de Classificação
 
-O sistema classifica os clientes em três níveis de risco com base no histórico de pagamentos e atrasos.
+O sistema classifica os contratos em três níveis de risco com base nos **dias de atraso inicial**, no **status de cobrança** e no **score de risco** calculado pelo ETL.
 
 ```mermaid
 flowchart TD
-    A["📊 Avaliar Cliente"] --> B{"Dias de Atraso?"}
+    A["📊 Avaliar Contrato"] --> B{"Dias de Atraso Inicial?"}
     
     B -- "0 a 15 dias" --> C["🟢 BAIXO"]
     B -- "16 a 60 dias" --> D["🟡 MÉDIO"]
     B -- "Acima de 60 dias" --> E["🔴 ALTO"]
-    
-    A --> F{"Múltiplos Contratos\nInadimplentes?"}
-    F -- "✅ Sim" --> E
-    F -- "❌ Não" --> B
 
-    C --> G["Monitoramento padrão"]
-    D --> H["Alerta preventivo gerado"]
-    E --> I["Ação imediata requerida"]
+    A --> F{"Status de Cobrança?"}
+    F -- "Ajuizado" --> E
+    F -- "Insucesso" --> D
+    F -- "Em Aberto" --> C
+
+    A --> G{"Score de Risco?"}
+    G -- "Score > 70" --> E
+    G -- "Score 30–70" --> D
+    G -- "Score < 30" --> C
+
+    C --> H["Monitoramento padrão"]
+    D --> I["Alerta preventivo gerado"]
+    E --> J["Ação imediata requerida"]
 
     style C fill:#22c55e,stroke:#16a34a,color:#fff
     style D fill:#eab308,stroke:#ca8a04,color:#fff
     style E fill:#ef4444,stroke:#dc2626,color:#fff
-    style G fill:#dcfce7,stroke:#86efac,color:#166534
-    style H fill:#fef9c3,stroke:#fde047,color:#713f12
-    style I fill:#fee2e2,stroke:#fca5a5,color:#991b1b
+    style H fill:#dcfce7,stroke:#86efac,color:#166534
+    style I fill:#fef9c3,stroke:#fde047,color:#713f12
+    style J fill:#fee2e2,stroke:#fca5a5,color:#991b1b
 ```
 
 ### Tabela de Critérios
 
 | Nível | Ícone | Critério | Ação do Sistema |
 |-------|:-----:|----------|----------------|
-| **Baixo** | 🟢 | Atraso ≤ 15 dias | Monitoramento padrão — sem alerta |
-| **Médio** | 🟡 | Atraso entre 16 e 60 dias | Alerta preventivo gerado automaticamente |
-| **Alto** | 🔴 | Atraso > 60 dias **OU** múltiplos contratos inadimplentes | Ação imediata — cliente marcado como crítico |
+| **Baixo** | 🟢 | Atraso ≤ 15 dias **E** status "Em Aberto" **E** Score < 30 | Monitoramento padrão — sem alerta |
+| **Médio** | 🟡 | Atraso entre 16 e 60 dias **OU** status "Insucesso" **OU** Score 30–70 | Alerta preventivo gerado automaticamente |
+| **Alto** | 🔴 | Atraso > 60 dias **OU** status "Ajuizado" **OU** Score > 70 | Ação imediata — contrato marcado como crítico |
+
+### Status de Cobrança
+
+| Status | Descrição | Impacto no Risco |
+|--------|-----------|:----------------:|
+| `Em Aberto` | Contrato em cobrança ativa | 🟢 Neutro |
+| `Acordo Firmado` | Negociação concluída com sucesso | 🟢 Positivo |
+| `Insucesso` | Tentativa de cobrança sem resultado | 🟡 Eleva para Médio |
+| `Ajuizado` | Contrato em processo judicial | 🔴 Eleva para Alto |
 
 ### Implementação no Backend
 
-A identificação de clientes críticos é realizada pela query no `kpiService.js`:
+A identificação de contratos críticos é realizada pela query no `kpiService.js`:
 
 ```sql
--- Clientes com atraso superior a 60 dias (Risco Alto)
-SELECT DISTINCT c.* 
-FROM clientes c
-JOIN contratos ct ON c.id = ct.cliente_id
-JOIN pagamentos p ON ct.id = p.contrato_id
-WHERE p.data_pagamento IS NULL 
-  AND CURRENT_DATE - p.data_vencimento > 60;
+-- Contratos de risco alto (>60 dias OU Ajuizado OU Score>70)
+SELECT c.* 
+FROM contratos c
+WHERE c.dias_atraso_inicial > 60
+   OR c.status_cobranca = 'Ajuizado'
+   OR c.score_risco > 70;
 ```
 
 ### Métricas Calculadas (KPIs)
 
 | KPI | Cálculo | Descrição |
 |-----|---------|-----------|
-| **Inadimplência Total** | `SUM(valor_parcela)` onde `data_pagamento IS NULL` e vencida | Soma de todas as parcelas em atraso |
-| **Recuperação do Mês** | `SUM(valor_parcela)` onde `data_pagamento > data_vencimento` no mês atual | Parcelas pagas com atraso neste mês |
-| **Atraso Médio** | `AVG(CURRENT_DATE - data_vencimento)` das parcelas vencidas | Média de dias de atraso |
-| **Clientes Críticos** | `COUNT(DISTINCT cliente_id)` na tabela de alertas | Total de clientes com alertas ativos |
+| **Inadimplência Total** | `SUM(valor_inadimplente)` dos contratos ativos | Soma dos valores inadimplentes da carteira |
+| **Recuperação do Mês** | `SUM(valor_pago)` onde `data_pagamento` no mês atual | Total recuperado no mês corrente |
+| **Atraso Médio** | `AVG(dias_atraso_inicial)` dos contratos em aberto | Média de dias de atraso na carteira |
+| **Contratos Críticos** | `COUNT(*)` onde risco = Alto | Total de contratos com risco alto |
 
 ---
 
-> **Documento gerado em:** Maio 2026  
+> **Documento atualizado em:** Maio 2026  
 > **Projeto:** CreditGuard AI — Plataforma Analítica de Recuperação de Crédito  
-> **Disciplina:** Projeto Universitário — Semanas 2 e 3
+> **Versão:** 2.0 — Migração para dados reais do professor

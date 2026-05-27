@@ -1,6 +1,6 @@
 import { TrendingUp, TrendingDown, Minus } from 'lucide-react';
 
-const KpiCard = ({ title, value, icon: Icon, colorClass, borderClass, trend, trendValue }) => {
+const KpiCard = ({ title, value, icon: Icon, colorClass, borderClass, trend, trendValue, invertTrendColor }) => {
   // Determine trend display
   let TrendIcon = Minus;
   let trendColor = 'text-gray-500';
@@ -8,13 +8,12 @@ const KpiCard = ({ title, value, icon: Icon, colorClass, borderClass, trend, tre
   
   if (trend === 'up') {
     TrendIcon = TrendingUp;
-    // For inadimplência/atraso, up is bad (red). For recuperação, up is good (green).
-    trendColor = 'text-red-400';
-    trendBg = 'bg-red-900/30';
+    trendColor = invertTrendColor ? 'text-emerald-400' : 'text-red-400';
+    trendBg = invertTrendColor ? 'bg-emerald-900/30' : 'bg-red-900/30';
   } else if (trend === 'down') {
     TrendIcon = TrendingDown;
-    trendColor = 'text-emerald-400';
-    trendBg = 'bg-emerald-900/30';
+    trendColor = invertTrendColor ? 'text-red-400' : 'text-emerald-400';
+    trendBg = invertTrendColor ? 'bg-red-900/30' : 'bg-emerald-900/30';
   }
 
   return (
@@ -27,8 +26,8 @@ const KpiCard = ({ title, value, icon: Icon, colorClass, borderClass, trend, tre
           </h3>
           {trendValue && (
             <div className={`inline-flex items-center mt-2 px-2 py-0.5 rounded-full text-xs font-semibold ${trendBg} ${trendColor}`}>
-              <TrendIcon className="w-3 h-3 mr-1" />
-              {trendValue} vs mês anterior
+              {trend !== 'neutral' && <TrendIcon className="w-3 h-3 mr-1" />}
+              {trendValue}
             </div>
           )}
         </div>

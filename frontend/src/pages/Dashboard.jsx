@@ -57,9 +57,15 @@ const Dashboard = () => {
   const formatTrend = (key) => {
     if (!tendencias || !tendencias[key]) return {};
     const t = tendencias[key];
+    const val = Number(t.variacao_pct);
+    
+    if (val === 0) {
+      return { trend: 'neutral', trendValue: 'Sem variação no período' };
+    }
+    
     return {
-      trend: t.direcao,
-      trendValue: `${t.variacao_pct > 0 ? '+' : ''}${Number(t.variacao_pct).toFixed(1)}%`
+      trend: val > 0 ? 'up' : 'down',
+      trendValue: `${val > 0 ? '+' : ''}${val.toFixed(1)}% vs mês anterior`
     };
   };
 
@@ -101,6 +107,7 @@ const Dashboard = () => {
           icon={DollarSign}
           colorClass="text-emerald-400 border-emerald-500/30"
           borderClass="border-emerald-500"
+          invertTrendColor={true}
           {...formatTrend('recuperacao')}
         />
         <KpiCard
@@ -130,7 +137,7 @@ const Dashboard = () => {
               <LineChart data={evolucao}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
                 <XAxis dataKey="mes" stroke="#9ca3af" fontSize={12} />
-                <YAxis stroke="#9ca3af" tickFormatter={(v) => `R$${(v / 1000).toFixed(0)}k`} fontSize={12} />
+                <YAxis stroke="#9ca3af" tickFormatter={(v) => v >= 1000000 ? `R$${(v / 1000000).toFixed(1)}M` : `R$${(v / 1000).toFixed(0)}K`} fontSize={12} />
                 <RechartsTooltip
                   formatter={(value) => [`R$ ${Number(value).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`, 'Inadimplência']}
                   contentStyle={{ backgroundColor: '#1f2937', borderColor: '#374151', color: '#fff', borderRadius: 8 }}
@@ -143,13 +150,13 @@ const Dashboard = () => {
         </div>
 
         <div className="bg-gray-800 p-6 rounded-xl border border-gray-700 shadow-lg">
-          <h3 className="text-lg font-bold text-gray-200 mb-6">Risco Regional (Dívidas por Cidade)</h3>
+          <h3 className="text-lg font-bold text-gray-200 mb-6">Risco Regional (Inadimplência por Região)</h3>
           <div className="h-80">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={riscoRegional} layout="vertical">
                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                <XAxis type="number" stroke="#9ca3af" tickFormatter={(v) => `R$${(v / 1000).toFixed(0)}k`} fontSize={12} />
-                <YAxis type="category" dataKey="cidade" stroke="#9ca3af" width={90} fontSize={12} />
+                <XAxis type="number" stroke="#9ca3af" domain={[0, 8000000]} ticks={[0, 2000000, 4000000, 6000000, 8000000]} tickFormatter={(v) => v >= 1000000 ? `R$${(v / 1000000).toFixed(1)}M` : `R$${(v / 1000).toFixed(0)}K`} fontSize={12} />
+                <YAxis type="category" dataKey="regiao" stroke="#9ca3af" width={90} fontSize={12} />
                 <RechartsTooltip
                   formatter={(value) => [`R$ ${Number(value).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`, 'Inadimplência']}
                   contentStyle={{ backgroundColor: '#1f2937', borderColor: '#374151', color: '#fff', borderRadius: 8 }}
@@ -169,7 +176,7 @@ const Dashboard = () => {
           <table className="min-w-full divide-y divide-gray-700">
             <thead>
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Cliente</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Contrato</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Nível</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Descrição</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Data</th>
@@ -178,7 +185,7 @@ const Dashboard = () => {
             <tbody className="divide-y divide-gray-700">
               {alertas.map((alerta) => (
                 <tr key={alerta.id} className="hover:bg-gray-700/50 transition-colors">
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-200">{alerta.cliente_nome}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-mono text-blue-400">{alerta.id_contrato}</td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span className={`px-2.5 py-1 inline-flex text-xs leading-5 font-semibold rounded-full border ${alerta.nivel_risco === 'Alto' ? 'bg-red-900/50 text-red-400 border-red-800' : alerta.nivel_risco === 'Medio' ? 'bg-amber-900/50 text-amber-400 border-amber-800' : 'bg-emerald-900/50 text-emerald-400 border-emerald-800'}`}>
                       {alerta.nivel_risco}
