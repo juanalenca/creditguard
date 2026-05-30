@@ -35,7 +35,7 @@ exports.login = async (req, res) => {
       token,
       user: { name: user.nome, email: user.email, perfil: user.perfil }
     });
-  } catch (err) {
+  } catch (err) { console.error("Erro interno:", err);
     res.status(500).json({ error: err.message });
   }
 };
@@ -44,7 +44,7 @@ exports.getKpis = async (req, res) => {
   try {
     const kpis = await kpiService.getKpis();
     res.json(kpis);
-  } catch (err) {
+  } catch (err) { console.error("Erro interno:", err);
     res.status(500).json({ error: err.message });
   }
 };
@@ -54,7 +54,7 @@ exports.getEvolucao = async (req, res) => {
     const { regiao } = req.query;
     const evolucao = await kpiService.getEvolucao(regiao);
     res.json(evolucao);
-  } catch (err) {
+  } catch (err) { console.error("Erro interno:", err);
     res.status(500).json({ error: err.message });
   }
 };
@@ -64,7 +64,7 @@ exports.getRiscoRegional = async (req, res) => {
     const { regiao } = req.query;
     const risco = await kpiService.getRiscoRegional(regiao);
     res.json(risco);
-  } catch (err) {
+  } catch (err) { console.error("Erro interno:", err);
     res.status(500).json({ error: err.message });
   }
 };
@@ -80,7 +80,7 @@ exports.getClientes = async (req, res) => {
     };
     const result = await kpiService.getClientes(page, limit, filters);
     res.json(result);
-  } catch (err) {
+  } catch (err) { console.error("Erro interno:", err);
     res.status(500).json({ error: err.message });
   }
 };
@@ -89,7 +89,7 @@ exports.getClientesCriticos = async (req, res) => {
   try {
     const criticos = await kpiService.getClientesCriticos();
     res.json(criticos);
-  } catch (err) {
+  } catch (err) { console.error("Erro interno:", err);
     res.status(500).json({ error: err.message });
   }
 };
@@ -101,7 +101,7 @@ exports.getAlertas = async (req, res) => {
     const nivelRisco = req.query.nivel_risco || null;
     const result = await kpiService.getAlertas(page, limit, nivelRisco);
     res.json(result);
-  } catch (err) {
+  } catch (err) { console.error("Erro interno:", err);
     res.status(500).json({ error: err.message });
   }
 };
@@ -112,7 +112,7 @@ exports.getPagamentos = async (req, res) => {
     const limit = parseInt(req.query.limit) || 20;
     const result = await kpiService.getPagamentos(page, limit);
     res.json(result);
-  } catch (err) {
+  } catch (err) { console.error("Erro interno:", err);
     res.status(500).json({ error: err.message });
   }
 };
@@ -123,7 +123,7 @@ exports.getClienteById = async (req, res) => {
     const result = await kpiService.getClienteById(id);
     if (!result) return res.status(404).json({ error: 'Cliente não encontrado' });
     res.json(result);
-  } catch (err) {
+  } catch (err) { console.error("Erro interno:", err);
     res.status(500).json({ error: err.message });
   }
 };
@@ -134,7 +134,7 @@ exports.getKpisAvancados = async (req, res) => {
   try {
     const kpis = await kpiService.getKpisAvancados();
     res.json(kpis);
-  } catch (err) {
+  } catch (err) { console.error("Erro interno:", err);
     res.status(500).json({ error: err.message });
   }
 };
@@ -143,7 +143,7 @@ exports.getInsights = async (req, res) => {
   try {
     const insights = await kpiService.getInsights();
     res.json(insights);
-  } catch (err) {
+  } catch (err) { console.error("Erro interno:", err);
     res.status(500).json({ error: err.message });
   }
 };
@@ -152,7 +152,8 @@ exports.getTendencias = async (req, res) => {
   try {
     const tendencias = await kpiService.getTendencias();
     res.json(tendencias);
-  } catch (err) {
+  } catch (err) { console.error("Erro interno:", err);
     res.status(500).json({ error: err.message });
   }
 };
+
