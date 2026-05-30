@@ -5,7 +5,7 @@ import { Lightbulb, Award, TrendingUp, TrendingDown, BarChart3, ShieldAlert, Ref
 import { exportToCsv } from '../utils/exportCsv';
 
 const API = 'http://localhost:5000/api';
-const COLORS = ['#ef4444', '#f59e0b', '#3b82f6', '#10b981', '#8b5cf6', '#ec4899'];
+const COLORS = ['#ef4444', '#f59e0b', '#a855f7', '#10b981', '#8b5cf6', '#ec4899'];
 
 const Analytics = () => {
   const [insights, setInsights] = useState([]);
@@ -50,7 +50,7 @@ const Analytics = () => {
 
   const getInsightColor = (tipo) => {
     switch (tipo) {
-      case 'concentracao': return 'border-blue-500 bg-blue-900/20 text-blue-400';
+      case 'concentracao': return 'border-orange-500 bg-orange-900/20 text-orange-400';
       case 'reincidencia': return 'border-amber-500 bg-amber-900/20 text-amber-400';
       case 'crescimento': return 'border-red-500 bg-red-900/20 text-red-400';
       case 'critico': return 'border-red-500 bg-red-900/20 text-red-400';
@@ -71,7 +71,7 @@ const Analytics = () => {
 
   return (
     <div className="space-y-8 pb-10">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <h2 className="text-3xl font-bold text-white tracking-tight flex items-center">
             <Lightbulb className="w-8 h-8 mr-3 text-amber-400" />
@@ -81,7 +81,7 @@ const Analytics = () => {
         </div>
         <button
           onClick={handleExportInsights}
-          className="flex items-center px-4 py-2 bg-gray-800 border border-gray-700 text-gray-300 rounded-lg hover:bg-gray-700 transition-colors"
+          className="flex items-center px-4 py-2 bg-gray-800 border border-gray-700 text-gray-300 rounded-lg hover:bg-gray-700 transition-colors w-full sm:w-auto justify-center"
         >
           <Download className="w-4 h-4 mr-2" />
           Exportar Insights
@@ -119,7 +119,7 @@ const Analytics = () => {
       {kpisAvancados && (
         <div>
           <h3 className="text-lg font-bold text-gray-200 mb-4 flex items-center">
-            <Award className="w-5 h-5 mr-2 text-blue-400" />
+            <Award className="w-5 h-5 mr-2 text-purple-400" />
             KPIs Derivativos Executivos
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
@@ -135,7 +135,7 @@ const Analytics = () => {
               <p className="text-xs font-medium text-gray-400 uppercase">Contratos em Risco</p>
               <p className="text-2xl font-bold text-red-400 mt-1">{kpisAvancados.contratos_em_risco || 0}</p>
             </div>
-            <div className="bg-gray-800 p-5 rounded-xl border border-gray-700 border-t-4 border-t-blue-500">
+            <div className="bg-gray-800 p-5 rounded-xl border border-gray-700 border-t-4 border-t-purple-500">
               <p className="text-xs font-medium text-gray-400 uppercase">Variação da Inadimplência</p>
               <p className={`text-2xl font-bold mt-1 flex items-center ${Number(kpisAvancados.variacao_mensal) > 0 ? 'text-red-400' : 'text-emerald-400'}`}>
                 {Number(kpisAvancados.variacao_mensal) > 0 ? <TrendingUp className="w-5 h-5 mr-1" /> : <TrendingDown className="w-5 h-5 mr-1" />}
@@ -166,9 +166,9 @@ const Analytics = () => {
                     nameKey="regiao"
                     cx="50%"
                     cy="50%"
-                    outerRadius={100}
-                    label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
-                    labelLine={true}
+                    outerRadius={80}
+                    label={({ percent }) => `${(percent * 100).toFixed(0)}%`}
+                    labelLine={false}
                   >
                     {kpisAvancados.inadimplencia_por_regiao.map((_, index) => (
                       <Cell key={index} fill={COLORS[index % COLORS.length]} />
@@ -176,7 +176,9 @@ const Analytics = () => {
                   </Pie>
                   <RechartsTooltip
                     formatter={(value) => `R$ ${Number(value).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`}
-                    contentStyle={{ backgroundColor: '#1f2937', borderColor: '#374151', color: '#fff', borderRadius: 8 }}
+                    contentStyle={{ backgroundColor: '#1f2937', borderColor: '#374151', borderRadius: 8 }}
+                    itemStyle={{ color: '#e5e7eb' }}
+                    labelStyle={{ color: '#9ca3af' }}
                   />
                   <Legend />
                 </PieChart>
@@ -196,7 +198,9 @@ const Analytics = () => {
                 <YAxis stroke="#9ca3af" tickFormatter={(v) => v >= 1000000 ? `R$${(v / 1000000).toFixed(1)}M` : `R$${(v / 1000).toFixed(0)}K`} fontSize={12} />
                 <RechartsTooltip
                   formatter={(value) => [`R$ ${Number(value).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`, 'Valor']}
-                  contentStyle={{ backgroundColor: '#1f2937', borderColor: '#374151', color: '#fff', borderRadius: 8 }}
+                  contentStyle={{ backgroundColor: '#1f2937', borderColor: '#374151', borderRadius: 8 }}
+                  itemStyle={{ color: '#e5e7eb' }}
+                  labelStyle={{ color: '#9ca3af' }}
                 />
                 <Line type="monotone" dataKey="total" stroke="#8b5cf6" strokeWidth={3} dot={{ r: 5, fill: '#8b5cf6' }} activeDot={{ r: 8 }} />
               </LineChart>
@@ -226,7 +230,7 @@ const Analytics = () => {
                     <span className="w-28 text-sm font-medium text-gray-300">{reg.regiao}</span>
                     <div className="flex-1 bg-gray-900 rounded-full h-3 overflow-hidden">
                       <div
-                        className={`h-full rounded-full transition-all duration-500 ${idx === 0 ? 'bg-red-500' : idx === 1 ? 'bg-amber-500' : 'bg-blue-500'}`}
+                        className={`h-full rounded-full transition-all duration-500 ${idx === 0 ? 'bg-red-500' : idx === 1 ? 'bg-amber-500' : 'bg-purple-500'}`}
                         style={{ width: `${pct}%` }}
                       />
                     </div>

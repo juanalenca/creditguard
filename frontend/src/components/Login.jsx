@@ -29,14 +29,11 @@ const Login = () => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-950 relative overflow-hidden">
       {/* Background glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/30 via-gray-950 to-gray-950 pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900/30 via-gray-950 to-gray-950 pointer-events-none" />
       
-      <div className="relative w-full max-w-md p-10 space-y-8 bg-gray-900 border border-gray-800 rounded-2xl shadow-2xl shadow-blue-900/20">
+      <div className="relative w-full max-w-md p-6 sm:p-10 space-y-8 bg-gray-900 border border-gray-800 rounded-2xl shadow-2xl shadow-purple-900/20">
         <div className="flex flex-col items-center">
-          <div className="p-4 bg-blue-600/20 rounded-full mb-4">
-            <ShieldCheck className="w-12 h-12 text-blue-400" />
-          </div>
-          <h2 className="text-3xl font-bold text-white tracking-tight">CreditGuard <span className="text-blue-400">AI</span></h2>
+          <img src="/logo-projeto.png" alt="CreditGuard AI" className="h-48 w-auto object-contain mb-4" />
           <p className="text-gray-500 mt-2">Sistema de Análise de Risco de Crédito</p>
         </div>
 
@@ -53,8 +50,8 @@ const Login = () => {
               <input
                 type="email"
                 required
-                placeholder="admin@creditguard.com"
-                className="w-full pl-10 pr-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-gray-200 placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                placeholder="admin@linus.com"
+                className="w-full pl-10 pr-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-gray-200 placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -68,7 +65,7 @@ const Login = () => {
                 type="password"
                 required
                 placeholder="••••••••"
-                className="w-full pl-10 pr-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-gray-200 placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                className="w-full pl-10 pr-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-gray-200 placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
@@ -78,7 +75,7 @@ const Login = () => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full px-4 py-3 font-bold text-white bg-blue-600 rounded-lg hover:bg-blue-500 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-blue-900/30 hover:shadow-blue-800/40"
+            className="w-full px-4 py-3 font-bold text-white bg-purple-600 rounded-lg hover:bg-purple-500 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-purple-900/30 hover:shadow-purple-800/40"
           >
             {loading ? 'Autenticando...' : 'Entrar no Sistema'}
           </button>

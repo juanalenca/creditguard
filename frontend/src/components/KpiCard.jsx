@@ -17,7 +17,7 @@ const KpiCard = ({ title, value, icon: Icon, colorClass, borderClass, trend, tre
   }
 
   return (
-    <div className={`bg-gray-800 p-6 rounded-xl border border-gray-700 shadow-lg hover:shadow-2xl hover:shadow-blue-900/10 transition-all duration-300 border-t-4 ${borderClass} group hover:-translate-y-1`}>
+    <div className={`bg-gray-800 p-6 rounded-xl border border-gray-700 shadow-lg hover:shadow-2xl hover:shadow-purple-900/10 transition-all duration-300 border-t-4 ${borderClass} group hover:-translate-y-1`}>
       <div className="flex items-center justify-between">
         <div className="flex-1">
           <p className="text-sm font-medium text-gray-400 group-hover:text-gray-300 transition-colors">{title}</p>

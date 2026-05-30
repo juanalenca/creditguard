@@ -1,5 +1,5 @@
 INSERT INTO usuarios (nome, email, senha_hash, perfil) VALUES
-('Administrador Geral', 'admin@creditguard.com', 'hashed_pass_mock', 'admin'),
+('Administrador Geral', 'admin@linus.com', 'hashed_pass_mock', 'admin'),
 ('Analista Financeiro', 'analista@creditguard.com', 'hashed_pass_mock', 'analista');
 
 INSERT INTO clientes (id, nome, cpf_cnpj, telefone, regiao, cidade, estado, data_cadastro) VALUES

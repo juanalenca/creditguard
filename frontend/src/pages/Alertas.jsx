@@ -73,7 +73,7 @@ const Alertas = () => {
             onClick={() => { setNivel(n); setPage(1); }}
             className={`px-4 py-2 rounded-lg text-sm font-medium border transition-all ${
               nivel === n
-                ? 'bg-blue-600 border-blue-500 text-white shadow-md shadow-blue-900/30'
+                ? 'bg-purple-600 border-purple-500 text-white shadow-md shadow-purple-900/30'
                 : 'bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-gray-200'
             }`}
           >
@@ -105,7 +105,7 @@ const Alertas = () => {
                   <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-400">
                     {new Date(alerta.criado_em).toLocaleString('pt-BR')}
                   </td>
-                  <td className="px-5 py-4 whitespace-nowrap text-sm font-mono text-blue-400">
+                  <td className="px-5 py-4 whitespace-nowrap text-sm font-mono text-purple-400">
                     {alerta.id_contrato}
                   </td>
                   <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-300">

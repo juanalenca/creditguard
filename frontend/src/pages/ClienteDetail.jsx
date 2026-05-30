@@ -61,7 +61,7 @@ const ClienteDetail = () => {
           <div>
             <h2 className="text-3xl font-bold text-white font-mono">{contrato.id_contrato}</h2>
             <p className="text-gray-400 mt-2">Assessoria: <span className="text-gray-200 font-medium">{contrato.nome_assessoria}</span></p>
-            <p className="text-gray-400 mt-1">Região: <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-blue-900/30 text-blue-400 border border-blue-800/50">{contrato.regiao}</span></p>
+            <p className="text-gray-400 mt-1">Região: <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-purple-900/30 text-purple-400 border border-purple-800/50">{contrato.regiao}</span></p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="bg-gray-900 p-4 rounded-lg text-center">
@@ -87,7 +87,7 @@ const ClienteDetail = () => {
       {/* Resumo de Parcelas */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="bg-gray-800 p-5 rounded-xl border border-gray-700 flex items-center gap-4">
-          <div className="p-3 rounded-full bg-blue-900/30"><FileText className="w-6 h-6 text-blue-400" /></div>
+          <div className="p-3 rounded-full bg-purple-900/30"><FileText className="w-6 h-6 text-purple-400" /></div>
           <div><p className="text-sm text-gray-400">Total Parcelas</p><p className="text-2xl font-bold text-white">{totalParcelas}</p></div>
         </div>
         <div className="bg-gray-800 p-5 rounded-xl border border-gray-700 flex items-center gap-4">
@@ -103,7 +103,7 @@ const ClienteDetail = () => {
       {/* Tabela de Parcelas */}
       <div className="bg-gray-800 rounded-xl border border-gray-700 shadow-lg overflow-hidden">
         <div className="p-5 border-b border-gray-700 flex items-center justify-between">
-          <h3 className="text-lg font-bold text-gray-200 flex items-center"><FileText className="w-5 h-5 mr-2 text-blue-500" /> Histórico de Parcelas</h3>
+          <h3 className="text-lg font-bold text-gray-200 flex items-center"><FileText className="w-5 h-5 mr-2 text-purple-500" /> Histórico de Parcelas</h3>
           <button onClick={handleExportParcelas} className="flex items-center px-3 py-1.5 bg-gray-700 text-gray-300 rounded-lg hover:bg-gray-600 text-sm transition-colors">
             <Download className="w-4 h-4 mr-1" /> CSV
           </button>
