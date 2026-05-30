@@ -15,7 +15,8 @@ const Login = () => {
     setLoading(true);
     setError('');
     try {
-      const response = await axios.post('http://localhost:5000/api/login', { email, password });
+      const API = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+      const response = await axios.post(`${API}/login`, { email, password });
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('user', JSON.stringify(response.data.user));
       navigate('/');

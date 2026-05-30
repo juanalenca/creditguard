@@ -5,7 +5,7 @@ import { AlertCircle, TrendingUp, Clock, DollarSign, Download } from 'lucide-rea
 import KpiCard from '../components/KpiCard';
 import { exportToCsv } from '../utils/exportCsv';
 
-const API = 'http://localhost:5000/api';
+const API = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
 const Dashboard = () => {
   const [kpis, setKpis] = useState(null);

@@ -4,7 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, FileText, Calendar, CheckCircle2, XCircle, Clock, AlertTriangle, Download } from 'lucide-react';
 import { exportToCsv } from '../utils/exportCsv';
 
-const API = 'http://localhost:5000/api';
+const API = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
 const ClienteDetail = () => {
   const { id } = useParams();

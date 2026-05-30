@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Search, ChevronRight, Download, MapPin, Filter } from 'lucide-react';
 import { exportToCsv } from '../utils/exportCsv';
 
-const API = 'http://localhost:5000/api';
+const API = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
 const Clientes = () => {
   const [contratos, setContratos] = useState([]);

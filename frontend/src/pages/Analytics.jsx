@@ -4,7 +4,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsToolti
 import { Lightbulb, Award, TrendingUp, TrendingDown, BarChart3, ShieldAlert, RefreshCw, DollarSign, Download } from 'lucide-react';
 import { exportToCsv } from '../utils/exportCsv';
 
-const API = 'http://localhost:5000/api';
+const API = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 const COLORS = ['#ef4444', '#f59e0b', '#a855f7', '#10b981', '#8b5cf6', '#ec4899'];
 
 const Analytics = () => {

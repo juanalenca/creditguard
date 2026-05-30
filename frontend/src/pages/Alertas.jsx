@@ -3,7 +3,7 @@ import axios from 'axios';
 import { AlertOctagon, Download, Filter } from 'lucide-react';
 import { exportToCsv } from '../utils/exportCsv';
 
-const API = 'http://localhost:5000/api';
+const API = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
 const Alertas = () => {
   const [alertas, setAlertas] = useState([]);
