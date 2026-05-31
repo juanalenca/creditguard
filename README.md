@@ -1,396 +1,337 @@
-# 🛡️ CreditGuard AI
+# CreditGuard AI
 
-**Plataforma Web Analítica para Recuperação de Crédito e Prevenção de Inadimplência**
+**Plataforma web analitica para recuperacao de credito, monitoramento de inadimplencia e inteligencia gerencial.**
 
-> Sistema full-stack para monitoramento financeiro em tempo real, análise de inadimplência por região, classificação de risco heurística e geração de alertas inteligentes. Desenvolvido como projeto acadêmico universitário com arquitetura profissional de mercado.
-
----
-
-## 📋 Sumário
-
-- [Stack Tecnológica](#-stack-tecnológica)
-- [Arquitetura do Sistema](#-arquitetura-do-sistema)
-- [Estrutura do Projeto](#-estrutura-do-projeto)
-- [Instalação e Configuração](#-instalação-e-configuração)
-- [Variáveis de Ambiente](#-variáveis-de-ambiente)
-- [Endpoints da API](#-endpoints-da-api)
-- [Regras de Negócio](#-regras-de-negócio)
-- [Funcionalidades](#-funcionalidades)
-- [Entregas Acadêmicas](#-entregas-acadêmicas)
+O CreditGuard AI integra Ciencia de Dados, PostgreSQL/Supabase, backend Node.js/Express e frontend React para transformar dados financeiros em KPIs, alertas, insights e dashboards executivos.
 
 ---
 
-## 🚀 Stack Tecnológica
+## Sumario
+
+- [Visao Geral](#visao-geral)
+- [Stack Tecnologica](#stack-tecnologica)
+- [Arquitetura](#arquitetura)
+- [Estrutura do Projeto](#estrutura-do-projeto)
+- [Instalacao e Execucao](#instalacao-e-execucao)
+- [Variaveis de Ambiente](#variaveis-de-ambiente)
+- [Endpoints da API](#endpoints-da-api)
+- [Regra Oficial de Risco](#regra-oficial-de-risco)
+- [Funcionalidades](#funcionalidades)
+- [Resultados Analiticos](#resultados-analiticos)
+
+---
+
+## Visao Geral
+
+A solucao foi desenvolvida a partir de dois datasets financeiros reais:
+
+- `data-science/cobranca_assessorias.csv`, com 10.000 contratos financeiros.
+- `data-science/fluxo_pagamentos.xlsx`, com 100.000 registros de pagamentos.
+
+Esses dados sao processados por um pipeline ETL em Python/Pandas, carregados no PostgreSQL hospedado no Supabase e consumidos pelo backend Node.js por meio de consultas SQL analiticas. O frontend React apresenta os indicadores em dashboards, graficos, tabelas, alertas e central de inteligencia.
+
+---
+
+## Stack Tecnologica
 
 ### Frontend
-| Tecnologia | Versão | Finalidade |
-|:-----------|:------:|:-----------|
-| ⚛️ **React** | 19.2 | Biblioteca de UI com componentes reativos |
-| ⚡ **Vite** | 8.0 | Bundler e dev server ultrarrápido |
-| 🎨 **TailwindCSS** | 4.3 | Estilização utilitária responsiva |
-| 📊 **Recharts** | 2.15 | Gráficos interativos para dashboards |
-| 🧭 **React Router DOM** | 7.15 | Navegação SPA com rotas protegidas |
-| 🔗 **Axios** | 1.16 | Cliente HTTP para consumo da API |
-| 🎯 **Lucide React** | 1.16 | Biblioteca de ícones modernos |
+
+| Tecnologia | Finalidade |
+|:--|:--|
+| React + Vite | Interface web e SPA |
+| TailwindCSS | Estilizacao responsiva |
+| Recharts | Graficos e visualizacoes analiticas |
+| React Router DOM | Rotas e navegacao protegida |
+| Axios | Consumo das APIs REST |
+| Lucide React | Iconografia da interface |
 
 ### Backend
-| Tecnologia | Versão | Finalidade |
-|:-----------|:------:|:-----------|
-| 🟢 **Node.js** | 20+ | Runtime JavaScript no servidor |
-| 🚂 **Express** | 5.2 | Framework HTTP minimalista |
-| 🔐 **JSON Web Token** | 9.0 | Autenticação stateless via JWT |
-| 🔒 **bcrypt** | 5.1 | Hash seguro de senhas |
-| 🐘 **pg** | 8.21 | Driver nativo PostgreSQL |
-| 📁 **dotenv** | 17.4 | Gerenciamento de variáveis de ambiente |
-| 🌐 **CORS** | 2.8 | Controle de origens cruzadas |
+
+| Tecnologia | Finalidade |
+|:--|:--|
+| Node.js | Runtime do servidor |
+| Express | API REST |
+| PostgreSQL `pg` | Conexao com o banco |
+| JSON Web Token | Autenticacao stateless |
+| bcrypt | Hash seguro de senhas |
+| dotenv | Configuracao por variaveis de ambiente |
+| CORS | Controle de acesso entre frontend e backend |
+
+### Banco de Dados e Dados
+
+| Tecnologia | Finalidade |
+|:--|:--|
+| PostgreSQL | Banco relacional e analitico |
+| Supabase | Hospedagem do PostgreSQL em nuvem |
+| Python | Pipeline ETL |
+| Pandas | Limpeza, transformacao e consolidacao dos datasets |
+| Matplotlib | Analises graficas nos notebooks |
+| Jupyter Notebook | Documentacao e validacao analitica |
+
+---
+
+## Arquitetura
+
+Fluxo principal da solucao:
+
+```text
+Datasets CSV/XLSX
+        |
+        v
+Python + Pandas (ETL)
+        |
+        v
+PostgreSQL (Supabase)
+        |
+        v
+Node.js + Express (API REST)
+        |
+        v
+React Dashboard
+```
+
+O sistema utiliza uma arquitetura modular, separando responsabilidades entre tratamento de dados, persistencia, regras de negocio, APIs e interface executiva.
+
+Documentacao complementar: [docs/arquitetura.md](docs/arquitetura.md)
+
+---
+
+## Estrutura do Projeto
+
+```text
+creditguard/
+├── backend/
+│   ├── src/
+│   │   ├── config/db.js
+│   │   ├── controllers/apiController.js
+│   │   ├── middleware/auth.js
+│   │   ├── routes/api.js
+│   │   ├── services/kpiService.js
+│   │   └── server.js
+│   └── package.json
+│
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── utils/exportCsv.js
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   └── package.json
+│
+├── database/
+│   ├── schema_real.sql
+│   └── seed_real.sql
+│
+├── data-science/
+│   ├── cobranca_assessorias.csv
+│   ├── fluxo_pagamentos.xlsx
+│   ├── etl_real.py
+│   └── notebooks/
+│       ├── 01_data_cleaning_real.ipynb
+│       ├── 02_eda_real.ipynb
+│       └── 03_business_rules_real.ipynb
+│
+├── entregas.txt
+├── slides_e_falas.txt
+└── README.md
+```
+
+---
+
+## Instalacao e Execucao
+
+### Pre-requisitos
+
+- Node.js 18+.
+- npm.
+- Python 3.10+ para executar o pipeline de dados.
+- Projeto PostgreSQL no Supabase.
 
 ### Banco de Dados
-| Tecnologia | Finalidade |
-|:-----------|:-----------|
-| 🐘 **PostgreSQL** | SGBD relacional robusto |
-| ☁️ **Supabase** | Hospedagem cloud com pooling de conexões |
 
-### Data Science
-| Tecnologia | Finalidade |
-|:-----------|:-----------|
-| 🐍 **Python 3** | Geração de dados sintéticos |
-| 🐼 **Pandas** | Análise exploratória de dados |
-| 🎭 **Faker** | Geração de dados mock realistas |
-| 📓 **Jupyter Notebook** | Documentação interativa de análises |
+No SQL Editor do Supabase, execute:
 
----
-
-## 🏗️ Arquitetura do Sistema
-
-A arquitetura segue o padrão **MVC** com separação em quatro camadas independentes:
-
-```
-┌─────────────────┐     HTTP/JSON      ┌─────────────────┐      SQL/TCP       ┌─────────────────┐
-│   Frontend      │ ──────────────────► │   Backend       │ ──────────────────► │  PostgreSQL     │
-│  React + Vite   │    Porta 5000      │  Express + JWT  │    Porta 6543      │   Supabase      │
-│  Porta 5173     │ ◄────────────────── │                 │ ◄────────────────── │                 │
-└─────────────────┘                     └─────────────────┘                     └─────────────────┘
-                                                                                        ▲
-                                                                                        │ seed.sql
-                                                                               ┌────────┴────────┐
-                                                                               │  Data Science   │
-                                                                               │  Python/Faker   │
-                                                                               └─────────────────┘
+```text
+database/schema_real.sql
+database/seed_real.sql
 ```
 
-> 📖 **Documentação completa com diagramas Mermaid:** [docs/arquitetura.md](docs/arquitetura.md)
+O arquivo `schema_real.sql` cria as tabelas principais do sistema, e o `seed_real.sql` carrega os dados tratados pelo pipeline ETL.
 
----
-
-## 📁 Estrutura do Projeto
-
-```
-credit-guard/
-├── 📂 backend/                          # API REST — Node.js/Express
-│   ├── 📂 src/
-│   │   ├── 📂 config/
-│   │   │   └── db.js                    # Pool de conexão PostgreSQL
-│   │   ├── 📂 controllers/
-│   │   │   └── apiController.js         # Lógica dos endpoints
-│   │   ├── 📂 middleware/
-│   │   │   └── auth.js                  # Middleware JWT
-│   │   ├── 📂 routes/
-│   │   │   └── api.js                   # Definição das rotas
-│   │   ├── 📂 services/
-│   │   │   └── kpiService.js            # Queries SQL e regras de negócio
-│   │   └── server.js                    # Entry point Express
-│   ├── .env                             # Variáveis de ambiente
-│   └── package.json
-│
-├── 📂 frontend/                         # SPA — React/Vite
-│   ├── 📂 src/
-│   │   ├── 📂 components/
-│   │   │   ├── KpiCard.jsx              # Card de indicador KPI
-│   │   │   ├── Layout.jsx               # Layout wrapper com Outlet
-│   │   │   ├── Login.jsx                # Tela de autenticação
-│   │   │   └── Sidebar.jsx              # Barra lateral de navegação
-│   │   ├── 📂 pages/
-│   │   │   ├── Alertas.jsx              # Central de alertas de risco
-│   │   │   ├── ClienteDetail.jsx        # Ficha completa do cliente
-│   │   │   ├── Clientes.jsx             # Lista paginada de clientes
-│   │   │   └── Dashboard.jsx            # Painel principal com gráficos
-│   │   ├── 📂 utils/
-│   │   │   └── exportCsv.js             # Utilitário de exportação CSV
-│   │   ├── App.jsx                      # Roteamento e PrivateRoute
-│   │   ├── main.jsx                     # Bootstrap React
-│   │   └── index.css                    # Estilos globais
-│   ├── index.html
-│   ├── vite.config.js
-│   └── package.json
-│
-├── 📂 database/                         # Scripts SQL
-│   ├── schema.sql                       # DDL — Estrutura das tabelas
-│   └── seed.sql                         # DML — Dados mock (~350KB)
-│
-├── 📂 data-science/                     # Pipeline de dados
-│   └── 📂 notebooks/
-│       ├── 01_gerador_mock.py           # Script de geração de dados
-│       └── 02_analise_exploratoria.ipynb # Notebook de análise EDA
-│
-├── 📂 docs/                             # Documentação técnica
-│   └── arquitetura.md                   # Diagramas de arquitetura
-│
-└── README.md                            # Este arquivo
-```
-
----
-
-## ⚙️ Instalação e Configuração
-
-### Pré-requisitos
-
-- **Node.js** 18+ e **npm** 9+
-- **Python** 3.10+ (para o pipeline de dados)
-- Conta no **Supabase** (ou PostgreSQL local)
-
-### 1. Clonar o repositório
-
-```bash
-git clone https://github.com/seu-usuario/credit-guard.git
-cd credit-guard
-```
-
-### 2. Configurar o Banco de Dados
-
-#### Opção A — Supabase (Cloud)
-1. Crie um projeto no [Supabase](https://supabase.com)
-2. No **SQL Editor**, execute o conteúdo de `database/schema.sql`
-3. Em seguida, execute `database/seed.sql` para popular com dados mock
-
-#### Opção B — PostgreSQL Local
-1. Inicie o serviço PostgreSQL (`services.msc` → `postgresql-x64-17`)
-2. Crie o banco: `CREATE DATABASE creditguard;`
-3. Execute `schema.sql` e depois `seed.sql` via pgAdmin ou psql
-
-### 3. Iniciar o Backend
+### Backend
 
 ```bash
 cd backend
 npm install
-```
-
-Crie o arquivo `.env` na pasta `backend/` (veja seção abaixo) e então:
-
-```bash
 npm start
-# Servidor rodando em http://localhost:5000
 ```
 
-### 4. Iniciar o Frontend
+Servidor padrao:
+
+```text
+http://localhost:5000
+```
+
+### Frontend
 
 ```bash
 cd frontend
 npm install
 npm run dev
-# Aplicação disponível em http://localhost:5173
+```
+
+Aplicacao padrao:
+
+```text
+http://localhost:5173
 ```
 
 ---
 
-## 🔐 Variáveis de Ambiente
+## Variaveis de Ambiente
 
-Crie o arquivo `backend/.env` com as seguintes variáveis:
+Crie o arquivo `backend/.env` com as credenciais do Supabase e a chave JWT:
 
 ```env
-# === Banco de Dados ===
 DB_HOST=aws-1-us-west-2.pooler.supabase.com
-DB_PORT=6543
+DB_PORT=5432
 DB_NAME=postgres
 DB_USER=postgres.seu_projeto_id
 DB_PASSWORD=sua_senha_segura
-
-# === Autenticação ===
-JWT_SECRET=sua_chave_jwt_secreta_aqui
+JWT_SECRET=sua_chave_jwt_secreta
 ```
 
-> ⚠️ **Importante:** Nunca versione o arquivo `.env`. Adicione-o ao `.gitignore`.
+O backend tambem possui valores padrao para desenvolvimento, mas a execucao correta do projeto deve utilizar o `.env` apontando para o banco PostgreSQL/Supabase.
 
 ---
 
-## 📡 Endpoints da API
+## Endpoints da API
 
-Base URL: `http://localhost:5000/api`
+Base URL:
 
-### Autenticação
+```text
+http://localhost:5000/api
+```
 
-| Método | Rota | Descrição | Auth |
-|:------:|:-----|:----------|:----:|
-| `POST` | `/api/login` | Autentica o usuário e retorna token JWT | ❌ |
+### Autenticacao
 
-**Body da requisição:**
+| Metodo | Rota | Descricao | Auth |
+|:--|:--|:--|:--:|
+| POST | `/login` | Autentica usuario e retorna JWT | Nao |
+
+Exemplo de credencial de demonstracao:
+
 ```json
 {
-  "email": "analista@creditguard.com",
+  "email": "admin@linus.com",
   "password": "mock123"
 }
 ```
 
-**Resposta de sucesso:**
-```json
-{
-  "token": "eyJhbGciOiJIUzI1NiIs...",
-  "user": {
-    "name": "Analista Demo",
-    "email": "analista@creditguard.com",
-    "perfil": "analista"
-  }
-}
-```
+As senhas sao armazenadas como hash bcrypt no banco, e o login utiliza `bcrypt.compare()`.
 
 ### Dashboard e KPIs
 
-| Método | Rota | Descrição | Auth |
-|:------:|:-----|:----------|:----:|
-| `GET` | `/api/kpis` | KPIs principais: inadimplência, recuperação, atraso médio, críticos | 🔐 JWT |
-| `GET` | `/api/kpis/avancados` | KPIs avançados com métricas detalhadas | 🔐 JWT |
-| `GET` | `/api/dashboard/evolucao` | Evolução mensal da inadimplência (últimos 6 meses) | 🔐 JWT |
-| `GET` | `/api/dashboard/risco-regional` | Distribuição de inadimplência por cidade | 🔐 JWT |
+| Metodo | Rota | Descricao | Auth |
+|:--|:--|:--|:--:|
+| GET | `/kpis` | KPIs principais do dashboard | JWT |
+| GET | `/kpis/avancados` | Indicadores complementares | JWT |
+| GET | `/dashboard/evolucao` | Evolucao temporal da inadimplencia | JWT |
+| GET | `/dashboard/risco-regional` | Inadimplencia por regiao | JWT |
+| GET | `/tendencias` | Tendencias comparativas | JWT |
 
-### Clientes
+### Contratos, Alertas e Inteligencia
 
-| Método | Rota | Descrição | Auth |
-|:------:|:-----|:----------|:----:|
-| `GET` | `/api/clientes?page=&limit=&regiao=&busca=` | Lista paginada com filtros por região e busca textual | 🔐 JWT |
-| `GET` | `/api/clientes/criticos` | Clientes com atraso > 60 dias (risco alto) | 🔐 JWT |
-| `GET` | `/api/clientes/:id` | Ficha completa: dados + contratos + parcelas | 🔐 JWT |
+| Metodo | Rota | Descricao | Auth |
+|:--|:--|:--|:--:|
+| GET | `/clientes` | Lista paginada de contratos, com filtros | JWT |
+| GET | `/clientes/:id` | Detalhe do contrato, parcelas e alertas | JWT |
+| GET | `/clientes/criticos` | Visao operacional de contratos em atraso | JWT |
+| GET | `/alertas` | Alertas de risco com filtro por nivel | JWT |
+| GET | `/pagamentos` | Historico de pagamentos | JWT |
+| GET | `/insights` | Insights automaticos da carteira | JWT |
 
-**Parâmetros de query:**
-| Parâmetro | Tipo | Default | Descrição |
-|-----------|------|---------|-----------|
-| `page` | `integer` | `1` | Página atual |
-| `limit` | `integer` | `10` | Registros por página |
-| `regiao` | `string` | — | Filtro por região geográfica |
-| `busca` | `string` | — | Busca textual por nome ou CPF/CNPJ |
+Todas as rotas protegidas exigem:
 
-### Alertas e Monitoramento
-
-| Método | Rota | Descrição | Auth |
-|:------:|:-----|:----------|:----:|
-| `GET` | `/api/alertas?page=&limit=&nivel=` | Lista paginada de alertas de risco | 🔐 JWT |
-| `GET` | `/api/pagamentos` | Histórico de pagamentos com dados do cliente | 🔐 JWT |
-
-### Inteligência Analítica
-
-| Método | Rota | Descrição | Auth |
-|:------:|:-----|:----------|:----:|
-| `GET` | `/api/insights` | Insights automáticos sobre a carteira | 🔐 JWT |
-| `GET` | `/api/tendencias` | Tendências e projeções de inadimplência | 🔐 JWT |
-
-### Autenticação nas Requisições
-
-Todas as rotas protegidas exigem o header `Authorization`:
-
-```
+```text
 Authorization: Bearer <token_jwt>
 ```
 
 ---
 
-## 📏 Regras de Negócio
+## Regra Oficial de Risco
 
-### Classificação de Risco
+A regra oficial apresentada no projeto classifica os contratos em tres niveis:
 
-O sistema utiliza heurísticas baseadas no histórico de pagamentos para classificar clientes:
+| Nivel | Criterio |
+|:--|:--|
+| Baixo | Ate 15 dias de atraso |
+| Medio | Entre 16 e 60 dias de atraso |
+| Alto | Acima de 60 dias, status ajuizado ou score interno acima de 70 |
 
-| Nível | Critério | Ação do Sistema |
-|:-----:|:---------|:----------------|
-| 🟢 **Baixo** | Atraso ≤ 15 dias | Monitoramento padrão |
-| 🟡 **Médio** | Atraso entre 16 e 60 dias | Alerta preventivo gerado automaticamente |
-| 🔴 **Alto** | Atraso > 60 dias **OU** múltiplos contratos inadimplentes | Cliente marcado como crítico — ação imediata |
-
-### Definição de Inadimplência
-
-Uma parcela é considerada **em atraso** quando:
-- `data_pagamento IS NULL` (não foi paga)
-- `data_vencimento < CURRENT_DATE` (já venceu)
-
-### Status de Contratos
-
-| Status | Descrição |
-|--------|-----------|
-| `ativo` | Contrato em vigência com parcelas pendentes |
-| `quitado` | Todas as parcelas foram pagas |
-| `inadimplente` | Contrato com parcelas vencidas e não pagas |
+A aplicacao dessas regras permitiu identificar **8.925 contratos classificados como risco alto**.
 
 ---
 
-## ✨ Funcionalidades
+## Funcionalidades
 
-### 📊 Dashboard Analítico
-- **KPIs em tempo real:** inadimplência total, recuperação mensal, atraso médio, clientes críticos
-- **Gráfico de evolução:** linha temporal da inadimplência nos últimos 6 meses
-- **Risco regional:** distribuição geográfica por cidade com gráfico de barras
+### Dashboard Executivo
 
-### 👥 Gestão de Clientes
-- Listagem paginada com navegação por páginas
-- Filtros por **região** e **busca textual** (nome/CPF)
-- **Ficha completa** com contratos, parcelas e histórico de pagamentos
-- Identificação visual de clientes **críticos** (atraso > 60 dias)
+- KPIs de inadimplencia, recuperacao, atraso medio e risco.
+- Evolucao temporal da inadimplencia.
+- Risco regional por regiao.
+- Alertas recentes.
 
-### ⚠️ Central de Alertas
-- Listagem paginada de alertas de risco
-- Filtros por **nível de risco** (Baixo, Médio, Alto)
-- Detalhamento com nome do cliente, descrição e data de criação
+### Portfolio de Contratos
 
-### 📈 Inteligência Analítica
-- **Insights automáticos** sobre a saúde da carteira de crédito
-- **Tendências e projeções** de inadimplência futura
-- Evolução temporal e distribuição regional
+- Listagem paginada de contratos.
+- Filtros por regiao, status e busca textual.
+- Detalhamento do contrato.
+- Historico de parcelas e pagamentos.
 
-### 📥 Exportação CSV
-- Utilitário integrado para exportar dados em formato CSV
-- Dados formatados para análise em planilhas
+### Central de Alertas
 
-### 🔐 Autenticação e Segurança
-- Login com **email e senha** com hash bcrypt
-- Token **JWT** com expiração de 8 horas
-- **Rotas protegidas** no frontend (`PrivateRoute`)
-- Middleware de autenticação no backend
-- **CORS** configurado para requisições cross-origin
-- Variáveis sensíveis isoladas em `.env`
+- Alertas gerados automaticamente pelas regras heuristicas.
+- Filtro por nivel de risco.
+- Visualizacao operacional para apoio a cobranca.
 
----
+### Central de Inteligencia
 
-## 🎓 Entregas Acadêmicas
+- Insights automaticos gerados por consultas SQL analiticas.
+- KPIs derivativos.
+- Ranking regional.
+- Graficos de distribuicao e tendencia.
 
-### Semana 2 — Fundamentos e MVP
-| Entrega | Status | Descrição |
-|---------|:------:|-----------|
-| Modelagem do banco de dados | ✅ | 5 tabelas com relacionamentos FK e constraints |
-| Script DDL (`schema.sql`) | ✅ | Criação estrutural completa do banco |
-| Geração de dados mock | ✅ | Python/Faker gerando ~350KB de dados realistas |
-| Seed do banco (`seed.sql`) | ✅ | População automática das tabelas |
-| API REST básica | ✅ | Endpoints de login, KPIs e listagens |
-| Autenticação JWT | ✅ | Login com token e middleware de verificação |
-| Dashboard com gráficos | ✅ | KPI Cards + Recharts para evolução e risco |
+### Exportacao CSV
 
-### Semana 3 — Aprofundamento e Analytics
-| Entrega | Status | Descrição |
-|---------|:------:|-----------|
-| Classificação de risco heurística | ✅ | Baixo / Médio / Alto com critérios definidos |
-| Central de alertas | ✅ | Listagem paginada com filtros por nível |
-| Ficha detalhada do cliente | ✅ | Contratos, parcelas e histórico completo |
-| Risco regional por cidade | ✅ | Mapa de calor de inadimplência geográfica |
-| Exportação CSV | ✅ | Download de dados para análise offline |
-| KPIs avançados | ✅ | Métricas detalhadas de saúde da carteira |
-| Insights e tendências | ✅ | Análise inteligente com projeções |
-| Documentação de arquitetura | ✅ | Diagramas Mermaid profissionais |
+- Exportacao de KPIs, contratos, parcelas, alertas e insights em CSV.
+- Arquivos gerados com BOM UTF-8 para melhor compatibilidade com planilhas.
+
+### Seguranca
+
+- Login com email e senha.
+- Senhas armazenadas com bcrypt.
+- Emissao de JWT com expiracao.
+- Rotas protegidas no backend.
+- Protecao de rotas no frontend.
 
 ---
 
-## 📄 Licença
+## Resultados Analiticos
 
-Projeto acadêmico — desenvolvido para fins educacionais.
+Os resultados apresentados no pitch derivam dos datasets reais e das regras oficiais do projeto:
+
+| Indicador | Resultado |
+|:--|:--|
+| Inadimplencia monitorada | R$ 20,6 milhoes |
+| Taxa de recuperacao | 25,49% |
+| Contratos classificados como risco alto | 8.925 |
+
+Esses indicadores sustentam a proposta do CreditGuard AI como uma solucao integrada para apoio a decisao, priorizacao de cobranca e monitoramento financeiro.
 
 ---
 
-<p align="center">
-  <strong>🛡️ CreditGuard AI</strong> — Inteligência para Recuperação de Crédito
-  <br>
-  <em>Desenvolvido com 💚 para fins acadêmicos · 2026</em>
-</p>
+## Licenca
+
+Projeto academico desenvolvido para fins educacionais.
