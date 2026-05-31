@@ -1,6 +1,6 @@
 INSERT INTO usuarios (nome, email, senha_hash, perfil) VALUES
-('Administrador Geral', 'admin@linus.com', 'hashed_pass_mock', 'admin'),
-('Analista Financeiro', 'analista@creditguard.com', 'hashed_pass_mock', 'analista');
+('Administrador Geral', 'admin@linus.com', '$2b$10$f4wkr2CKKvedKaGdSx08WutCqvQIUcnOJE1pGByGUWBh1ak.6oJmG', 'admin'),
+('Analista Financeiro', 'analista@creditguard.com', '$2b$10$f4wkr2CKKvedKaGdSx08WutCqvQIUcnOJE1pGByGUWBh1ak.6oJmG', 'analista');
 
 INSERT INTO clientes (id, nome, cpf_cnpj, telefone, regiao, cidade, estado, data_cadastro) VALUES
 (1, 'Brenda Alves', '438.150.926-98', '+55 (051) 0133 8908', 'Sudeste', 'Campinas', 'SP', '2024-10-24'),

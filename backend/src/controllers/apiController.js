@@ -17,11 +17,8 @@ exports.login = async (req, res) => {
     }
 
     const isMatch = await bcrypt.compare(password, user.senha_hash);
-    // Para fins de compatibilidade com o hash mockado "hashed_pass_mock",
-    // se a senha do banco não for bcrypt real, e sim a string literal, vamos permitir:
-    const isMockMatch = user.senha_hash === 'hashed_pass_mock' && password === 'mock123';
 
-    if (!isMatch && !isMockMatch) {
+    if (!isMatch) {
       return res.status(401).json({ error: 'Credenciais inválidas' });
     }
 

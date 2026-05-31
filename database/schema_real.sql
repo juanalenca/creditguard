@@ -60,5 +60,5 @@ CREATE INDEX IF NOT EXISTS idx_alertas_contrato ON alertas_risco(id_contrato);
 
 -- Usuário admin padrão
 INSERT INTO usuarios (nome, email, senha_hash, perfil) 
-VALUES ('Administrador Geral', 'admin@linus.com', 'hashed_pass_mock', 'admin')
+VALUES ('Administrador Geral', 'admin@linus.com', '$2b$10$f4wkr2CKKvedKaGdSx08WutCqvQIUcnOJE1pGByGUWBh1ak.6oJmG', 'admin')
 ON CONFLICT (email) DO NOTHING;
