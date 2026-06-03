@@ -270,7 +270,7 @@ A regra oficial apresentada no projeto classifica os contratos em tres niveis:
 | Medio | Entre 16 e 60 dias de atraso |
 | Alto | Acima de 60 dias, status ajuizado ou score interno acima de 70 |
 
-A aplicacao dessas regras permitiu identificar **8.925 contratos classificados como risco alto**.
+A aplicacao dessas regras, apos o tratamento de 80 outliers de atraso, permitiu identificar **8.958 contratos classificados como risco alto**, **1.014 como risco medio** e **28 como risco baixo**.
 
 ---
 
@@ -324,9 +324,10 @@ Os resultados apresentados no pitch derivam dos datasets reais e das regras ofic
 
 | Indicador | Resultado |
 |:--|:--|
-| Inadimplencia monitorada | R$ 20,6 milhoes |
+| Inadimplencia monitorada em parcelas abertas | R$ 20,6 milhoes |
+| Valor inadimplente dos contratos | R$ 62,3 milhoes |
 | Taxa de recuperacao | 25,49% |
-| Contratos classificados como risco alto | 8.925 |
+| Contratos classificados como risco alto | 8.958 |
 
 Esses indicadores sustentam a proposta do CreditGuard AI como uma solucao integrada para apoio a decisao, priorizacao de cobranca e monitoramento financeiro.
 

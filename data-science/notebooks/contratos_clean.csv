@@ -53,7 +53,7 @@ CONTR_2026_00051,Vertice Asset e Cobranca,2026-01-13,106,6147.92,Insucesso,32.0,
 CONTR_2026_00052,Acerta Credito Integrado,2026-03-28,114,5870.76,Acordo Firmado,22.0,Centro-Oeste
 CONTR_2026_00053,Fenix Recuperacao de Credito,2026-03-17,87,1775.6,Insucesso,46.0,Nordeste
 CONTR_2026_00054,Acerta Credito Integrado,2026-04-01,79,1615.83,Ajuizado,85.0,Sudeste
-CONTR_2026_00055,Nexus Mediacao Financeira,2026-01-22,9999,1893.23,Em Aberto,83.0,Centro-Oeste
+CONTR_2026_00055,Nexus Mediacao Financeira,2026-01-22,89,1893.23,Em Aberto,83.0,Centro-Oeste
 CONTR_2026_00056,Fenix Recuperacao de Credito,2026-04-06,157,1702.12,Em Aberto,13.0,Norte
 CONTR_2026_00057,Fenix Recuperacao de Credito,2026-04-23,64,5494.41,Acordo Firmado,22.0,Sul
 CONTR_2026_00058,Fenix Recuperacao de Credito,2026-01-27,77,4213.02,Acordo Firmado,10.0,Norte
@@ -146,7 +146,7 @@ CONTR_2026_00144,Vertice Asset e Cobranca,2026-01-03,61,12354.46,Em Aberto,76.0,
 CONTR_2026_00145,Vertice Asset e Cobranca,2026-02-16,54,12202.78,Em Aberto,14.0,Sudeste
 CONTR_2026_00146,Fenix Recuperacao de Credito,2026-04-07,147,3647.46,Insucesso,51.0,Sudeste
 CONTR_2026_00147,Nexus Mediacao Financeira,2026-01-02,81,1938.98,Em Aberto,54.0,Sul
-CONTR_2026_00148,Nexus Mediacao Financeira,2026-04-16,-999,3422.31,Ajuizado,58.0,Nordeste
+CONTR_2026_00148,Nexus Mediacao Financeira,2026-04-16,89,3422.31,Ajuizado,58.0,Nordeste
 CONTR_2026_00149,Fenix Recuperacao de Credito,2026-03-21,94,1889.07,Insucesso,77.0,Sudeste
 CONTR_2026_00150,Vertice Asset e Cobranca,2026-01-25,68,3012.36,Acordo Firmado,30.0,Centro-Oeste
 CONTR_2026_00151,Fenix Recuperacao de Credito,2026-03-01,81,8574.13,Acordo Firmado,100.0,Nordeste
@@ -440,7 +440,7 @@ CONTR_2026_00438,Acerta Credito Integrado,2026-02-16,73,9280.04,Acordo Firmado,3
 CONTR_2026_00439,Acerta Credito Integrado,2026-04-09,58,9709.1,Acordo Firmado,31.0,Nordeste
 CONTR_2026_00440,Fenix Recuperacao de Credito,2026-01-06,81,4098.27,Em Aberto,18.0,Nordeste
 CONTR_2026_00441,Fenix Recuperacao de Credito,2026-03-01,79,12891.93,Insucesso,9.0,Sudeste
-CONTR_2026_00442,Vertice Asset e Cobranca,2026-02-14,9999,21003.52,Em Aberto,3.0,Nordeste
+CONTR_2026_00442,Vertice Asset e Cobranca,2026-02-14,89,21003.52,Em Aberto,3.0,Nordeste
 CONTR_2026_00443,Vertice Asset e Cobranca,2026-02-13,85,20292.91,Acordo Firmado,71.0,Sudeste
 CONTR_2026_00444,Vertice Asset e Cobranca,2026-03-24,108,5606.56,Insucesso,26.0,Nordeste
 CONTR_2026_00445,Acerta Credito Integrado,2026-01-18,131,5299.03,Acordo Firmado,13.0,Sudeste
@@ -700,7 +700,7 @@ CONTR_2026_00698,Nexus Mediacao Financeira,2026-01-06,135,10271.9,Em Aberto,4.0,
 CONTR_2026_00699,Fenix Recuperacao de Credito,2026-02-10,77,1354.25,Em Aberto,61.0,Nordeste
 CONTR_2026_00700,Vertice Asset e Cobranca,2026-01-15,61,7479.65,Em Aberto,84.0,Sudeste
 CONTR_2026_00701,Nexus Mediacao Financeira,2026-04-18,120,1678.29,Em Aberto,26.0,Norte
-CONTR_2026_00702,Fenix Recuperacao de Credito,2026-01-03,-999,18236.46,Insucesso,94.0,Nordeste
+CONTR_2026_00702,Fenix Recuperacao de Credito,2026-01-03,89,18236.46,Insucesso,94.0,Nordeste
 CONTR_2026_00703,Vertice Asset e Cobranca,2026-02-12,72,4491.23,Em Aberto,6.0,Nordeste
 CONTR_2026_00704,Fenix Recuperacao de Credito,2026-02-16,79,8667.51,Acordo Firmado,77.0,Nordeste
 CONTR_2026_00705,Fenix Recuperacao de Credito,2026-04-09,51,6062.42,Em Aberto,56.0,Nordeste
@@ -942,13 +942,13 @@ CONTR_2026_00940,Nexus Mediacao Financeira,2026-04-23,97,2269.71,Em Aberto,23.0,
 CONTR_2026_00941,Vertice Asset e Cobranca,2026-03-09,106,4545.29,Acordo Firmado,26.0,Nordeste
 CONTR_2026_00942,Nexus Mediacao Financeira,2026-04-25,93,1405.56,Acordo Firmado,48.0,Nordeste
 CONTR_2026_00943,Nexus Mediacao Financeira,2026-02-23,129,7806.94,Acordo Firmado,36.0,Nordeste
-CONTR_2026_00944,Acerta Credito Integrado,2026-02-26,9999,2023.95,Acordo Firmado,6.0,Sudeste
+CONTR_2026_00944,Acerta Credito Integrado,2026-02-26,89,2023.95,Acordo Firmado,6.0,Sudeste
 CONTR_2026_00945,Fenix Recuperacao de Credito,2026-04-15,89,8605.47,Em Aberto,80.0,Norte
 CONTR_2026_00946,Fenix Recuperacao de Credito,2026-01-23,50,2345.39,Acordo Firmado,74.0,Sudeste
 CONTR_2026_00947,Fenix Recuperacao de Credito,2026-04-21,75,3327.98,Em Aberto,39.0,Nordeste
 CONTR_2026_00948,Fenix Recuperacao de Credito,2026-03-01,23,4460.92,Em Aberto,57.0,Nordeste
 CONTR_2026_00949,Acerta Credito Integrado,2026-03-14,84,3332.96,Em Aberto,91.0,Norte
-CONTR_2026_00950,Nexus Mediacao Financeira,2026-03-29,-999,1319.51,Em Aberto,66.0,Nordeste
+CONTR_2026_00950,Nexus Mediacao Financeira,2026-03-29,89,1319.51,Em Aberto,66.0,Nordeste
 CONTR_2026_00951,Nexus Mediacao Financeira,2026-03-26,113,13161.13,Em Aberto,10.0,Sudeste
 CONTR_2026_00952,Nexus Mediacao Financeira,2026-04-15,92,2887.63,Em Aberto,72.0,Nordeste
 CONTR_2026_00953,Fenix Recuperacao de Credito,2026-04-20,68,1931.12,Em Aberto,51.0,Nordeste
@@ -1178,7 +1178,7 @@ CONTR_2026_01176,Nexus Mediacao Financeira,2026-01-08,53,9641.29,Acordo Firmado,
 CONTR_2026_01177,Acerta Credito Integrado,2026-03-29,63,11097.26,Insucesso,13.0,Sudeste
 CONTR_2026_01178,Fenix Recuperacao de Credito,2026-03-21,106,6944.45,Acordo Firmado,73.0,Sudeste
 CONTR_2026_01179,Acerta Credito Integrado,2026-03-25,48,2942.1,Em Aberto,29.0,Sudeste
-CONTR_2026_01180,Nexus Mediacao Financeira,2026-01-15,-999,4959.91,Em Aberto,56.0,Sudeste
+CONTR_2026_01180,Nexus Mediacao Financeira,2026-01-15,89,4959.91,Em Aberto,56.0,Sudeste
 CONTR_2026_01181,Vertice Asset e Cobranca,2026-01-07,55,1899.89,Em Aberto,74.0,Sudeste
 CONTR_2026_01182,Vertice Asset e Cobranca,2026-01-17,100,2507.53,Acordo Firmado,20.0,Sudeste
 CONTR_2026_01183,Nexus Mediacao Financeira,2026-03-27,123,3005.27,Em Aberto,29.0,Sudeste
@@ -1218,7 +1218,7 @@ CONTR_2026_01216,Fenix Recuperacao de Credito,2026-03-23,84,1591.72,Em Aberto,96
 CONTR_2026_01217,Fenix Recuperacao de Credito,2026-01-22,109,5199.04,Em Aberto,9.0,Sudeste
 CONTR_2026_01218,Nexus Mediacao Financeira,2026-02-10,121,5444.85,Em Aberto,35.0,Sudeste
 CONTR_2026_01219,Nexus Mediacao Financeira,2026-03-17,87,8399.88,Acordo Firmado,25.0,Sudeste
-CONTR_2026_01220,Vertice Asset e Cobranca,2026-01-19,-999,9976.1,Acordo Firmado,75.0,Nordeste
+CONTR_2026_01220,Vertice Asset e Cobranca,2026-01-19,89,9976.1,Acordo Firmado,75.0,Nordeste
 CONTR_2026_01221,Vertice Asset e Cobranca,2026-03-30,82,3959.49,Em Aberto,46.0,Nordeste
 CONTR_2026_01222,Fenix Recuperacao de Credito,2026-02-19,104,8006.7,Acordo Firmado,13.0,Sul
 CONTR_2026_01223,Vertice Asset e Cobranca,2026-02-28,96,13264.19,Em Aberto,61.0,Sudeste
@@ -1666,7 +1666,7 @@ CONTR_2026_01664,Vertice Asset e Cobranca,2026-03-21,80,4408.81,Insucesso,97.0,S
 CONTR_2026_01665,Vertice Asset e Cobranca,2026-01-20,82,3620.37,Em Aberto,16.0,Sul
 CONTR_2026_01666,Acerta Credito Integrado,2026-03-29,70,5220.4,Em Aberto,40.0,Nordeste
 CONTR_2026_01667,Fenix Recuperacao de Credito,2026-04-09,77,2100.22,Em Aberto,45.0,Nordeste
-CONTR_2026_01668,Fenix Recuperacao de Credito,2026-02-13,-999,18951.4,Em Aberto,64.0,Centro-Oeste
+CONTR_2026_01668,Fenix Recuperacao de Credito,2026-02-13,89,18951.4,Em Aberto,64.0,Centro-Oeste
 CONTR_2026_01669,Fenix Recuperacao de Credito,2026-02-20,93,10311.14,Em Aberto,63.0,Nordeste
 CONTR_2026_01670,Acerta Credito Integrado,2026-01-19,72,1799.5,Acordo Firmado,51.0,Centro-Oeste
 CONTR_2026_01671,Vertice Asset e Cobranca,2026-04-30,102,15709.52,Em Aberto,10.0,Sudeste
@@ -1739,7 +1739,7 @@ CONTR_2026_01737,Vertice Asset e Cobranca,2026-03-23,102,12008.88,Insucesso,56.0
 CONTR_2026_01738,Fenix Recuperacao de Credito,2026-01-31,86,29934.1,Em Aberto,5.0,Sudeste
 CONTR_2026_01739,Vertice Asset e Cobranca,2026-04-18,84,2566.35,Ajuizado,85.0,Sudeste
 CONTR_2026_01740,Vertice Asset e Cobranca,2026-04-22,86,7995.6,Acordo Firmado,22.0,Sul
-CONTR_2026_01741,Acerta Credito Integrado,2026-03-18,-999,3024.47,Acordo Firmado,51.0,Sudeste
+CONTR_2026_01741,Acerta Credito Integrado,2026-03-18,89,3024.47,Acordo Firmado,51.0,Sudeste
 CONTR_2026_01742,Acerta Credito Integrado,2026-01-20,79,8472.28,Em Aberto,40.0,Nordeste
 CONTR_2026_01743,Acerta Credito Integrado,2026-02-18,56,1869.28,Em Aberto,84.0,Sudeste
 CONTR_2026_01744,Fenix Recuperacao de Credito,2026-04-24,92,3248.65,Em Aberto,92.0,Nordeste
@@ -1861,7 +1861,7 @@ CONTR_2026_01859,Acerta Credito Integrado,2026-01-25,105,3783.51,Em Aberto,1.0,S
 CONTR_2026_01860,Acerta Credito Integrado,2026-03-10,49,9161.78,Em Aberto,71.0,Nordeste
 CONTR_2026_01861,Acerta Credito Integrado,2026-03-11,72,15266.9,Ajuizado,86.0,Norte
 CONTR_2026_01862,Nexus Mediacao Financeira,2026-01-05,111,5965.14,Insucesso,67.0,Centro-Oeste
-CONTR_2026_01863,Fenix Recuperacao de Credito,2026-04-25,9999,3706.14,Acordo Firmado,83.0,Nordeste
+CONTR_2026_01863,Fenix Recuperacao de Credito,2026-04-25,89,3706.14,Acordo Firmado,83.0,Nordeste
 CONTR_2026_01864,Nexus Mediacao Financeira,2026-04-01,65,2651.64,Ajuizado,94.0,Nordeste
 CONTR_2026_01865,Vertice Asset e Cobranca,2026-01-08,95,3941.11,Acordo Firmado,9.0,Sudeste
 CONTR_2026_01866,Fenix Recuperacao de Credito,2026-01-09,92,5369.57,Acordo Firmado,99.0,Sudeste
@@ -1981,7 +1981,7 @@ CONTR_2026_01979,Acerta Credito Integrado,2026-04-22,151,2096.17,Acordo Firmado,
 CONTR_2026_01980,Acerta Credito Integrado,2026-03-15,57,7521.37,Em Aberto,26.0,Norte
 CONTR_2026_01981,Fenix Recuperacao de Credito,2026-02-05,99,8832.61,Em Aberto,68.0,Sul
 CONTR_2026_01982,Acerta Credito Integrado,2026-04-07,44,5712.93,Acordo Firmado,62.0,Sudeste
-CONTR_2026_01983,Vertice Asset e Cobranca,2026-01-23,9999,2622.15,Em Aberto,19.0,Nordeste
+CONTR_2026_01983,Vertice Asset e Cobranca,2026-01-23,89,2622.15,Em Aberto,19.0,Nordeste
 CONTR_2026_01984,Vertice Asset e Cobranca,2026-02-09,113,1464.54,Ajuizado,13.0,Nordeste
 CONTR_2026_01985,Fenix Recuperacao de Credito,2026-01-05,35,3820.78,Acordo Firmado,29.0,Sul
 CONTR_2026_01986,Fenix Recuperacao de Credito,2026-02-03,117,10601.16,Insucesso,54.0,Nordeste
@@ -2105,7 +2105,7 @@ CONTR_2026_02103,Fenix Recuperacao de Credito,2026-04-19,89,3206.84,Acordo Firma
 CONTR_2026_02104,Nexus Mediacao Financeira,2026-04-11,68,1652.32,Insucesso,99.0,Centro-Oeste
 CONTR_2026_02105,Acerta Credito Integrado,2026-04-30,96,13859.48,Acordo Firmado,75.0,Nordeste
 CONTR_2026_02106,Vertice Asset e Cobranca,2026-04-10,82,11657.55,Acordo Firmado,81.0,Sudeste
-CONTR_2026_02107,Acerta Credito Integrado,2026-01-21,-999,18423.97,Ajuizado,97.0,Sul
+CONTR_2026_02107,Acerta Credito Integrado,2026-01-21,89,18423.97,Ajuizado,97.0,Sul
 CONTR_2026_02108,Fenix Recuperacao de Credito,2026-04-21,20,6356.66,Em Aberto,86.0,Sul
 CONTR_2026_02109,Vertice Asset e Cobranca,2026-03-17,123,9426.59,Em Aberto,90.0,Nordeste
 CONTR_2026_02110,Vertice Asset e Cobranca,2026-02-20,112,5932.06,Acordo Firmado,36.0,Nordeste
@@ -2181,7 +2181,7 @@ CONTR_2026_02179,Nexus Mediacao Financeira,2026-02-14,71,15476.67,Insucesso,97.0
 CONTR_2026_02180,Nexus Mediacao Financeira,2026-03-09,43,8775.24,Em Aberto,15.0,Sudeste
 CONTR_2026_02181,Vertice Asset e Cobranca,2026-04-23,76,7529.8,Acordo Firmado,96.0,Centro-Oeste
 CONTR_2026_02182,Fenix Recuperacao de Credito,2026-02-05,92,15589.51,Acordo Firmado,59.0,Centro-Oeste
-CONTR_2026_02183,Fenix Recuperacao de Credito,2026-02-17,9999,2432.88,Ajuizado,99.0,Nordeste
+CONTR_2026_02183,Fenix Recuperacao de Credito,2026-02-17,89,2432.88,Ajuizado,99.0,Nordeste
 CONTR_2026_02184,Vertice Asset e Cobranca,2026-03-28,88,2499.25,Em Aberto,15.0,Nordeste
 CONTR_2026_02185,Nexus Mediacao Financeira,2026-01-15,178,4479.41,Acordo Firmado,29.0,Nordeste
 CONTR_2026_02186,Fenix Recuperacao de Credito,2026-04-20,77,1237.46,Acordo Firmado,11.0,Nordeste
@@ -2314,7 +2314,7 @@ CONTR_2026_02312,Acerta Credito Integrado,2026-02-01,55,9503.66,Em Aberto,75.0,N
 CONTR_2026_02313,Vertice Asset e Cobranca,2026-01-10,93,2778.28,Em Aberto,84.0,Sul
 CONTR_2026_02314,Acerta Credito Integrado,2026-04-01,45,9798.02,Em Aberto,71.0,Sul
 CONTR_2026_02315,Vertice Asset e Cobranca,2026-02-18,122,3555.1,Acordo Firmado,65.0,Nordeste
-CONTR_2026_02316,Fenix Recuperacao de Credito,2026-03-06,9999,4830.34,Ajuizado,15.0,Sudeste
+CONTR_2026_02316,Fenix Recuperacao de Credito,2026-03-06,89,4830.34,Ajuizado,15.0,Sudeste
 CONTR_2026_02317,Vertice Asset e Cobranca,2026-04-13,72,9157.98,Em Aberto,38.0,Nordeste
 CONTR_2026_02318,Vertice Asset e Cobranca,2026-01-29,75,3104.24,Em Aberto,98.0,Nordeste
 CONTR_2026_02319,Vertice Asset e Cobranca,2026-02-28,97,1332.15,Acordo Firmado,73.0,Sudeste
@@ -2330,8 +2330,8 @@ CONTR_2026_02328,Fenix Recuperacao de Credito,2026-03-23,61,3248.17,Insucesso,51
 CONTR_2026_02329,Nexus Mediacao Financeira,2026-04-09,110,2436.95,Em Aberto,80.0,Nordeste
 CONTR_2026_02330,Fenix Recuperacao de Credito,2026-01-06,71,9195.88,Ajuizado,19.0,Nordeste
 CONTR_2026_02331,Vertice Asset e Cobranca,2026-03-08,56,4870.78,Ajuizado,31.0,Norte
-CONTR_2026_02332,Fenix Recuperacao de Credito,2026-03-03,9999,10248.27,Em Aberto,66.0,Nordeste
-CONTR_2026_02333,Nexus Mediacao Financeira,2026-01-05,-999,5798.35,Insucesso,32.0,Nordeste
+CONTR_2026_02332,Fenix Recuperacao de Credito,2026-03-03,89,10248.27,Em Aberto,66.0,Nordeste
+CONTR_2026_02333,Nexus Mediacao Financeira,2026-01-05,89,5798.35,Insucesso,32.0,Nordeste
 CONTR_2026_02334,Nexus Mediacao Financeira,2026-01-09,115,5665.43,Insucesso,100.0,Nordeste
 CONTR_2026_02335,Fenix Recuperacao de Credito,2026-01-28,89,3623.75,Em Aberto,75.0,Sudeste
 CONTR_2026_02336,Vertice Asset e Cobranca,2026-03-24,93,8993.79,Em Aberto,8.0,Nordeste
@@ -2429,7 +2429,7 @@ CONTR_2026_02427,Fenix Recuperacao de Credito,2026-03-07,147,3460.18,Acordo Firm
 CONTR_2026_02428,Vertice Asset e Cobranca,2026-04-14,77,1216.67,Acordo Firmado,26.0,Sudeste
 CONTR_2026_02429,Vertice Asset e Cobranca,2026-04-27,104,10532.27,Em Aberto,63.0,Nordeste
 CONTR_2026_02430,Acerta Credito Integrado,2026-02-12,94,10218.53,Em Aberto,48.0,Centro-Oeste
-CONTR_2026_02431,Nexus Mediacao Financeira,2026-03-23,9999,6621.13,Em Aberto,95.0,Sudeste
+CONTR_2026_02431,Nexus Mediacao Financeira,2026-03-23,89,6621.13,Em Aberto,95.0,Sudeste
 CONTR_2026_02432,Acerta Credito Integrado,2026-01-23,68,12660.25,Em Aberto,79.0,Nordeste
 CONTR_2026_02433,Vertice Asset e Cobranca,2026-03-18,151,2793.36,Em Aberto,10.0,Nordeste
 CONTR_2026_02434,Vertice Asset e Cobranca,2026-03-05,83,2446.35,Acordo Firmado,36.0,Sudeste
@@ -2622,7 +2622,7 @@ CONTR_2026_02620,Vertice Asset e Cobranca,2026-03-17,46,15766.32,Em Aberto,90.0,
 CONTR_2026_02621,Acerta Credito Integrado,2026-03-15,74,7291.33,Em Aberto,57.0,Sudeste
 CONTR_2026_02622,Acerta Credito Integrado,2026-04-05,84,2320.97,Em Aberto,64.0,Nordeste
 CONTR_2026_02623,Vertice Asset e Cobranca,2026-04-19,95,6018.05,Acordo Firmado,88.0,Sudeste
-CONTR_2026_02624,Fenix Recuperacao de Credito,2026-01-22,-999,2327.06,Em Aberto,27.0,Nordeste
+CONTR_2026_02624,Fenix Recuperacao de Credito,2026-01-22,89,2327.06,Em Aberto,27.0,Nordeste
 CONTR_2026_02625,Vertice Asset e Cobranca,2026-01-23,121,5291.84,Acordo Firmado,53.0,Sul
 CONTR_2026_02626,Vertice Asset e Cobranca,2026-04-26,63,9001.68,Acordo Firmado,59.0,Sul
 CONTR_2026_02627,Fenix Recuperacao de Credito,2026-03-28,31,9570.02,Em Aberto,29.0,Centro-Oeste
@@ -2740,7 +2740,7 @@ CONTR_2026_02738,Nexus Mediacao Financeira,2026-04-14,98,7274.49,Em Aberto,56.0,
 CONTR_2026_02739,Vertice Asset e Cobranca,2026-01-14,76,4959.74,Em Aberto,55.0,Nordeste
 CONTR_2026_02740,Fenix Recuperacao de Credito,2026-03-09,77,6197.79,Em Aberto,19.0,Nordeste
 CONTR_2026_02741,Vertice Asset e Cobranca,2026-03-05,65,4376.42,Ajuizado,72.0,Nordeste
-CONTR_2026_02742,Fenix Recuperacao de Credito,2026-01-20,-999,5272.67,Em Aberto,33.0,Sudeste
+CONTR_2026_02742,Fenix Recuperacao de Credito,2026-01-20,89,5272.67,Em Aberto,33.0,Sudeste
 CONTR_2026_02743,Fenix Recuperacao de Credito,2026-01-28,61,2248.36,Insucesso,20.0,Sul
 CONTR_2026_02744,Fenix Recuperacao de Credito,2026-01-14,152,1484.95,Em Aberto,94.0,Nordeste
 CONTR_2026_02745,Nexus Mediacao Financeira,2026-02-13,62,3399.69,Em Aberto,35.0,Nordeste
@@ -2787,7 +2787,7 @@ CONTR_2026_02785,Acerta Credito Integrado,2026-03-22,88,8464.56,Acordo Firmado,4
 CONTR_2026_02786,Fenix Recuperacao de Credito,2026-01-15,63,20193.34,Ajuizado,73.0,Sudeste
 CONTR_2026_02787,Vertice Asset e Cobranca,2026-02-05,71,1878.23,Acordo Firmado,53.0,Nordeste
 CONTR_2026_02788,Fenix Recuperacao de Credito,2026-04-02,67,3232.28,Acordo Firmado,97.0,Nordeste
-CONTR_2026_02789,Vertice Asset e Cobranca,2026-01-15,-999,4415.83,Acordo Firmado,96.0,Nordeste
+CONTR_2026_02789,Vertice Asset e Cobranca,2026-01-15,89,4415.83,Acordo Firmado,96.0,Nordeste
 CONTR_2026_02790,Vertice Asset e Cobranca,2026-04-20,50,2554.94,Acordo Firmado,96.0,Nordeste
 CONTR_2026_02791,Acerta Credito Integrado,2026-04-27,98,1262.57,Em Aberto,70.0,Sul
 CONTR_2026_02792,Vertice Asset e Cobranca,2026-03-16,83,4361.24,Acordo Firmado,62.0,Sudeste
@@ -3007,7 +3007,7 @@ CONTR_2026_03005,Nexus Mediacao Financeira,2026-02-11,140,9797.82,Acordo Firmado
 CONTR_2026_03006,Acerta Credito Integrado,2026-04-23,75,7506.13,Ajuizado,2.0,Centro-Oeste
 CONTR_2026_03007,Fenix Recuperacao de Credito,2026-01-30,59,7297.61,Ajuizado,75.0,Nordeste
 CONTR_2026_03008,Fenix Recuperacao de Credito,2026-01-15,103,2061.31,Ajuizado,34.0,Sul
-CONTR_2026_03009,Nexus Mediacao Financeira,2026-03-11,9999,3097.5,Insucesso,52.0,Nordeste
+CONTR_2026_03009,Nexus Mediacao Financeira,2026-03-11,89,3097.5,Insucesso,52.0,Nordeste
 CONTR_2026_03010,Fenix Recuperacao de Credito,2026-02-24,97,4903.77,Em Aberto,61.0,Nordeste
 CONTR_2026_03011,Nexus Mediacao Financeira,2026-02-22,112,1797.0,Acordo Firmado,34.0,Nordeste
 CONTR_2026_03012,Vertice Asset e Cobranca,2026-01-16,84,4455.16,Insucesso,7.0,Sudeste
@@ -3270,7 +3270,7 @@ CONTR_2026_03268,Nexus Mediacao Financeira,2026-03-23,92,6309.6,Acordo Firmado,8
 CONTR_2026_03269,Nexus Mediacao Financeira,2026-04-26,98,4616.17,Em Aberto,63.0,Nordeste
 CONTR_2026_03270,Nexus Mediacao Financeira,2026-01-29,128,3563.79,Acordo Firmado,4.0,Sudeste
 CONTR_2026_03271,Vertice Asset e Cobranca,2026-01-25,56,14493.61,Ajuizado,13.0,Nordeste
-CONTR_2026_03272,Fenix Recuperacao de Credito,2026-02-25,-999,2271.95,Insucesso,35.0,Nordeste
+CONTR_2026_03272,Fenix Recuperacao de Credito,2026-02-25,89,2271.95,Insucesso,35.0,Nordeste
 CONTR_2026_03273,Acerta Credito Integrado,2026-03-18,45,4542.06,Em Aberto,93.0,Norte
 CONTR_2026_03274,Nexus Mediacao Financeira,2026-03-04,101,5460.66,Em Aberto,89.0,Nordeste
 CONTR_2026_03275,Acerta Credito Integrado,2026-01-27,52,3142.61,Em Aberto,34.0,Sudeste
@@ -3331,7 +3331,7 @@ CONTR_2026_03329,Fenix Recuperacao de Credito,2026-01-15,62,7752.81,Insucesso,46
 CONTR_2026_03330,Nexus Mediacao Financeira,2026-03-22,50,1282.87,Em Aberto,29.0,Nordeste
 CONTR_2026_03331,Nexus Mediacao Financeira,2026-04-17,101,21509.12,Ajuizado,89.0,Sudeste
 CONTR_2026_03332,Acerta Credito Integrado,2026-03-10,92,6010.53,Insucesso,30.0,Sudeste
-CONTR_2026_03333,Fenix Recuperacao de Credito,2026-03-21,-999,3570.35,Em Aberto,51.0,Sudeste
+CONTR_2026_03333,Fenix Recuperacao de Credito,2026-03-21,89,3570.35,Em Aberto,51.0,Sudeste
 CONTR_2026_03334,Fenix Recuperacao de Credito,2026-01-15,87,5427.42,Em Aberto,83.0,Nordeste
 CONTR_2026_03335,Acerta Credito Integrado,2026-02-11,143,2182.64,Em Aberto,31.0,Norte
 CONTR_2026_03336,Acerta Credito Integrado,2026-04-20,24,2620.22,Acordo Firmado,30.0,Nordeste
@@ -3472,7 +3472,7 @@ CONTR_2026_03470,Fenix Recuperacao de Credito,2026-03-20,129,8870.22,Acordo Firm
 CONTR_2026_03471,Fenix Recuperacao de Credito,2026-03-20,72,25187.29,Ajuizado,65.0,Centro-Oeste
 CONTR_2026_03472,Acerta Credito Integrado,2026-02-17,142,2126.19,Ajuizado,46.0,Sudeste
 CONTR_2026_03473,Nexus Mediacao Financeira,2026-03-04,42,1594.09,Em Aberto,100.0,Sudeste
-CONTR_2026_03474,Nexus Mediacao Financeira,2026-02-09,-999,8046.81,Em Aberto,44.0,Sudeste
+CONTR_2026_03474,Nexus Mediacao Financeira,2026-02-09,89,8046.81,Em Aberto,44.0,Sudeste
 CONTR_2026_03475,Acerta Credito Integrado,2026-04-25,63,3306.87,Ajuizado,18.0,Sudeste
 CONTR_2026_03476,Acerta Credito Integrado,2026-03-25,133,2397.66,Em Aberto,73.0,Nordeste
 CONTR_2026_03477,Vertice Asset e Cobranca,2026-01-15,75,4923.53,Acordo Firmado,37.0,Nordeste
@@ -3825,7 +3825,7 @@ CONTR_2026_03823,Acerta Credito Integrado,2026-04-24,127,3150.92,Em Aberto,51.0,
 CONTR_2026_03824,Vertice Asset e Cobranca,2026-01-31,98,3381.99,Acordo Firmado,5.0,Sul
 CONTR_2026_03825,Fenix Recuperacao de Credito,2026-02-02,100,5762.0,Ajuizado,38.0,Sudeste
 CONTR_2026_03826,Fenix Recuperacao de Credito,2026-03-29,72,1829.06,Acordo Firmado,5.0,Nordeste
-CONTR_2026_03827,Vertice Asset e Cobranca,2026-01-01,-999,8641.62,Insucesso,56.0,Sudeste
+CONTR_2026_03827,Vertice Asset e Cobranca,2026-01-01,89,8641.62,Insucesso,56.0,Sudeste
 CONTR_2026_03828,Vertice Asset e Cobranca,2026-02-13,86,18024.48,Insucesso,81.0,Sudeste
 CONTR_2026_03829,Acerta Credito Integrado,2026-01-15,15,4574.83,Em Aberto,71.0,Sudeste
 CONTR_2026_03830,Fenix Recuperacao de Credito,2026-02-06,89,5303.3,Em Aberto,89.0,Sudeste
@@ -3849,7 +3849,7 @@ CONTR_2026_03847,Vertice Asset e Cobranca,2026-04-06,53,3594.0,Acordo Firmado,89
 CONTR_2026_03848,Nexus Mediacao Financeira,2026-02-12,107,6905.31,Em Aberto,2.0,Nordeste
 CONTR_2026_03849,Acerta Credito Integrado,2026-02-12,51,1558.09,Em Aberto,98.0,Nordeste
 CONTR_2026_03850,Fenix Recuperacao de Credito,2026-03-19,111,4649.67,Acordo Firmado,15.0,Sudeste
-CONTR_2026_03851,Vertice Asset e Cobranca,2026-01-03,-999,8622.86,Ajuizado,39.0,Centro-Oeste
+CONTR_2026_03851,Vertice Asset e Cobranca,2026-01-03,89,8622.86,Ajuizado,39.0,Centro-Oeste
 CONTR_2026_03852,Fenix Recuperacao de Credito,2026-02-15,87,2125.41,Acordo Firmado,40.0,Sudeste
 CONTR_2026_03853,Nexus Mediacao Financeira,2026-02-01,88,3757.52,Insucesso,47.0,Sudeste
 CONTR_2026_03854,Fenix Recuperacao de Credito,2026-02-12,94,3356.12,Em Aberto,76.0,Nordeste
@@ -3862,7 +3862,7 @@ CONTR_2026_03860,Acerta Credito Integrado,2026-04-27,18,4224.85,Acordo Firmado,5
 CONTR_2026_03861,Acerta Credito Integrado,2026-03-04,26,1270.49,Em Aberto,90.0,Sudeste
 CONTR_2026_03862,Nexus Mediacao Financeira,2026-04-21,123,2447.82,Em Aberto,3.0,Nordeste
 CONTR_2026_03863,Vertice Asset e Cobranca,2026-02-09,46,8666.63,Insucesso,96.0,Sudeste
-CONTR_2026_03864,Vertice Asset e Cobranca,2026-01-18,-999,1760.53,Em Aberto,46.0,Norte
+CONTR_2026_03864,Vertice Asset e Cobranca,2026-01-18,89,1760.53,Em Aberto,46.0,Norte
 CONTR_2026_03865,Fenix Recuperacao de Credito,2026-03-08,132,1757.9,Insucesso,18.0,Sul
 CONTR_2026_03866,Vertice Asset e Cobranca,2026-04-13,107,3766.13,Em Aberto,56.0,Nordeste
 CONTR_2026_03867,Vertice Asset e Cobranca,2026-03-03,101,8701.61,Insucesso,92.0,Nordeste
@@ -3957,7 +3957,7 @@ CONTR_2026_03955,Fenix Recuperacao de Credito,2026-02-05,64,4014.86,Insucesso,60
 CONTR_2026_03956,Acerta Credito Integrado,2026-03-31,92,7515.41,Acordo Firmado,29.0,Nordeste
 CONTR_2026_03957,Fenix Recuperacao de Credito,2026-04-05,112,2346.41,Acordo Firmado,8.0,Sudeste
 CONTR_2026_03958,Vertice Asset e Cobranca,2026-04-06,67,4423.53,Ajuizado,98.0,Sul
-CONTR_2026_03959,Fenix Recuperacao de Credito,2026-01-21,-999,7461.85,Acordo Firmado,4.0,Sudeste
+CONTR_2026_03959,Fenix Recuperacao de Credito,2026-01-21,89,7461.85,Acordo Firmado,4.0,Sudeste
 CONTR_2026_03960,Fenix Recuperacao de Credito,2026-01-18,104,8722.66,Insucesso,25.0,Sudeste
 CONTR_2026_03961,Nexus Mediacao Financeira,2026-03-01,56,2624.76,Em Aberto,50.0,Sul
 CONTR_2026_03962,Vertice Asset e Cobranca,2026-01-18,84,2201.71,Acordo Firmado,23.0,Sul
@@ -4073,7 +4073,7 @@ CONTR_2026_04071,Vertice Asset e Cobranca,2026-03-27,125,2861.22,Insucesso,9.0,C
 CONTR_2026_04072,Nexus Mediacao Financeira,2026-04-24,72,8413.6,Acordo Firmado,40.0,Nordeste
 CONTR_2026_04073,Nexus Mediacao Financeira,2026-01-10,79,10774.77,Em Aberto,28.0,Centro-Oeste
 CONTR_2026_04074,Nexus Mediacao Financeira,2026-04-28,61,5181.52,Insucesso,97.0,Sudeste
-CONTR_2026_04075,Nexus Mediacao Financeira,2026-04-24,-999,3870.35,Acordo Firmado,96.0,Sudeste
+CONTR_2026_04075,Nexus Mediacao Financeira,2026-04-24,89,3870.35,Acordo Firmado,96.0,Sudeste
 CONTR_2026_04076,Nexus Mediacao Financeira,2026-02-02,55,16045.7,Acordo Firmado,8.0,Norte
 CONTR_2026_04077,Vertice Asset e Cobranca,2026-01-07,39,2125.44,Insucesso,51.0,Sudeste
 CONTR_2026_04078,Vertice Asset e Cobranca,2026-01-03,28,1384.74,Acordo Firmado,82.0,Sudeste
@@ -4162,7 +4162,7 @@ CONTR_2026_04160,Nexus Mediacao Financeira,2026-01-09,68,5593.01,Em Aberto,3.0,S
 CONTR_2026_04161,Nexus Mediacao Financeira,2026-01-02,130,3826.55,Em Aberto,71.0,Centro-Oeste
 CONTR_2026_04162,Fenix Recuperacao de Credito,2026-03-04,62,3897.88,Insucesso,1.0,Sudeste
 CONTR_2026_04163,Nexus Mediacao Financeira,2026-04-06,65,2002.75,Em Aberto,42.0,Sudeste
-CONTR_2026_04164,Vertice Asset e Cobranca,2026-02-20,9999,3221.93,Em Aberto,58.0,Sul
+CONTR_2026_04164,Vertice Asset e Cobranca,2026-02-20,89,3221.93,Em Aberto,58.0,Sul
 CONTR_2026_04165,Nexus Mediacao Financeira,2026-04-26,133,4787.53,Acordo Firmado,88.0,Nordeste
 CONTR_2026_04166,Vertice Asset e Cobranca,2026-04-23,116,5857.25,Ajuizado,94.0,Sul
 CONTR_2026_04167,Fenix Recuperacao de Credito,2026-01-31,80,1571.67,Acordo Firmado,96.0,Sudeste
@@ -4178,7 +4178,7 @@ CONTR_2026_04176,Vertice Asset e Cobranca,2026-01-10,65,8892.39,Em Aberto,40.0,S
 CONTR_2026_04177,Nexus Mediacao Financeira,2026-03-02,107,2214.33,Em Aberto,34.0,Nordeste
 CONTR_2026_04178,Acerta Credito Integrado,2026-04-20,65,6522.96,Em Aberto,56.0,Norte
 CONTR_2026_04179,Vertice Asset e Cobranca,2026-02-19,63,13057.24,Em Aberto,11.0,Nordeste
-CONTR_2026_04180,Vertice Asset e Cobranca,2026-02-16,9999,4059.97,Em Aberto,100.0,Sudeste
+CONTR_2026_04180,Vertice Asset e Cobranca,2026-02-16,89,4059.97,Em Aberto,100.0,Sudeste
 CONTR_2026_04181,Vertice Asset e Cobranca,2026-03-31,98,14135.98,Acordo Firmado,89.0,Nordeste
 CONTR_2026_04182,Nexus Mediacao Financeira,2026-01-01,57,1311.04,Acordo Firmado,40.0,Nordeste
 CONTR_2026_04183,Nexus Mediacao Financeira,2026-04-04,106,4830.83,Acordo Firmado,94.0,Nordeste
@@ -4225,7 +4225,7 @@ CONTR_2026_04223,Acerta Credito Integrado,2026-03-13,76,3276.35,Acordo Firmado,2
 CONTR_2026_04224,Acerta Credito Integrado,2026-02-05,70,1259.08,Acordo Firmado,86.0,Nordeste
 CONTR_2026_04225,Nexus Mediacao Financeira,2026-03-15,56,1852.54,Em Aberto,24.0,Sudeste
 CONTR_2026_04226,Acerta Credito Integrado,2026-01-07,79,1423.99,Insucesso,91.0,Nordeste
-CONTR_2026_04227,Vertice Asset e Cobranca,2026-04-10,-999,2593.68,Em Aberto,75.0,Sudeste
+CONTR_2026_04227,Vertice Asset e Cobranca,2026-04-10,89,2593.68,Em Aberto,75.0,Sudeste
 CONTR_2026_04228,Nexus Mediacao Financeira,2026-01-16,124,1534.18,Em Aberto,13.0,Sudeste
 CONTR_2026_04229,Vertice Asset e Cobranca,2026-01-14,81,3210.73,Insucesso,91.0,Sudeste
 CONTR_2026_04230,Fenix Recuperacao de Credito,2026-03-21,105,1874.12,Em Aberto,15.0,Sul
@@ -4311,7 +4311,7 @@ CONTR_2026_04309,Acerta Credito Integrado,2026-04-28,87,8724.16,Em Aberto,25.0,N
 CONTR_2026_04310,Acerta Credito Integrado,2026-04-02,90,1906.33,Insucesso,8.0,Nordeste
 CONTR_2026_04311,Vertice Asset e Cobranca,2026-02-08,116,4832.74,Em Aberto,97.0,Nordeste
 CONTR_2026_04312,Fenix Recuperacao de Credito,2026-04-18,47,4625.56,Acordo Firmado,63.0,Norte
-CONTR_2026_04313,Fenix Recuperacao de Credito,2026-01-04,-999,1947.68,Acordo Firmado,29.0,Norte
+CONTR_2026_04313,Fenix Recuperacao de Credito,2026-01-04,89,1947.68,Acordo Firmado,29.0,Norte
 CONTR_2026_04314,Acerta Credito Integrado,2026-03-05,15,27679.18,Insucesso,51.0,Sul
 CONTR_2026_04315,Vertice Asset e Cobranca,2026-03-15,51,9861.85,Ajuizado,40.0,Sudeste
 CONTR_2026_04316,Fenix Recuperacao de Credito,2026-01-06,95,3643.14,Acordo Firmado,45.0,Nordeste
@@ -4334,7 +4334,7 @@ CONTR_2026_04332,Fenix Recuperacao de Credito,2026-01-15,57,3359.7,Acordo Firmad
 CONTR_2026_04333,Vertice Asset e Cobranca,2026-01-17,54,5054.21,Em Aberto,21.0,Nordeste
 CONTR_2026_04334,Nexus Mediacao Financeira,2026-04-01,48,8471.62,Acordo Firmado,91.0,Sul
 CONTR_2026_04335,Vertice Asset e Cobranca,2026-01-18,111,9341.58,Acordo Firmado,30.0,Nordeste
-CONTR_2026_04336,Fenix Recuperacao de Credito,2026-04-25,-999,11185.74,Em Aberto,71.0,Sudeste
+CONTR_2026_04336,Fenix Recuperacao de Credito,2026-04-25,89,11185.74,Em Aberto,71.0,Sudeste
 CONTR_2026_04337,Nexus Mediacao Financeira,2026-01-19,68,6253.65,Em Aberto,15.0,Sudeste
 CONTR_2026_04338,Fenix Recuperacao de Credito,2026-03-17,29,13002.02,Em Aberto,80.0,Nordeste
 CONTR_2026_04339,Vertice Asset e Cobranca,2026-03-29,62,7066.05,Acordo Firmado,59.0,Nordeste
@@ -4549,7 +4549,7 @@ CONTR_2026_04547,Fenix Recuperacao de Credito,2026-02-05,89,6837.55,Acordo Firma
 CONTR_2026_04548,Nexus Mediacao Financeira,2026-03-04,97,2712.64,Em Aberto,2.0,Sudeste
 CONTR_2026_04549,Nexus Mediacao Financeira,2026-03-17,116,1697.92,Acordo Firmado,85.0,Centro-Oeste
 CONTR_2026_04550,Acerta Credito Integrado,2026-03-23,99,3056.84,Em Aberto,62.0,Nordeste
-CONTR_2026_04551,Fenix Recuperacao de Credito,2026-04-23,9999,4700.2,Acordo Firmado,57.0,Centro-Oeste
+CONTR_2026_04551,Fenix Recuperacao de Credito,2026-04-23,89,4700.2,Acordo Firmado,57.0,Centro-Oeste
 CONTR_2026_04552,Fenix Recuperacao de Credito,2026-02-20,53,5939.42,Acordo Firmado,14.0,Centro-Oeste
 CONTR_2026_04553,Fenix Recuperacao de Credito,2026-04-22,98,2777.67,Acordo Firmado,44.0,Centro-Oeste
 CONTR_2026_04554,Acerta Credito Integrado,2026-02-12,62,2211.55,Ajuizado,66.0,Sudeste
@@ -4764,7 +4764,7 @@ CONTR_2026_04762,Vertice Asset e Cobranca,2026-04-29,46,4014.77,Em Aberto,9.0,Su
 CONTR_2026_04763,Acerta Credito Integrado,2026-04-04,86,8046.01,Insucesso,66.0,Sudeste
 CONTR_2026_04764,Fenix Recuperacao de Credito,2026-01-21,99,4959.56,Ajuizado,90.0,Sudeste
 CONTR_2026_04765,Nexus Mediacao Financeira,2026-02-16,92,2541.4,Em Aberto,32.0,Nordeste
-CONTR_2026_04766,Vertice Asset e Cobranca,2026-01-30,9999,7179.48,Em Aberto,91.0,Sudeste
+CONTR_2026_04766,Vertice Asset e Cobranca,2026-01-30,89,7179.48,Em Aberto,91.0,Sudeste
 CONTR_2026_04767,Acerta Credito Integrado,2026-02-24,151,8850.19,Insucesso,41.0,Sudeste
 CONTR_2026_04768,Fenix Recuperacao de Credito,2026-04-15,74,3451.2,Acordo Firmado,11.0,Nordeste
 CONTR_2026_04769,Acerta Credito Integrado,2026-03-09,77,2964.84,Em Aberto,65.0,Nordeste
@@ -4926,7 +4926,7 @@ CONTR_2026_04924,Acerta Credito Integrado,2026-01-08,105,9333.79,Em Aberto,52.0,
 CONTR_2026_04925,Fenix Recuperacao de Credito,2026-03-27,102,2114.62,Acordo Firmado,80.0,Sudeste
 CONTR_2026_04926,Vertice Asset e Cobranca,2026-03-30,73,5765.45,Em Aberto,32.0,Centro-Oeste
 CONTR_2026_04927,Vertice Asset e Cobranca,2026-01-10,93,3808.46,Acordo Firmado,51.0,Nordeste
-CONTR_2026_04928,Fenix Recuperacao de Credito,2026-04-23,-999,4849.84,Insucesso,2.0,Centro-Oeste
+CONTR_2026_04928,Fenix Recuperacao de Credito,2026-04-23,89,4849.84,Insucesso,2.0,Centro-Oeste
 CONTR_2026_04929,Acerta Credito Integrado,2026-01-29,47,7465.88,Insucesso,66.0,Centro-Oeste
 CONTR_2026_04930,Fenix Recuperacao de Credito,2026-02-09,96,3408.84,Ajuizado,20.0,Nordeste
 CONTR_2026_04931,Vertice Asset e Cobranca,2026-04-28,127,3486.84,Ajuizado,57.0,Sudeste
@@ -4941,7 +4941,7 @@ CONTR_2026_04939,Acerta Credito Integrado,2026-04-18,92,2753.47,Acordo Firmado,5
 CONTR_2026_04940,Acerta Credito Integrado,2026-04-28,23,3687.19,Em Aberto,34.0,Sudeste
 CONTR_2026_04941,Vertice Asset e Cobranca,2026-01-26,95,2134.18,Acordo Firmado,87.0,Nordeste
 CONTR_2026_04942,Vertice Asset e Cobranca,2026-01-09,90,19134.69,Em Aberto,69.0,Sudeste
-CONTR_2026_04943,Acerta Credito Integrado,2026-01-20,-999,6321.61,Acordo Firmado,67.0,Norte
+CONTR_2026_04943,Acerta Credito Integrado,2026-01-20,89,6321.61,Acordo Firmado,67.0,Norte
 CONTR_2026_04944,Vertice Asset e Cobranca,2026-02-25,103,1256.31,Acordo Firmado,88.0,Sudeste
 CONTR_2026_04945,Acerta Credito Integrado,2026-04-09,127,5519.79,Em Aberto,91.0,Sudeste
 CONTR_2026_04946,Fenix Recuperacao de Credito,2026-02-05,100,8799.11,Acordo Firmado,34.0,Sudeste
@@ -5064,7 +5064,7 @@ CONTR_2026_05062,Fenix Recuperacao de Credito,2026-03-09,34,4589.73,Acordo Firma
 CONTR_2026_05063,Nexus Mediacao Financeira,2026-01-22,103,16844.11,Ajuizado,66.0,Nordeste
 CONTR_2026_05064,Vertice Asset e Cobranca,2026-02-01,58,2569.78,Em Aberto,19.0,Sul
 CONTR_2026_05065,Acerta Credito Integrado,2026-01-22,100,15909.34,Acordo Firmado,61.0,Sudeste
-CONTR_2026_05066,Fenix Recuperacao de Credito,2026-01-27,-999,7335.36,Acordo Firmado,66.0,Nordeste
+CONTR_2026_05066,Fenix Recuperacao de Credito,2026-01-27,89,7335.36,Acordo Firmado,66.0,Nordeste
 CONTR_2026_05067,Vertice Asset e Cobranca,2026-04-20,75,3869.55,Insucesso,26.0,Centro-Oeste
 CONTR_2026_05068,Vertice Asset e Cobranca,2026-01-15,121,2748.65,Em Aberto,51.0,Sudeste
 CONTR_2026_05069,Fenix Recuperacao de Credito,2026-02-13,42,8280.75,Insucesso,49.0,Sul
@@ -5173,7 +5173,7 @@ CONTR_2026_05171,Vertice Asset e Cobranca,2026-04-20,102,10678.73,Ajuizado,82.0,
 CONTR_2026_05172,Nexus Mediacao Financeira,2026-02-11,105,1761.07,Acordo Firmado,35.0,Sul
 CONTR_2026_05173,Fenix Recuperacao de Credito,2026-04-04,81,7479.29,Insucesso,83.0,Nordeste
 CONTR_2026_05174,Fenix Recuperacao de Credito,2026-03-13,31,1525.08,Em Aberto,53.0,Sudeste
-CONTR_2026_05175,Vertice Asset e Cobranca,2026-02-09,-999,1366.69,Em Aberto,84.0,Nordeste
+CONTR_2026_05175,Vertice Asset e Cobranca,2026-02-09,89,1366.69,Em Aberto,84.0,Nordeste
 CONTR_2026_05176,Acerta Credito Integrado,2026-02-15,43,12295.9,Insucesso,39.0,Sudeste
 CONTR_2026_05177,Acerta Credito Integrado,2026-03-12,112,8560.57,Acordo Firmado,97.0,Centro-Oeste
 CONTR_2026_05178,Fenix Recuperacao de Credito,2026-03-11,101,5763.8,Acordo Firmado,59.0,Sul
@@ -5199,7 +5199,7 @@ CONTR_2026_05197,Acerta Credito Integrado,2026-01-08,59,7259.7,Em Aberto,61.0,No
 CONTR_2026_05198,Fenix Recuperacao de Credito,2026-04-08,89,6353.27,Em Aberto,31.0,Nordeste
 CONTR_2026_05199,Vertice Asset e Cobranca,2026-04-14,110,11670.46,Acordo Firmado,79.0,Centro-Oeste
 CONTR_2026_05200,Vertice Asset e Cobranca,2026-01-01,78,5248.3,Em Aberto,26.0,Sul
-CONTR_2026_05201,Vertice Asset e Cobranca,2026-01-29,-999,2591.46,Acordo Firmado,58.0,Sul
+CONTR_2026_05201,Vertice Asset e Cobranca,2026-01-29,89,2591.46,Acordo Firmado,58.0,Sul
 CONTR_2026_05202,Vertice Asset e Cobranca,2026-02-05,52,1941.18,Em Aberto,33.0,Sudeste
 CONTR_2026_05203,Nexus Mediacao Financeira,2026-02-20,65,4384.14,Ajuizado,52.0,Sudeste
 CONTR_2026_05204,Acerta Credito Integrado,2026-02-06,72,4824.78,Em Aberto,32.0,Nordeste
@@ -5230,7 +5230,7 @@ CONTR_2026_05228,Acerta Credito Integrado,2026-04-03,87,15857.62,Acordo Firmado,
 CONTR_2026_05229,Fenix Recuperacao de Credito,2026-04-24,51,5676.51,Em Aberto,11.0,Nordeste
 CONTR_2026_05230,Nexus Mediacao Financeira,2026-02-19,80,2877.82,Acordo Firmado,67.0,Sudeste
 CONTR_2026_05231,Nexus Mediacao Financeira,2026-04-28,74,4960.43,Acordo Firmado,29.0,Sul
-CONTR_2026_05232,Vertice Asset e Cobranca,2026-04-16,-999,5077.16,Acordo Firmado,51.0,Centro-Oeste
+CONTR_2026_05232,Vertice Asset e Cobranca,2026-04-16,89,5077.16,Acordo Firmado,51.0,Centro-Oeste
 CONTR_2026_05233,Acerta Credito Integrado,2026-03-10,166,7687.05,Em Aberto,95.0,Sul
 CONTR_2026_05234,Vertice Asset e Cobranca,2026-01-30,102,12824.27,Acordo Firmado,11.0,Sudeste
 CONTR_2026_05235,Nexus Mediacao Financeira,2026-01-23,127,17629.57,Em Aberto,30.0,Sul
@@ -5260,7 +5260,7 @@ CONTR_2026_05258,Nexus Mediacao Financeira,2026-01-06,93,5380.8,Acordo Firmado,6
 CONTR_2026_05259,Vertice Asset e Cobranca,2026-04-19,73,6007.76,Em Aberto,57.0,Nordeste
 CONTR_2026_05260,Acerta Credito Integrado,2026-02-18,75,7157.1,Em Aberto,95.0,Nordeste
 CONTR_2026_05261,Fenix Recuperacao de Credito,2026-01-06,111,4198.13,Acordo Firmado,14.0,Sul
-CONTR_2026_05262,Acerta Credito Integrado,2026-04-27,-999,3301.37,Em Aberto,75.0,Sudeste
+CONTR_2026_05262,Acerta Credito Integrado,2026-04-27,89,3301.37,Em Aberto,75.0,Sudeste
 CONTR_2026_05263,Nexus Mediacao Financeira,2026-04-28,114,9257.72,Insucesso,69.0,Nordeste
 CONTR_2026_05264,Fenix Recuperacao de Credito,2026-03-10,88,10010.63,Em Aberto,62.0,Sudeste
 CONTR_2026_05265,Vertice Asset e Cobranca,2026-01-07,55,2036.07,Acordo Firmado,86.0,Sul
@@ -5332,17 +5332,17 @@ CONTR_2026_05330,Nexus Mediacao Financeira,2026-02-21,53,4581.78,Insucesso,71.0,
 CONTR_2026_05331,Vertice Asset e Cobranca,2026-03-11,102,1353.18,Em Aberto,98.0,Sudeste
 CONTR_2026_05332,Vertice Asset e Cobranca,2026-03-09,134,7137.68,Em Aberto,42.0,Sul
 CONTR_2026_05333,Fenix Recuperacao de Credito,2026-03-04,69,1646.66,Em Aberto,53.0,Sudeste
-CONTR_2026_05334,Vertice Asset e Cobranca,2026-02-27,-999,4363.19,Em Aberto,19.0,Nordeste
+CONTR_2026_05334,Vertice Asset e Cobranca,2026-02-27,89,4363.19,Em Aberto,19.0,Nordeste
 CONTR_2026_05335,Vertice Asset e Cobranca,2026-01-23,100,12535.91,Acordo Firmado,45.0,Sudeste
 CONTR_2026_05336,Fenix Recuperacao de Credito,2026-02-13,37,5742.59,Ajuizado,54.0,Nordeste
-CONTR_2026_05337,Vertice Asset e Cobranca,2026-04-19,9999,2309.25,Em Aberto,64.0,Sudeste
+CONTR_2026_05337,Vertice Asset e Cobranca,2026-04-19,89,2309.25,Em Aberto,64.0,Sudeste
 CONTR_2026_05338,Nexus Mediacao Financeira,2026-03-24,72,9450.21,Insucesso,75.0,Centro-Oeste
 CONTR_2026_05339,Fenix Recuperacao de Credito,2026-04-28,87,2986.3,Acordo Firmado,41.0,Sudeste
 CONTR_2026_05340,Fenix Recuperacao de Credito,2026-04-19,127,5505.12,Acordo Firmado,17.0,Sudeste
 CONTR_2026_05341,Acerta Credito Integrado,2026-04-05,87,6250.93,Insucesso,11.0,Sudeste
 CONTR_2026_05342,Fenix Recuperacao de Credito,2026-02-13,125,7767.48,Em Aberto,92.0,Sudeste
 CONTR_2026_05343,Fenix Recuperacao de Credito,2026-02-21,93,1535.95,Em Aberto,3.0,Sudeste
-CONTR_2026_05344,Fenix Recuperacao de Credito,2026-03-08,9999,10829.9,Em Aberto,10.0,Sudeste
+CONTR_2026_05344,Fenix Recuperacao de Credito,2026-03-08,89,10829.9,Em Aberto,10.0,Sudeste
 CONTR_2026_05345,Vertice Asset e Cobranca,2026-01-28,81,1804.35,Acordo Firmado,24.0,Sul
 CONTR_2026_05346,Nexus Mediacao Financeira,2026-03-08,119,1696.53,Em Aberto,97.0,Sul
 CONTR_2026_05347,Fenix Recuperacao de Credito,2026-03-19,93,4252.17,Ajuizado,56.0,Sudeste
@@ -5420,7 +5420,7 @@ CONTR_2026_05418,Vertice Asset e Cobranca,2026-04-02,77,2338.76,Insucesso,98.0,C
 CONTR_2026_05419,Vertice Asset e Cobranca,2026-02-13,78,11153.81,Em Aberto,16.0,Sul
 CONTR_2026_05420,Vertice Asset e Cobranca,2026-02-12,77,4304.33,Acordo Firmado,57.0,Sul
 CONTR_2026_05421,Fenix Recuperacao de Credito,2026-01-31,36,4454.82,Em Aberto,92.0,Nordeste
-CONTR_2026_05422,Vertice Asset e Cobranca,2026-04-27,9999,6137.22,Ajuizado,25.0,Nordeste
+CONTR_2026_05422,Vertice Asset e Cobranca,2026-04-27,89,6137.22,Ajuizado,25.0,Nordeste
 CONTR_2026_05423,Vertice Asset e Cobranca,2026-03-06,70,1486.15,Em Aberto,22.0,Sul
 CONTR_2026_05424,Vertice Asset e Cobranca,2026-03-25,77,1880.81,Acordo Firmado,55.0,Norte
 CONTR_2026_05425,Vertice Asset e Cobranca,2026-03-17,49,4649.61,Em Aberto,34.0,Nordeste
@@ -5486,7 +5486,7 @@ CONTR_2026_05484,Acerta Credito Integrado,2026-03-13,77,3999.95,Acordo Firmado,3
 CONTR_2026_05485,Nexus Mediacao Financeira,2026-03-27,48,9839.44,Em Aberto,93.0,Nordeste
 CONTR_2026_05486,Vertice Asset e Cobranca,2026-02-21,23,2867.91,Ajuizado,5.0,Sudeste
 CONTR_2026_05487,Fenix Recuperacao de Credito,2026-03-30,89,5516.96,Em Aberto,82.0,Nordeste
-CONTR_2026_05488,Nexus Mediacao Financeira,2026-04-22,-999,21702.17,Em Aberto,79.0,Sudeste
+CONTR_2026_05488,Nexus Mediacao Financeira,2026-04-22,89,21702.17,Em Aberto,79.0,Sudeste
 CONTR_2026_05489,Nexus Mediacao Financeira,2026-03-17,65,2158.37,Acordo Firmado,90.0,Sul
 CONTR_2026_05490,Fenix Recuperacao de Credito,2026-01-09,121,1734.91,Em Aberto,55.0,Norte
 CONTR_2026_05491,Fenix Recuperacao de Credito,2026-01-10,69,9138.3,Em Aberto,2.0,Sul
@@ -5650,7 +5650,7 @@ CONTR_2026_05648,Acerta Credito Integrado,2026-01-24,62,6149.22,Acordo Firmado,9
 CONTR_2026_05649,Nexus Mediacao Financeira,2026-04-16,60,6218.58,Acordo Firmado,44.0,Nordeste
 CONTR_2026_05650,Nexus Mediacao Financeira,2026-01-04,82,1960.19,Acordo Firmado,90.0,Sudeste
 CONTR_2026_05651,Acerta Credito Integrado,2026-02-05,112,23205.93,Em Aberto,67.0,Nordeste
-CONTR_2026_05652,Nexus Mediacao Financeira,2026-03-18,9999,1567.02,Ajuizado,4.0,Nordeste
+CONTR_2026_05652,Nexus Mediacao Financeira,2026-03-18,89,1567.02,Ajuizado,4.0,Nordeste
 CONTR_2026_05653,Fenix Recuperacao de Credito,2026-02-27,91,22415.27,Em Aberto,33.0,Sudeste
 CONTR_2026_05654,Vertice Asset e Cobranca,2026-02-01,90,13271.25,Acordo Firmado,50.0,Sudeste
 CONTR_2026_05655,Fenix Recuperacao de Credito,2026-01-09,117,10904.32,Em Aberto,5.0,Nordeste
@@ -5682,7 +5682,7 @@ CONTR_2026_05680,Fenix Recuperacao de Credito,2026-01-30,101,3458.38,Acordo Firm
 CONTR_2026_05681,Fenix Recuperacao de Credito,2026-01-13,87,7669.92,Ajuizado,46.0,Nordeste
 CONTR_2026_05682,Vertice Asset e Cobranca,2026-04-18,103,12084.07,Acordo Firmado,90.0,Sul
 CONTR_2026_05683,Fenix Recuperacao de Credito,2026-01-21,142,2215.45,Acordo Firmado,56.0,Sudeste
-CONTR_2026_05684,Fenix Recuperacao de Credito,2026-02-10,-999,7452.71,Em Aberto,81.0,Sudeste
+CONTR_2026_05684,Fenix Recuperacao de Credito,2026-02-10,89,7452.71,Em Aberto,81.0,Sudeste
 CONTR_2026_05685,Fenix Recuperacao de Credito,2026-04-20,43,13218.77,Em Aberto,60.0,Sul
 CONTR_2026_05686,Acerta Credito Integrado,2026-01-19,117,1846.53,Acordo Firmado,83.0,Nordeste
 CONTR_2026_05687,Nexus Mediacao Financeira,2026-04-13,83,6240.11,Insucesso,75.0,Nordeste
@@ -5692,7 +5692,7 @@ CONTR_2026_05690,Nexus Mediacao Financeira,2026-03-04,105,1878.0,Insucesso,25.0,
 CONTR_2026_05691,Fenix Recuperacao de Credito,2026-01-20,50,6954.04,Acordo Firmado,12.0,Norte
 CONTR_2026_05692,Fenix Recuperacao de Credito,2026-03-05,106,3765.6,Insucesso,31.0,Nordeste
 CONTR_2026_05693,Nexus Mediacao Financeira,2026-02-06,68,5388.01,Acordo Firmado,92.0,Nordeste
-CONTR_2026_05694,Nexus Mediacao Financeira,2026-01-31,-999,4906.88,Acordo Firmado,15.0,Sudeste
+CONTR_2026_05694,Nexus Mediacao Financeira,2026-01-31,89,4906.88,Acordo Firmado,15.0,Sudeste
 CONTR_2026_05695,Acerta Credito Integrado,2026-03-15,51,7120.6,Acordo Firmado,97.0,Norte
 CONTR_2026_05696,Vertice Asset e Cobranca,2026-01-18,43,12496.59,Insucesso,11.0,Nordeste
 CONTR_2026_05697,Vertice Asset e Cobranca,2026-04-17,73,2840.78,Insucesso,32.0,Sudeste
@@ -5717,7 +5717,7 @@ CONTR_2026_05715,Nexus Mediacao Financeira,2026-04-13,88,1521.1,Acordo Firmado,2
 CONTR_2026_05716,Vertice Asset e Cobranca,2026-04-23,68,7888.97,Em Aberto,70.0,Sudeste
 CONTR_2026_05717,Fenix Recuperacao de Credito,2026-01-09,101,3497.48,Insucesso,13.0,Centro-Oeste
 CONTR_2026_05718,Vertice Asset e Cobranca,2026-04-05,69,3696.09,Acordo Firmado,80.0,Sudeste
-CONTR_2026_05719,Fenix Recuperacao de Credito,2026-03-12,9999,5468.37,Acordo Firmado,84.0,Nordeste
+CONTR_2026_05719,Fenix Recuperacao de Credito,2026-03-12,89,5468.37,Acordo Firmado,84.0,Nordeste
 CONTR_2026_05720,Fenix Recuperacao de Credito,2026-01-17,105,22864.34,Acordo Firmado,5.0,Sudeste
 CONTR_2026_05721,Fenix Recuperacao de Credito,2026-04-09,64,2140.75,Em Aberto,43.0,Sudeste
 CONTR_2026_05722,Vertice Asset e Cobranca,2026-04-22,52,2982.33,Acordo Firmado,81.0,Sudeste
@@ -5807,7 +5807,7 @@ CONTR_2026_05805,Vertice Asset e Cobranca,2026-04-02,135,19311.22,Ajuizado,96.0,
 CONTR_2026_05806,Fenix Recuperacao de Credito,2026-01-15,77,2663.97,Acordo Firmado,53.0,Sudeste
 CONTR_2026_05807,Vertice Asset e Cobranca,2026-03-19,69,1333.44,Em Aberto,15.0,Nordeste
 CONTR_2026_05808,Vertice Asset e Cobranca,2026-02-17,99,7859.32,Em Aberto,89.0,Sudeste
-CONTR_2026_05809,Nexus Mediacao Financeira,2026-01-14,-999,2540.51,Em Aberto,17.0,Sul
+CONTR_2026_05809,Nexus Mediacao Financeira,2026-01-14,89,2540.51,Em Aberto,17.0,Sul
 CONTR_2026_05810,Vertice Asset e Cobranca,2026-01-03,45,4510.8,Acordo Firmado,22.0,Sudeste
 CONTR_2026_05811,Fenix Recuperacao de Credito,2026-02-19,83,9457.17,Em Aberto,34.0,Centro-Oeste
 CONTR_2026_05812,Vertice Asset e Cobranca,2026-04-03,75,1388.39,Em Aberto,33.0,Nordeste
@@ -5849,7 +5849,7 @@ CONTR_2026_05847,Fenix Recuperacao de Credito,2026-02-11,54,20987.18,Em Aberto,2
 CONTR_2026_05848,Acerta Credito Integrado,2026-01-01,74,5255.89,Acordo Firmado,27.0,Nordeste
 CONTR_2026_05849,Vertice Asset e Cobranca,2026-03-04,68,5603.34,Acordo Firmado,80.0,Sul
 CONTR_2026_05850,Nexus Mediacao Financeira,2026-04-12,66,2983.88,Acordo Firmado,88.0,Centro-Oeste
-CONTR_2026_05851,Fenix Recuperacao de Credito,2026-02-04,-999,6119.07,Acordo Firmado,28.0,Sudeste
+CONTR_2026_05851,Fenix Recuperacao de Credito,2026-02-04,89,6119.07,Acordo Firmado,28.0,Sudeste
 CONTR_2026_05852,Vertice Asset e Cobranca,2026-02-20,96,8288.4,Ajuizado,30.0,Nordeste
 CONTR_2026_05853,Acerta Credito Integrado,2026-03-12,128,1744.91,Ajuizado,90.0,Centro-Oeste
 CONTR_2026_05854,Acerta Credito Integrado,2026-02-14,98,4470.83,Em Aberto,88.0,Sul
@@ -6183,7 +6183,7 @@ CONTR_2026_06181,Nexus Mediacao Financeira,2026-03-19,88,1489.99,Em Aberto,90.0,
 CONTR_2026_06182,Fenix Recuperacao de Credito,2026-04-19,56,10231.3,Em Aberto,39.0,Nordeste
 CONTR_2026_06183,Fenix Recuperacao de Credito,2026-01-14,86,5353.28,Ajuizado,49.0,Sudeste
 CONTR_2026_06184,Vertice Asset e Cobranca,2026-01-08,119,3536.5,Acordo Firmado,82.0,Nordeste
-CONTR_2026_06185,Fenix Recuperacao de Credito,2026-02-17,9999,7944.19,Em Aberto,100.0,Nordeste
+CONTR_2026_06185,Fenix Recuperacao de Credito,2026-02-17,89,7944.19,Em Aberto,100.0,Nordeste
 CONTR_2026_06186,Acerta Credito Integrado,2026-01-13,109,1807.24,Em Aberto,37.0,Sudeste
 CONTR_2026_06187,Acerta Credito Integrado,2026-01-24,119,2889.17,Em Aberto,90.0,Nordeste
 CONTR_2026_06188,Vertice Asset e Cobranca,2026-03-20,82,7702.58,Acordo Firmado,97.0,Sudeste
@@ -6296,7 +6296,7 @@ CONTR_2026_06294,Vertice Asset e Cobranca,2026-03-08,93,2201.09,Em Aberto,78.0,S
 CONTR_2026_06295,Acerta Credito Integrado,2026-01-13,95,1397.58,Insucesso,89.0,Sul
 CONTR_2026_06296,Acerta Credito Integrado,2026-01-19,43,1727.97,Ajuizado,23.0,Nordeste
 CONTR_2026_06297,Vertice Asset e Cobranca,2026-04-08,66,8911.74,Em Aberto,44.0,Nordeste
-CONTR_2026_06298,Fenix Recuperacao de Credito,2026-04-06,9999,12808.62,Acordo Firmado,65.0,Centro-Oeste
+CONTR_2026_06298,Fenix Recuperacao de Credito,2026-04-06,89,12808.62,Acordo Firmado,65.0,Centro-Oeste
 CONTR_2026_06299,Acerta Credito Integrado,2026-02-18,85,2761.26,Acordo Firmado,70.0,Nordeste
 CONTR_2026_06300,Vertice Asset e Cobranca,2026-03-21,74,4646.87,Ajuizado,36.0,Sudeste
 CONTR_2026_06301,Acerta Credito Integrado,2026-04-10,97,5746.86,Em Aberto,62.0,Sudeste
@@ -6684,7 +6684,7 @@ CONTR_2026_06682,Fenix Recuperacao de Credito,2026-03-20,45,16688.13,Em Aberto,2
 CONTR_2026_06683,Acerta Credito Integrado,2026-01-22,175,27209.22,Em Aberto,81.0,Sul
 CONTR_2026_06684,Vertice Asset e Cobranca,2026-04-15,106,4754.75,Em Aberto,62.0,Sul
 CONTR_2026_06685,Nexus Mediacao Financeira,2026-01-27,55,1464.26,Acordo Firmado,53.0,Sul
-CONTR_2026_06686,Fenix Recuperacao de Credito,2026-02-24,9999,1343.64,Em Aberto,95.0,Sudeste
+CONTR_2026_06686,Fenix Recuperacao de Credito,2026-02-24,89,1343.64,Em Aberto,95.0,Sudeste
 CONTR_2026_06687,Vertice Asset e Cobranca,2026-04-11,119,10877.51,Em Aberto,14.0,Sudeste
 CONTR_2026_06688,Vertice Asset e Cobranca,2026-02-01,127,4664.24,Em Aberto,47.0,Norte
 CONTR_2026_06689,Nexus Mediacao Financeira,2026-03-01,88,3484.79,Em Aberto,18.0,Sul
@@ -6894,7 +6894,7 @@ CONTR_2026_06892,Fenix Recuperacao de Credito,2026-03-19,105,4092.74,Insucesso,5
 CONTR_2026_06893,Fenix Recuperacao de Credito,2026-04-16,65,3795.96,Acordo Firmado,33.0,Sul
 CONTR_2026_06894,Vertice Asset e Cobranca,2026-02-11,28,17318.32,Acordo Firmado,29.0,Sudeste
 CONTR_2026_06895,Vertice Asset e Cobranca,2026-03-15,147,4332.51,Em Aberto,95.0,Nordeste
-CONTR_2026_06896,Acerta Credito Integrado,2026-02-28,-999,2076.86,Acordo Firmado,91.0,Nordeste
+CONTR_2026_06896,Acerta Credito Integrado,2026-02-28,89,2076.86,Acordo Firmado,91.0,Nordeste
 CONTR_2026_06897,Acerta Credito Integrado,2026-02-13,115,1662.8,Acordo Firmado,62.0,Nordeste
 CONTR_2026_06898,Fenix Recuperacao de Credito,2026-04-08,111,7792.03,Acordo Firmado,66.0,Sul
 CONTR_2026_06899,Vertice Asset e Cobranca,2026-01-26,65,1999.3,Ajuizado,8.0,Sudeste
@@ -6934,7 +6934,7 @@ CONTR_2026_06932,Fenix Recuperacao de Credito,2026-01-05,126,8161.26,Insucesso,8
 CONTR_2026_06933,Vertice Asset e Cobranca,2026-02-19,115,4397.08,Em Aberto,16.0,Sul
 CONTR_2026_06934,Fenix Recuperacao de Credito,2026-01-23,94,2083.1,Em Aberto,82.0,Nordeste
 CONTR_2026_06935,Fenix Recuperacao de Credito,2026-04-30,77,1379.15,Acordo Firmado,76.0,Nordeste
-CONTR_2026_06936,Vertice Asset e Cobranca,2026-03-29,9999,7208.25,Em Aberto,90.0,Nordeste
+CONTR_2026_06936,Vertice Asset e Cobranca,2026-03-29,89,7208.25,Em Aberto,90.0,Nordeste
 CONTR_2026_06937,Vertice Asset e Cobranca,2026-01-29,17,26910.05,Em Aberto,12.0,Sul
 CONTR_2026_06938,Acerta Credito Integrado,2026-04-22,128,3319.21,Acordo Firmado,26.0,Nordeste
 CONTR_2026_06939,Vertice Asset e Cobranca,2026-04-21,110,5405.13,Acordo Firmado,68.0,Sudeste
@@ -6947,11 +6947,11 @@ CONTR_2026_06945,Nexus Mediacao Financeira,2026-01-28,85,8383.34,Acordo Firmado,
 CONTR_2026_06946,Acerta Credito Integrado,2026-04-23,83,2578.43,Acordo Firmado,98.0,Sudeste
 CONTR_2026_06947,Fenix Recuperacao de Credito,2026-03-03,79,5969.71,Em Aberto,45.0,Nordeste
 CONTR_2026_06948,Fenix Recuperacao de Credito,2026-02-16,49,2574.66,Ajuizado,75.0,Nordeste
-CONTR_2026_06949,Acerta Credito Integrado,2026-04-20,-999,2189.42,Insucesso,3.0,Sudeste
+CONTR_2026_06949,Acerta Credito Integrado,2026-04-20,89,2189.42,Insucesso,3.0,Sudeste
 CONTR_2026_06950,Fenix Recuperacao de Credito,2026-03-19,61,6082.26,Acordo Firmado,51.0,Norte
 CONTR_2026_06951,Acerta Credito Integrado,2026-04-16,58,2768.63,Insucesso,78.0,Centro-Oeste
 CONTR_2026_06952,Vertice Asset e Cobranca,2026-04-08,125,7465.45,Acordo Firmado,6.0,Sudeste
-CONTR_2026_06953,Vertice Asset e Cobranca,2026-02-28,9999,4812.73,Em Aberto,77.0,Sudeste
+CONTR_2026_06953,Vertice Asset e Cobranca,2026-02-28,89,4812.73,Em Aberto,77.0,Sudeste
 CONTR_2026_06954,Fenix Recuperacao de Credito,2026-01-31,80,7136.46,Acordo Firmado,29.0,Sudeste
 CONTR_2026_06955,Acerta Credito Integrado,2026-03-11,60,12310.51,Em Aberto,51.0,Sul
 CONTR_2026_06956,Vertice Asset e Cobranca,2026-02-18,139,1943.93,Em Aberto,17.0,Nordeste
@@ -6960,7 +6960,7 @@ CONTR_2026_06958,Nexus Mediacao Financeira,2026-01-31,65,3753.44,Acordo Firmado,
 CONTR_2026_06959,Acerta Credito Integrado,2026-02-06,60,7506.38,Em Aberto,66.0,Nordeste
 CONTR_2026_06960,Vertice Asset e Cobranca,2026-03-20,113,12064.43,Acordo Firmado,34.0,Centro-Oeste
 CONTR_2026_06961,Nexus Mediacao Financeira,2026-01-15,103,1377.07,Ajuizado,95.0,Nordeste
-CONTR_2026_06962,Vertice Asset e Cobranca,2026-02-21,-999,9074.17,Acordo Firmado,16.0,Centro-Oeste
+CONTR_2026_06962,Vertice Asset e Cobranca,2026-02-21,89,9074.17,Acordo Firmado,16.0,Centro-Oeste
 CONTR_2026_06963,Vertice Asset e Cobranca,2026-04-17,76,1592.06,Em Aberto,41.0,Sudeste
 CONTR_2026_06964,Nexus Mediacao Financeira,2026-03-10,82,5544.36,Acordo Firmado,37.0,Sul
 CONTR_2026_06965,Vertice Asset e Cobranca,2026-04-02,117,3308.76,Insucesso,22.0,Nordeste
@@ -7006,9 +7006,9 @@ CONTR_2026_07004,Acerta Credito Integrado,2026-02-14,61,18746.94,Ajuizado,55.0,S
 CONTR_2026_07005,Vertice Asset e Cobranca,2026-02-23,95,7873.05,Acordo Firmado,78.0,Nordeste
 CONTR_2026_07006,Vertice Asset e Cobranca,2026-04-10,110,7312.7,Insucesso,80.0,Nordeste
 CONTR_2026_07007,Nexus Mediacao Financeira,2026-04-10,113,2753.01,Insucesso,70.0,Nordeste
-CONTR_2026_07008,Fenix Recuperacao de Credito,2026-03-26,-999,3079.82,Insucesso,2.0,Sudeste
+CONTR_2026_07008,Fenix Recuperacao de Credito,2026-03-26,89,3079.82,Insucesso,2.0,Sudeste
 CONTR_2026_07009,Fenix Recuperacao de Credito,2026-02-15,152,6712.78,Acordo Firmado,68.0,Sul
-CONTR_2026_07010,Fenix Recuperacao de Credito,2026-04-06,-999,5701.49,Em Aberto,63.0,Norte
+CONTR_2026_07010,Fenix Recuperacao de Credito,2026-04-06,89,5701.49,Em Aberto,63.0,Norte
 CONTR_2026_07011,Vertice Asset e Cobranca,2026-01-31,53,6410.45,Acordo Firmado,80.0,Sudeste
 CONTR_2026_07012,Acerta Credito Integrado,2026-02-06,45,11752.51,Acordo Firmado,100.0,Sudeste
 CONTR_2026_07013,Vertice Asset e Cobranca,2026-01-16,56,2074.15,Insucesso,85.0,Sudeste
@@ -7155,7 +7155,7 @@ CONTR_2026_07153,Vertice Asset e Cobranca,2026-04-09,47,5929.34,Acordo Firmado,1
 CONTR_2026_07154,Acerta Credito Integrado,2026-04-11,121,7562.42,Insucesso,30.0,Sudeste
 CONTR_2026_07155,Vertice Asset e Cobranca,2026-01-25,74,7730.24,Acordo Firmado,60.0,Sudeste
 CONTR_2026_07156,Acerta Credito Integrado,2026-04-22,168,2945.97,Insucesso,93.0,Sudeste
-CONTR_2026_07157,Nexus Mediacao Financeira,2026-02-23,-999,2524.63,Em Aberto,28.0,Nordeste
+CONTR_2026_07157,Nexus Mediacao Financeira,2026-02-23,89,2524.63,Em Aberto,28.0,Nordeste
 CONTR_2026_07158,Vertice Asset e Cobranca,2026-03-20,81,4757.9,Acordo Firmado,40.0,Sudeste
 CONTR_2026_07159,Vertice Asset e Cobranca,2026-01-12,60,1999.89,Em Aberto,67.0,Centro-Oeste
 CONTR_2026_07160,Nexus Mediacao Financeira,2026-01-09,94,4419.32,Acordo Firmado,91.0,Sudeste
@@ -7959,7 +7959,7 @@ CONTR_2026_07957,Nexus Mediacao Financeira,2026-02-10,103,3330.87,Ajuizado,25.0,
 CONTR_2026_07958,Acerta Credito Integrado,2026-01-31,67,1703.13,Em Aberto,31.0,Centro-Oeste
 CONTR_2026_07959,Fenix Recuperacao de Credito,2026-01-27,154,12039.93,Em Aberto,11.0,Sudeste
 CONTR_2026_07960,Fenix Recuperacao de Credito,2026-02-06,106,11619.05,Em Aberto,68.0,Norte
-CONTR_2026_07961,Acerta Credito Integrado,2026-03-07,9999,16051.56,Em Aberto,79.0,Nordeste
+CONTR_2026_07961,Acerta Credito Integrado,2026-03-07,89,16051.56,Em Aberto,79.0,Nordeste
 CONTR_2026_07962,Vertice Asset e Cobranca,2026-02-23,87,2347.02,Ajuizado,24.0,Norte
 CONTR_2026_07963,Fenix Recuperacao de Credito,2026-04-21,145,1432.06,Acordo Firmado,14.0,Nordeste
 CONTR_2026_07964,Vertice Asset e Cobranca,2026-01-09,67,4140.59,Acordo Firmado,24.0,Sudeste
@@ -8042,7 +8042,7 @@ CONTR_2026_08040,Vertice Asset e Cobranca,2026-04-30,127,1995.41,Acordo Firmado,
 CONTR_2026_08041,Vertice Asset e Cobranca,2026-02-27,136,16204.35,Em Aberto,62.0,Nordeste
 CONTR_2026_08042,Vertice Asset e Cobranca,2026-02-10,113,3846.52,Ajuizado,80.0,Nordeste
 CONTR_2026_08043,Fenix Recuperacao de Credito,2026-03-22,102,20739.4,Insucesso,44.0,Nordeste
-CONTR_2026_08044,Acerta Credito Integrado,2026-03-09,-999,1551.67,Em Aberto,9.0,Nordeste
+CONTR_2026_08044,Acerta Credito Integrado,2026-03-09,89,1551.67,Em Aberto,9.0,Nordeste
 CONTR_2026_08045,Vertice Asset e Cobranca,2026-04-26,92,9026.65,Em Aberto,89.0,Sul
 CONTR_2026_08046,Fenix Recuperacao de Credito,2026-04-25,78,4406.36,Em Aberto,38.0,Sudeste
 CONTR_2026_08047,Acerta Credito Integrado,2026-02-08,113,2908.89,Acordo Firmado,22.0,Norte
@@ -8083,7 +8083,7 @@ CONTR_2026_08081,Vertice Asset e Cobranca,2026-02-22,131,5977.04,Em Aberto,54.0,
 CONTR_2026_08082,Fenix Recuperacao de Credito,2026-04-01,147,3852.66,Acordo Firmado,86.0,Sudeste
 CONTR_2026_08083,Fenix Recuperacao de Credito,2026-04-25,81,2184.53,Em Aberto,79.0,Nordeste
 CONTR_2026_08084,Fenix Recuperacao de Credito,2026-04-28,49,6497.14,Ajuizado,74.0,Nordeste
-CONTR_2026_08085,Nexus Mediacao Financeira,2026-02-26,-999,3199.96,Ajuizado,35.0,Sudeste
+CONTR_2026_08085,Nexus Mediacao Financeira,2026-02-26,89,3199.96,Ajuizado,35.0,Sudeste
 CONTR_2026_08086,Nexus Mediacao Financeira,2026-03-27,124,9986.48,Acordo Firmado,40.0,Nordeste
 CONTR_2026_08087,Vertice Asset e Cobranca,2026-01-18,97,23949.85,Acordo Firmado,53.0,Centro-Oeste
 CONTR_2026_08088,Acerta Credito Integrado,2026-01-16,63,8748.62,Em Aberto,84.0,Sul
@@ -8240,7 +8240,7 @@ CONTR_2026_08238,Acerta Credito Integrado,2026-02-11,116,1814.2,Em Aberto,16.0,N
 CONTR_2026_08239,Nexus Mediacao Financeira,2026-03-29,15,2977.99,Em Aberto,68.0,Sudeste
 CONTR_2026_08240,Fenix Recuperacao de Credito,2026-02-17,101,7093.56,Acordo Firmado,51.0,Sudeste
 CONTR_2026_08241,Acerta Credito Integrado,2026-04-15,105,4443.15,Insucesso,54.0,Nordeste
-CONTR_2026_08242,Nexus Mediacao Financeira,2026-01-07,9999,3932.9,Em Aberto,92.0,Sudeste
+CONTR_2026_08242,Nexus Mediacao Financeira,2026-01-07,89,3932.9,Em Aberto,92.0,Sudeste
 CONTR_2026_08243,Fenix Recuperacao de Credito,2026-01-11,115,4027.63,Ajuizado,87.0,Norte
 CONTR_2026_08244,Vertice Asset e Cobranca,2026-03-14,73,8328.34,Em Aberto,42.0,Nordeste
 CONTR_2026_08245,Vertice Asset e Cobranca,2026-02-18,106,24911.21,Insucesso,64.0,Sudeste
@@ -8299,7 +8299,7 @@ CONTR_2026_08297,Nexus Mediacao Financeira,2026-04-27,66,6214.62,Em Aberto,49.0,
 CONTR_2026_08298,Nexus Mediacao Financeira,2026-02-20,54,4102.26,Em Aberto,80.0,Sul
 CONTR_2026_08299,Fenix Recuperacao de Credito,2026-04-22,101,5293.56,Em Aberto,15.0,Sudeste
 CONTR_2026_08300,Acerta Credito Integrado,2026-04-15,83,1980.89,Insucesso,72.0,Sudeste
-CONTR_2026_08301,Acerta Credito Integrado,2026-02-14,9999,6779.93,Insucesso,44.0,Sudeste
+CONTR_2026_08301,Acerta Credito Integrado,2026-02-14,89,6779.93,Insucesso,44.0,Sudeste
 CONTR_2026_08302,Vertice Asset e Cobranca,2026-03-31,43,2051.47,Insucesso,78.0,Nordeste
 CONTR_2026_08303,Acerta Credito Integrado,2026-04-11,57,8086.19,Acordo Firmado,2.0,Sul
 CONTR_2026_08304,Fenix Recuperacao de Credito,2026-01-22,53,4907.67,Acordo Firmado,76.0,Nordeste
@@ -8370,7 +8370,7 @@ CONTR_2026_08368,Acerta Credito Integrado,2026-03-06,78,2845.83,Acordo Firmado,6
 CONTR_2026_08369,Nexus Mediacao Financeira,2026-03-11,84,1784.45,Em Aberto,47.0,Centro-Oeste
 CONTR_2026_08370,Fenix Recuperacao de Credito,2026-01-27,66,4668.18,Em Aberto,49.0,Norte
 CONTR_2026_08371,Fenix Recuperacao de Credito,2026-01-23,103,10351.96,Insucesso,66.0,Nordeste
-CONTR_2026_08372,Vertice Asset e Cobranca,2026-02-16,9999,4056.57,Em Aberto,45.0,Sul
+CONTR_2026_08372,Vertice Asset e Cobranca,2026-02-16,89,4056.57,Em Aberto,45.0,Sul
 CONTR_2026_08373,Vertice Asset e Cobranca,2026-04-05,88,1561.99,Em Aberto,58.0,Sudeste
 CONTR_2026_08374,Acerta Credito Integrado,2026-01-12,55,2729.49,Acordo Firmado,65.0,Sudeste
 CONTR_2026_08375,Nexus Mediacao Financeira,2026-03-26,29,12223.05,Em Aberto,68.0,Nordeste
@@ -8476,7 +8476,7 @@ CONTR_2026_08474,Fenix Recuperacao de Credito,2026-01-07,170,5579.41,Insucesso,1
 CONTR_2026_08475,Acerta Credito Integrado,2026-01-07,109,8409.96,Em Aberto,42.0,Sudeste
 CONTR_2026_08476,Acerta Credito Integrado,2026-01-08,87,1241.58,Em Aberto,96.0,Norte
 CONTR_2026_08477,Fenix Recuperacao de Credito,2026-01-19,64,9852.74,Acordo Firmado,40.0,Sudeste
-CONTR_2026_08478,Nexus Mediacao Financeira,2026-01-17,-999,4325.55,Em Aberto,14.0,Centro-Oeste
+CONTR_2026_08478,Nexus Mediacao Financeira,2026-01-17,89,4325.55,Em Aberto,14.0,Centro-Oeste
 CONTR_2026_08479,Nexus Mediacao Financeira,2026-01-11,73,4310.31,Em Aberto,32.0,Norte
 CONTR_2026_08480,Vertice Asset e Cobranca,2026-04-21,131,4048.52,Acordo Firmado,43.0,Sul
 CONTR_2026_08481,Fenix Recuperacao de Credito,2026-04-15,108,7085.78,Em Aberto,77.0,Sudeste
@@ -9240,7 +9240,7 @@ CONTR_2026_09238,Fenix Recuperacao de Credito,2026-03-12,62,2443.18,Insucesso,92
 CONTR_2026_09239,Vertice Asset e Cobranca,2026-04-24,106,11640.43,Em Aberto,15.0,Norte
 CONTR_2026_09240,Nexus Mediacao Financeira,2026-01-29,69,9914.92,Em Aberto,100.0,Nordeste
 CONTR_2026_09241,Vertice Asset e Cobranca,2026-01-23,46,3258.09,Em Aberto,18.0,Nordeste
-CONTR_2026_09242,Nexus Mediacao Financeira,2026-02-03,9999,5938.56,Acordo Firmado,86.0,Sudeste
+CONTR_2026_09242,Nexus Mediacao Financeira,2026-02-03,89,5938.56,Acordo Firmado,86.0,Sudeste
 CONTR_2026_09243,Nexus Mediacao Financeira,2026-03-25,80,3288.52,Ajuizado,5.0,Sudeste
 CONTR_2026_09244,Acerta Credito Integrado,2026-01-15,137,4317.81,Ajuizado,86.0,Nordeste
 CONTR_2026_09245,Vertice Asset e Cobranca,2026-04-07,123,10805.4,Em Aberto,17.0,Centro-Oeste
@@ -9459,7 +9459,7 @@ CONTR_2026_09457,Vertice Asset e Cobranca,2026-02-11,89,3892.44,Em Aberto,22.0,S
 CONTR_2026_09458,Acerta Credito Integrado,2026-04-04,96,2685.04,Acordo Firmado,56.0,Nordeste
 CONTR_2026_09459,Nexus Mediacao Financeira,2026-03-09,102,12132.77,Acordo Firmado,46.0,Centro-Oeste
 CONTR_2026_09460,Vertice Asset e Cobranca,2026-02-01,69,9405.0,Em Aberto,18.0,Sudeste
-CONTR_2026_09461,Nexus Mediacao Financeira,2026-01-10,-999,21973.19,Em Aberto,73.0,Nordeste
+CONTR_2026_09461,Nexus Mediacao Financeira,2026-01-10,89,21973.19,Em Aberto,73.0,Nordeste
 CONTR_2026_09462,Fenix Recuperacao de Credito,2026-04-17,102,1835.04,Acordo Firmado,86.0,Sudeste
 CONTR_2026_09463,Acerta Credito Integrado,2026-03-10,93,8821.89,Em Aberto,59.0,Centro-Oeste
 CONTR_2026_09464,Vertice Asset e Cobranca,2026-01-09,32,1872.58,Em Aberto,61.0,Sudeste
@@ -9570,7 +9570,7 @@ CONTR_2026_09568,Acerta Credito Integrado,2026-01-18,82,9930.32,Em Aberto,64.0,S
 CONTR_2026_09569,Vertice Asset e Cobranca,2026-03-09,136,1296.23,Em Aberto,36.0,Nordeste
 CONTR_2026_09570,Acerta Credito Integrado,2026-02-17,53,10084.53,Acordo Firmado,91.0,Sudeste
 CONTR_2026_09571,Vertice Asset e Cobranca,2026-04-10,64,6423.02,Insucesso,92.0,Nordeste
-CONTR_2026_09572,Fenix Recuperacao de Credito,2026-03-11,9999,1709.66,Em Aberto,62.0,Sudeste
+CONTR_2026_09572,Fenix Recuperacao de Credito,2026-03-11,89,1709.66,Em Aberto,62.0,Sudeste
 CONTR_2026_09573,Fenix Recuperacao de Credito,2026-03-08,119,32077.83,Acordo Firmado,47.0,Nordeste
 CONTR_2026_09574,Fenix Recuperacao de Credito,2026-01-18,90,5978.63,Em Aberto,98.0,Nordeste
 CONTR_2026_09575,Vertice Asset e Cobranca,2026-04-21,100,3761.28,Insucesso,66.0,Sul
@@ -9610,7 +9610,7 @@ CONTR_2026_09608,Vertice Asset e Cobranca,2026-01-28,107,7064.07,Ajuizado,65.0,N
 CONTR_2026_09609,Fenix Recuperacao de Credito,2026-03-28,64,13731.7,Acordo Firmado,80.0,Norte
 CONTR_2026_09610,Acerta Credito Integrado,2026-02-05,118,11145.74,Em Aberto,58.0,Sudeste
 CONTR_2026_09611,Nexus Mediacao Financeira,2026-04-23,125,3704.16,Acordo Firmado,65.0,Nordeste
-CONTR_2026_09612,Fenix Recuperacao de Credito,2026-01-06,-999,3061.93,Acordo Firmado,35.0,Sudeste
+CONTR_2026_09612,Fenix Recuperacao de Credito,2026-01-06,89,3061.93,Acordo Firmado,35.0,Sudeste
 CONTR_2026_09613,Fenix Recuperacao de Credito,2026-01-11,93,9483.91,Ajuizado,8.0,Sul
 CONTR_2026_09614,Fenix Recuperacao de Credito,2026-02-07,125,2348.06,Ajuizado,8.0,Sudeste
 CONTR_2026_09615,Vertice Asset e Cobranca,2026-04-28,55,7517.22,Acordo Firmado,66.0,Sudeste
@@ -9634,7 +9634,7 @@ CONTR_2026_09632,Nexus Mediacao Financeira,2026-03-26,91,3697.02,Em Aberto,81.0,
 CONTR_2026_09633,Fenix Recuperacao de Credito,2026-03-18,62,3521.84,Em Aberto,39.0,Sudeste
 CONTR_2026_09634,Nexus Mediacao Financeira,2026-01-10,74,4996.29,Em Aberto,53.0,Norte
 CONTR_2026_09635,Vertice Asset e Cobranca,2026-04-12,63,1897.47,Acordo Firmado,34.0,Sudeste
-CONTR_2026_09636,Fenix Recuperacao de Credito,2026-03-16,-999,11450.89,Insucesso,18.0,Sudeste
+CONTR_2026_09636,Fenix Recuperacao de Credito,2026-03-16,89,11450.89,Insucesso,18.0,Sudeste
 CONTR_2026_09637,Fenix Recuperacao de Credito,2026-03-09,136,5282.03,Em Aberto,51.0,Sudeste
 CONTR_2026_09638,Fenix Recuperacao de Credito,2026-02-27,117,3331.74,Em Aberto,100.0,Nordeste
 CONTR_2026_09639,Vertice Asset e Cobranca,2026-04-20,95,2592.15,Em Aberto,36.0,Sul
@@ -9757,7 +9757,7 @@ CONTR_2026_09755,Fenix Recuperacao de Credito,2026-03-07,129,13720.55,Ajuizado,7
 CONTR_2026_09756,Vertice Asset e Cobranca,2026-03-21,79,8137.92,Acordo Firmado,10.0,Nordeste
 CONTR_2026_09757,Fenix Recuperacao de Credito,2026-02-08,74,11674.39,Acordo Firmado,78.0,Sudeste
 CONTR_2026_09758,Vertice Asset e Cobranca,2026-01-18,103,8044.66,Acordo Firmado,69.0,Sudeste
-CONTR_2026_09759,Fenix Recuperacao de Credito,2026-04-13,-999,7573.45,Em Aberto,62.0,Sudeste
+CONTR_2026_09759,Fenix Recuperacao de Credito,2026-04-13,89,7573.45,Em Aberto,62.0,Sudeste
 CONTR_2026_09760,Nexus Mediacao Financeira,2026-01-01,15,2414.88,Acordo Firmado,19.0,Nordeste
 CONTR_2026_09761,Fenix Recuperacao de Credito,2026-03-04,84,6001.9,Acordo Firmado,51.0,Sul
 CONTR_2026_09762,Fenix Recuperacao de Credito,2026-01-03,31,13588.4,Insucesso,62.0,Nordeste
@@ -9843,7 +9843,7 @@ CONTR_2026_09841,Acerta Credito Integrado,2026-04-25,136,2472.48,Acordo Firmado,
 CONTR_2026_09842,Vertice Asset e Cobranca,2026-04-14,123,3466.67,Acordo Firmado,80.0,Sudeste
 CONTR_2026_09843,Vertice Asset e Cobranca,2026-03-25,103,13610.5,Insucesso,73.0,Sudeste
 CONTR_2026_09844,Acerta Credito Integrado,2026-01-08,70,5461.3,Acordo Firmado,23.0,Nordeste
-CONTR_2026_09845,Fenix Recuperacao de Credito,2026-04-09,-999,1231.27,Ajuizado,23.0,Sudeste
+CONTR_2026_09845,Fenix Recuperacao de Credito,2026-04-09,89,1231.27,Ajuizado,23.0,Sudeste
 CONTR_2026_09846,Vertice Asset e Cobranca,2026-02-11,60,2598.71,Em Aberto,52.0,Sudeste
 CONTR_2026_09847,Acerta Credito Integrado,2026-03-18,80,8198.24,Ajuizado,3.0,Nordeste
 CONTR_2026_09848,Vertice Asset e Cobranca,2026-04-15,98,1467.26,Ajuizado,49.0,Norte
