@@ -464,9 +464,11 @@ WHERE c.dias_atraso_inicial > 60
 
 | KPI | Cálculo | Descrição |
 |-----|---------|-----------|
-| **Inadimplência Total** | `SUM(valor_inadimplente)` dos contratos ativos | Soma dos valores inadimplentes da carteira |
+| **Inadimplência Monitorada** | `SUM(valor_parcela)` de parcelas vencidas e não pagas | Montante operacional em atraso exibido no dashboard |
+| **Valor Inadimplente dos Contratos** | `SUM(valor_inadimplente)` dos contratos | Exposição total da carteira no nível de contrato |
 | **Recuperação do Mês** | `SUM(valor_pago)` onde `data_pagamento` no mês atual | Total recuperado no mês corrente |
-| **Atraso Médio** | `AVG(dias_atraso_inicial)` dos contratos em aberto | Média de dias de atraso na carteira |
+| **Aging Operacional** | `AVG(data_referencia - data_vencimento)` de parcelas vencidas e não pagas | Média de dias de atraso das parcelas abertas |
+| **Atraso Médio Inicial** | `AVG(dias_atraso_inicial)` após tratamento de outliers | Média de dias de atraso dos contratos na entrada da base |
 | **Contratos Críticos** | `COUNT(*)` onde risco = Alto | Total de contratos com risco alto |
 
 ---

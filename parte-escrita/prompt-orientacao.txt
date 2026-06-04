@@ -1,0 +1,262 @@
+-Contexto teórico do projeto:
+"
+Briefing do Projeto: Plataforma Analítica para Gestão de Consórcios
+1. Contexto e Desafios Atuais
+Uma grande administradora de consórcios enfrenta um conjunto de problemas críticos que impactam diretamente sua saúde financeira e eficiência operacional:
+
+Inadimplência: Crescimento acentuado no volume de clientes devedores.
+
+Previsibilidade Financeira: Baixa capacidade de projeção de fluxo de caixa a curto e longo prazo.
+
+Perda de Receita: Evasão ou redução de faturamento após a contemplação dos consorciados.
+
+Eficiência Operacional: Dificuldade em estabelecer critérios claros para priorizar ações de cobrança.
+
+Silos de Informação: Dashboards desconectados e fragmentados entre diferentes áreas.
+
+Defasagem Tecnológica: Ausência de ferramentas de inteligência preditiva aplicadas ao negócio.
+
+2. Solução Requerida
+A diretoria estratégica determinou o desenvolvimento de uma plataforma inteligente orientada a dados, estruturada sobre os seguintes pilares funcionais:
+
+Modelagem Preditiva: Prever o risco de inadimplência antes da ocorrência do atraso.
+
+Segmentação de Risco: Identificar proativamente clientes críticos e perfis de alta vulnerabilidade.
+
+Otimização de Cobrança: Direcionar e otimizar os fluxos de recuperação de crédito.
+
+Suporte à Decisão: Subsidiar tomadas de decisão estratégicas por meio de dados centralizados.
+
+Gestão de Liquidez: Melhorar a previsibilidade e consistência do caixa da empresa.
+
+3. Objetivos da Consultoria em Sistemas de Informação
+O escopo de atuação do projeto visa desenhar, arquitetar e projetar uma solução digital inteligente focada em entregar os seguintes resultados:
+
+Prevenção: Antecipar cenários de inadimplência em tempo hábil para intervenção.
+
+Recuperação: Apoiar taticamente as ações de reestruturação e recuperação financeira.
+
+Inteligência Gerencial: Centralizar e consolidar indicadores para alta gestão.
+
+Eficiência: Otimizar a operação interna, reduzindo o esforço humano em processos repetitivos.
+
+Mitigação de Impacto: Reduzir de forma mensurável as perdas financeiras globais da instituição.
+"
+
+---
+
+-Requisitos das entregas:
+"
+Entrega 1 — Estruturação do Problema
+Formato de Entrega: Arquivo PDF
+
+Itens Obrigatórios:
+
+1.1 Divisão de papéis e atribuições entre os membros do time
+
+1.2 Definição e configuração do ambiente de gestão do projeto
+
+1.3 Mapeamento do contexto atual (Processo AS-IS)
+
+1.4 Identificação e matriz de stakeholders
+
+1.5 Construção do mapa do problema
+
+1.6 Formulação de hipóteses analíticas
+
+Entrega 2 — Engenharia de Requisitos
+Formato de Entrega: Arquivo PDF
+
+Itens Obrigatórios:
+
+2.1 Especificação de requisitos funcionais
+
+2.2 Especificação de requisitos não funcionais
+
+2.3 Redação de histórias de usuário
+
+2.4 Estruturação do backlog priorizado
+
+2.5 Definição dos critérios de aceitação
+
+Entrega 3 — Ciência de Dados
+Formato de Entrega: Arquivo PDF
+
+Itens Obrigatórios:
+
+3.1 Processamento e limpeza dos dados (Data Cleaning)
+
+3.2 Execução da análise exploratória de dados
+
+3.3 Definição de métricas de desempenho (KPIs)
+
+3.4 Mapeamento de padrões identificados na base
+
+3.5 Extração de insights acionáveis para o negócio
+
+Entrega 4 — Dashboard Executivo
+Formato de Entrega: Arquivo PDF
+
+Direcionamento Estratégico: O painel deve apoiar diretamente as áreas de Diretoria, Financeiro e Operação de Cobrança.
+
+KPIs Obrigatórios:
+
+Taxa de inadimplência
+
+Índice de recuperação de crédito
+
+Tempo médio de atraso (Aging)
+
+Análise de risco regionalizado
+
+Curva de tendência temporal
+
+Entrega 5 — Solução Integrada
+Formato de Entrega: Documento final do projeto em formato PDF
+
+Componentes de Arquitetura:
+
+Arquitetura técnica e topologia da solução
+
+Fluxo de dados e processos do sistema
+
+Desenho das automações propostas
+
+Modelo lógico de banco de dados
+
+Estratégia de integrações (APIs e sistemas legados)
+
+Mecanismos de segurança da informação
+
+Modelo de governança de dados
+
+Entrega 6 — Protótipo + Pitch
+6.1 Protótipo Funcional
+
+Formato: Arquivo de documentação TXT, URLs ativas de acesso ou formatos equivalentes.
+
+Escopo de Telas/Módulos: Dashboard executivo, portal do usuário, aplicativo móvel, motor de sistema decisório e central analítica.
+
+6.2 Apresentação (Pitch)
+
+Formato: Arquivo de slides em formato PDF.
+
+Parâmetros da Apresentação: Duração máxima de 20 minutos, conduzida sob o formato e postura de banca executiva.
+"
+
+---
+
+-Base de dados fornecida: "cobranca_assessorias.csv e fluxo_pagamentos.xlsx"
+
+---
+
+-Preciso que analise todo os conteúdo dessa projeto, principalmente nas pastas frontend, backend, database, data-science e parte-escrita (todo conteúdo escrito e apresentação pedido nos requisitos) e informe se todos os requisitos foram cumpridos e se existem pontos a serem corrigidos ou que estão errados, caso tenham, aponte eles. Não quero que você altere nada, apenas confira se tudo foi feito corretamente, principalmente na parte de ciência de dados.
+-Depois que fizer isso, quero que compare o nosso trabalho com os outro trabalhos de outras equipes, já que o tema e as bases são iguais para todas as equipes. Abaixo está o resumo de alguns trabalhos separado por "---":
+"
+Este documento detalha o projeto CreditGuard AI, desenvolvido pela equipe HexaTech para a Faculdade UNINASSAU Olinda, com o objetivo de analisar a inadimplência, avaliar a eficiência de assessorias de cobrança e apoiar a tomada de decisão estratégica.Principais Indicadores (KPIs)
+
+A análise da carteira revelou os seguintes dados financeiros e operacionais:
+Inadimplência: A taxa de inadimplência financeira é de 27,34%, totalizando R$ 20.621.400,00.
+Recuperação: A taxa de recuperação é de 34,52%, com um valor recuperado estimado de R$ 208.213.525,15 sobre um montante de R$ 603.204.868,92 enviados para cobrança.
+Atraso: O atraso médio da carteira é de 113,9 dias.
+Desempenho e Estratégia
+Regiões: A região Sudeste apresenta o maior volume financeiro inadimplente.
+Assessorias: Foi realizado um comparativo de desempenho entre as empresas prestadoras de serviço. A FENIX RECUPERAÇÃO DE CRÉDITO destacou-se com a melhor eficiência ajustada.
+Remuneração Variável: O projeto propõe a adoção de um modelo de remuneração variável para as assessorias, baseado em faixas de desempenho (Malus, Comissão Padrão, Bônus e Super Bônus), visando incentivar melhores resultados.
+Metodologia e Conclusão
+
+O trabalho baseou-se no tratamento e padronização das bases de dados fluxo_pagamentos.xlsx e cobranca_assessorias.csv. O projeto culminou no desenvolvimento de um Dashboard Executivo, que centraliza as métricas de inadimplência, recuperação, risco regional e tendência temporal para suporte à diretoria, setor financeiro e operação de cobrança.
+---
+Este relatório resume as atividades de ciência de dados e o desenvolvimento do dashboard executivo realizados pelo grupo para a disciplina de Antecipa IA.Ciência de Dados: Limpeza e Análise
+Limpeza: Os dados foram tratados no Google Colaboratory, envolvendo padronização de tipos e textos, tratamento de duplicatas e nulos, e criação de variáveis como status de parcela ("Paga"/"Não Paga"). As bases de cobrança e pagamentos foram unidas via left join.
+Análise Exploratória:
+Score de Risco: Apresentou distribuição uniforme (0 a 100) sem segmentação clara, revelando-se ineficaz para distinguir perfis de risco (Regular vs. Crítico).
+Padrões Identificados: Aproximadamente 40% dos contratos inadimplentes estão "Em Aberto", e o boleto é o meio de pagamento predominante (50%).
+Geografia: Sudeste e Nordeste concentram os maiores volumes de inadimplência.
+Assessorias: O desempenho é equivalente, com taxas de recuperação entre 13,21% e 13,69%.
+KPIs e Desempenho
+Inadimplência: Total de R$ 1,63 bilhão em 27.357 contratos.
+Recuperação: Taxa média de 13,53% (R$ 55,44 milhões recuperados).
+Atraso: O atraso médio geral é de 109 dias.
+Recomendações Estratégicas
+Remuneração: Não se justifica um modelo de remuneração variável no momento, devido ao desempenho equivalente e baixo das assessorias.
+Melhorias: Recomenda-se priorizar a implementação de uma plataforma de inteligência de dados para segmentação regional e priorização inteligente de cobranças, especialmente para contratos "Em Aberto".
+Dashboard Executivo
+
+O dashboard desenvolvido visa apoiar a Diretoria, o setor Financeiro e a Operação de Cobrança através de três abas principais: Visão Executiva, Risco e Cobrança, e Pós-Contemplação. O painel permite monitorar sazonalidade, desempenho de assessorias e o comportamento dos clientes após a contemplação.
+---
+O CreditGuard AI é uma plataforma analítica projetada para otimizar processos de recuperação de crédito e monitoramento de inadimplência, integrando Ciência de Dados, Backend, Banco de Dados e Dashboards Executivos. O sistema foi criado para substituir processos manuais propensos a erros e suprir a falta de visibilidade operacional.Arquitetura e Dados
+
+A solução utiliza uma arquitetura modular com o seguinte fluxo: Python/Pandas (ETL) → PostgreSQL → Node.js/Express (API REST) → React (Dashboard).
+Pipeline de Dados: Utiliza Python e Pandas para ingestão, normalização, tratamento de valores monetários e nulos, e criação de variáveis derivadas.
+Análise: Baseada em uma base de 10.000 contratos e 100.000 registros de pagamentos (jan-abr/2026).
+Resultados e Insights Principais
+Inadimplência: A taxa identificada é de 50,4%, com um atraso médio inicial de 113,9 dias.
+Recuperação: A taxa de recuperação é de 34,1%. A região Sul apresenta o melhor desempenho (35,7% de recuperação).
+Recomendações: Reduzir o gatilho de acionamento para 60-75 dias, priorizar contratos em aberto há mais de 90 dias e revisar o SLA da assessoria "Fênix Recuperação", que apresentou a maior taxa de insucesso (16,3%).
+Requisitos e Segurança
+Funcionalidades: Incluem autenticação JWT, gestão de usuários, dashboards com KPIs em tempo real, filtros de consulta, alertas automáticos de risco e exportação de relatórios.
+Segurança: Implementa autenticação via JWT, senhas criptografadas com bcrypt e controle de acesso baseado em perfis (RBAC).
+---
+This document outlines the workflow and findings from a Jupyter Notebook used to analyze debt collection, data cleaning, key performance indicators (KPIs), and remuneration simulations for credit recovery agencies.Data Processing and Cleaning
+Data Sources: The analysis utilizes cobranca_assessorias.csv (collection data) and fluxo_pagamentos.xlsx (payment flows).
+Normalizations: Text columns (agency names and regions) were cleaned by removing accents, trimming spaces, and converting to uppercase.
+Monetary Conversion: The Valor_Inadimplente_Inicial column was transformed from a formatted string into a numeric float type.
+Data Integrity: Missing Score_Interno_Risco values were imputed with the median. Missing payment dates were marked as "PENDENTE", and duplicate entries were removed from both the collection and payment datasets.
+Analysis and KPIs
+Risk Categorization: Contracts were assigned a risk level based on their internal score: Low (≤ 30), Medium (> 30 and ≤ 70), and High (> 70).
+Global Metrics:
+Total Inadimplência: R$ 684,965,166.99.
+Total Recovered: R$ 55,440,309.28.
+Overall Recovery Rate: 8.09%.
+Média de Dias em Atraso: 109 days.
+Collection Performance: The "Acordo Firmado" status represents a 33.91% rate among collections.
+Regional Insights: The Nordeste region has the highest concentration of debt.
+Agency Evaluation and Remuneration
+Efficiency: Vértice Asset & Cobrança was identified as the most efficient agency, while Acerta Crédito Integrado was the least efficient.
+Remuneration: A simulation was performed applying a 5% base commission on recovered values, with a 2% bonus for agencies exceeding a 50% recovery rate. The total simulated remuneration reached R$ 2,772,015.46.
+Export: The final unified dataset was exported as analise_simplificada_gp6.xlsx.
+---
+O trabalho utilizou dois datasets principais:
+Dataset de Cobrança: Contém dados de contratos enviados para recuperação financeira, como status, valor inadimplente e score de risco.
+Dataset de Fluxo de Pagamentos: Composto por 100.000 registros históricos de parcelas, vencimentos e valores pagos.
+Processo de Limpeza: Incluiu o tratamento de valores nulos, padronização de formatos monetários, datas e regiões, além da correção de registros de atraso fora do padrão.
+Análise Exploratória (EDA) e Indicadores
+
+A análise identificou padrões críticos na carteira, que possui um valor inadimplente de aproximadamente R$ 62,3 milhões:
+Distribuição Regional: As regiões Nordeste e Sudeste concentram a maior parte dos valores inadimplentes.
+Status e Risco: Há uma predominância de contratos "Em Aberto" e a maioria da carteira (89,1%) foi classificada como risco alto.
+Pagamentos: O boleto é a forma de pagamento predominante (50,1%).
+KPIs: Entre os indicadores desenvolvidos estão o atraso médio (89,65 dias) e o score médio de risco (50,77).
+Regras de Negócio e Conclusão
+
+Foram definidas regras heurísticas para classificar o risco dos contratos:
+Alto Risco: Atrasos superiores a 60 dias, status ajuizado ou score superior a 70.
+Médio e Baixo Risco: Baseados em faixas de atraso menores ou ausência de indicadores críticos.
+Purpose: To centralize financial and operational indicators, enabling managers and collection analysts to monitor client portfolios and make data-driven decisions.
+Primary Goals: Monitor financial indicators, track payment behavior, identify priority contracts, and improve operational efficiency and financial predictability.
+Key Performance Indicators (KPIs)
+
+The dashboard tracks several critical metrics, including:
+Total Delinquent Value: R$ 62,308,840.80.
+Open Contracts: 4,014.
+Average Delay: 113.94 days.
+Recovery Rate: 34.07%.
+Average Risk Score: 50.76.
+Dashboard Components
+
+The solution comprises five distinct visual panels:
+Executive Dashboard: Provides a high-level overview of key KPIs and contract distribution.
+Risk Analytical Dashboard: Identifies critical contracts, risk levels, and regional delinquent values to assist in prioritizing collection actions.
+Payments Dashboard: Tracks payment flows, methods, and temporal evolution to support cash flow predictability.
+Regional Dashboard: Analyzes contract volume and financial exposure by region, aiding in targeted campaigns.
+Operational Contracts Dashboard: Focuses on daily operations, showcasing top assessment agencies and high-priority contracts.
+---
+Este relatório apresenta os resultados do dashboard executivo do KhonFácil Consórcio, desenvolvido na Faculdade UNINASSAU Olinda em 2026, com base na análise de 100.000 registros de pagamento.
+
+Principais Descobertas:
+Inadimplência: A taxa mensal oscilou entre 25,3% e 27,5% no período de janeiro de 2025 a março de 2026, mantendo-se estabilizada em torno de 26,5% sem uma tendência estrutural de queda.
+Assessorias de Cobrança: As quatro assessorias apresentam desempenho homogêneo, com uma taxa de recuperação média de 72,64%. A "Vértice Asset & Cobrança" lidera os resultados, enquanto a "Fênix Recuperação de Crédito" ficou abaixo da média.
+Análise Regional: O comportamento de pagamento é uniforme em nível nacional, com uma diferença de apenas 0,6 dias entre as regiões (variando de 9,9 dias no Nordeste a 10,5 dias no Norte).
+Modelos de Custo: A comparação entre o Modelo A (fixo) e o Modelo B (variável) demonstrou que o modelo variável torna-se economicamente inviável para o volume atual de operações, com um ponto de virada identificado em janeiro de 2025.
+"

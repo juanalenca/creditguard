@@ -71,10 +71,22 @@ cobranca['Score_Interno_Risco'] = cobranca['Score_Interno_Risco'].fillna(mediana
 # 2.5 Garantir datas válidas
 cobranca['Data_Envio_Assessoria'] = pd.to_datetime(cobranca['Data_Envio_Assessoria'], errors='coerce')
 
+# 2.6 Tratar outliers de atraso
+# A base possui sentinelas/inconsistencias (-999 e 9999). Para preservar o
+# volume da carteira sem distorcer KPIs, substituimos atrasos fora do intervalo
+# operacional por mediana calculada apenas sobre valores validos.
+dias_validos_mask = cobranca['Dias_Em_Atraso_Inicial'].between(0, 365)
+qtd_dias_invalidos = int((~dias_validos_mask).sum())
+mediana_dias_validos = int(cobranca.loc[dias_validos_mask, 'Dias_Em_Atraso_Inicial'].median())
+cobranca.loc[~dias_validos_mask, 'Dias_Em_Atraso_Inicial'] = mediana_dias_validos
+
 print(f"  Assessorias únicas após limpeza: {cobranca['Nome_Assessoria'].nunique()}")
 print(f"  Regiões únicas após limpeza: {cobranca['Regiao_Cliente'].nunique()}")
 print(f"  Scores nulos preenchidos: 300 → 0")
 print(f"  Valores monetários parseados: {cobranca['Valor_Inadimplente_Inicial'].describe()['mean']:.2f} média")
+
+# Auditoria da limpeza de atraso
+print(f"  Atrasos fora do padrao tratados: {qtd_dias_invalidos} -> mediana {mediana_dias_validos} dias")
 
 # =========================================
 # ETAPA 3: LIMPEZA - PAGAMENTOS
@@ -261,7 +273,9 @@ print(f"  Alertas gerados:          {len(alertas):,}")
 print(f"  Parcelas não pagas:       {pagamentos['Data_Pagamento'].isnull().sum():,}")
 print(f"  Taxa de inadimplência:    {pagamentos['Data_Pagamento'].isnull().sum()/len(pagamentos)*100:.1f}%")
 total_inadimpl = cobranca['Valor_Inadimplente_Inicial'].sum()
+atraso_inicial_medio = cobranca['Dias_Em_Atraso_Inicial'].mean()
 print(f"  Valor total inadimplente: R$ {total_inadimpl:,.2f}")
+print(f"  Atraso inicial medio:     {atraso_inicial_medio:.2f} dias")
 print(f"  Regiões:                  {list(cobranca['Regiao_Cliente'].unique())}")
 print(f"  Assessorias:              {list(cobranca['Nome_Assessoria'].unique())}")
 print(f"  Status cobrança:          {list(cobranca['Status_Cobranca'].unique())}")

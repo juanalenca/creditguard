@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
 import { AlertOctagon, Download, Filter } from 'lucide-react';
 import { exportToCsv } from '../utils/exportCsv';
@@ -14,7 +14,7 @@ const Alertas = () => {
   const limit = 15;
 
   const token = localStorage.getItem('token');
-  const headers = { Authorization: `Bearer ${token}` };
+  const headers = useMemo(() => ({ Authorization: `Bearer ${token}` }), [token]);
 
   useEffect(() => {
     const fetchAlertas = async () => {
@@ -33,7 +33,7 @@ const Alertas = () => {
       }
     };
     fetchAlertas();
-  }, [page, nivel]);
+  }, [page, nivel, headers]);
 
   const handleExport = () => {
     exportToCsv(alertas.map(a => ({
