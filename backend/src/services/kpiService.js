@@ -216,7 +216,18 @@ exports.getUserByEmail = async (email) => {
   const result = await pool.query('SELECT * FROM usuarios WHERE email = $1', [email]);
   return result.rows[0];
 };
+exports.createUser = async ({ nome, email, senhaHash, perfil = 'analista' }) => {
+  const result = await pool.query(
+    `
+      INSERT INTO usuarios (nome, email, senha_hash, perfil)
+      VALUES ($1, $2, $3, $4)
+      RETURNING id, nome, email, perfil
+    `,
+    [nome, email, senhaHash, perfil]
+  );
 
+  return result.rows[0];
+};
 // =============================================
 // KPIs AVANÇADOS
 // =============================================

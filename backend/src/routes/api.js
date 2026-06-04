@@ -3,8 +3,9 @@ const router = express.Router();
 const apiController = require('../controllers/apiController');
 const auth = require('../middleware/auth');
 
-// Rota pública
+// Rotas públicas
 router.post('/login', apiController.login);
+router.post('/register', apiController.register);
 
 // Rotas protegidas por autenticação JWT
 router.get('/kpis', auth, apiController.getKpis);
