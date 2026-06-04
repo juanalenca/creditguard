@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer, BarChart, Bar, PieChart, Pie, Cell, Legend } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from 'recharts';
 import { Lightbulb, Award, TrendingUp, TrendingDown, BarChart3, ShieldAlert, RefreshCw, DollarSign, Download } from 'lucide-react';
 import { exportToCsv } from '../utils/exportCsv';
 
@@ -14,7 +14,7 @@ const Analytics = () => {
   const [loading, setLoading] = useState(true);
 
   const token = localStorage.getItem('token');
-  const headers = { Authorization: `Bearer ${token}` };
+  const headers = useMemo(() => ({ Authorization: `Bearer ${token}` }), [token]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,7 +35,7 @@ const Analytics = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [headers]);
 
   const getInsightIcon = (tipo) => {
     switch (tipo) {

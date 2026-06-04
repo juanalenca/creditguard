@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, FileText, Calendar, CheckCircle2, XCircle, Clock, AlertTriangle, Download } from 'lucide-react';
+import { ArrowLeft, FileText, CheckCircle2, XCircle, Clock, AlertTriangle, Download } from 'lucide-react';
 import { exportToCsv } from '../utils/exportCsv';
 
 const API = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
@@ -13,7 +13,7 @@ const ClienteDetail = () => {
   const [loading, setLoading] = useState(true);
 
   const token = localStorage.getItem('token');
-  const headers = { Authorization: `Bearer ${token}` };
+  const headers = useMemo(() => ({ Authorization: `Bearer ${token}` }), [token]);
 
   useEffect(() => {
     const fetchContrato = async () => {
@@ -27,7 +27,7 @@ const ClienteDetail = () => {
       }
     };
     fetchContrato();
-  }, [id]);
+  }, [id, headers]);
 
   const handleExportParcelas = () => {
     if (!contrato?.parcelas) return;

@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { Search, ChevronRight, Download, MapPin, Filter } from 'lucide-react';
+import { Search, ChevronRight, Download } from 'lucide-react';
 import { exportToCsv } from '../utils/exportCsv';
 
 const API = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
@@ -18,13 +18,12 @@ const Clientes = () => {
   const navigate = useNavigate();
 
   const token = localStorage.getItem('token');
-  const headers = { Authorization: `Bearer ${token}` };
+  const headers = useMemo(() => ({ Authorization: `Bearer ${token}` }), [token]);
 
-  const fetchData = async (p = page) => {
-    setLoading(true);
+  const fetchData = useCallback(async (p = page, search = busca) => {
     try {
       const params = new URLSearchParams({ page: p, limit });
-      if (busca) params.append('busca', busca);
+      if (search) params.append('busca', search);
       if (regiao) params.append('regiao', regiao);
       if (status) params.append('status', status);
 
@@ -36,17 +35,19 @@ const Clientes = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [busca, headers, page, regiao, status]);
 
-  useEffect(() => { fetchData(); }, [page, regiao, status]);
+  useEffect(() => {
+    Promise.resolve().then(() => fetchData());
+  }, [fetchData]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setPage(1);
-      fetchData(1);
+      fetchData(1, busca);
     }, 400);
     return () => clearTimeout(timer);
-  }, [busca]);
+  }, [busca, fetchData]);
 
   const handleExport = () => {
     exportToCsv(contratos.map(c => ({

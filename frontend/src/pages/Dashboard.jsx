@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, ResponsiveContainer, BarChart, Bar } from 'recharts';
 import { AlertCircle, TrendingUp, Clock, DollarSign, Download } from 'lucide-react';
@@ -16,7 +16,7 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
 
   const token = localStorage.getItem('token');
-  const headers = { Authorization: `Bearer ${token}` };
+  const headers = useMemo(() => ({ Authorization: `Bearer ${token}` }), [token]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -42,7 +42,7 @@ const Dashboard = () => {
     };
 
     fetchData();
-  }, []);
+  }, [headers]);
 
   const handleExportKpis = () => {
     if (!kpis) return;

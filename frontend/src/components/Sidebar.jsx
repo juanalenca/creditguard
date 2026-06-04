@@ -1,5 +1,5 @@
 import { NavLink, useNavigate } from 'react-router-dom';
-import { LogOut, LayoutDashboard, Users, AlertTriangle, ShieldCheck, Brain, X } from 'lucide-react';
+import { LogOut, LayoutDashboard, Users, AlertTriangle, Brain, X } from 'lucide-react';
 
 const Sidebar = ({ isOpen, setIsOpen }) => {
   const navigate = useNavigate();
