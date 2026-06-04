@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Lock, Mail } from 'lucide-react';
 
@@ -81,6 +81,12 @@ const Login = () => {
             {loading ? 'Autenticando...' : 'Entrar no Sistema'}
           </button>
         </form>
+
+        <div className="text-center">
+          <Link to="/register" className="text-sm font-medium text-purple-400 hover:text-purple-300 transition-colors">
+            Não possui conta? Cadastre-se
+          </Link>
+        </div>
       </div>
     </div>
   );
