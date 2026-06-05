@@ -12,6 +12,7 @@ const Clientes = () => {
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
   const [busca, setBusca] = useState('');
+  const [debouncedBusca, setDebouncedBusca] = useState('');
   const [regiao, setRegiao] = useState('');
   const [status, setStatus] = useState('');
   const limit = 10;
@@ -20,7 +21,7 @@ const Clientes = () => {
   const token = localStorage.getItem('token');
   const headers = useMemo(() => ({ Authorization: `Bearer ${token}` }), [token]);
 
-  const fetchData = useCallback(async (p = page, search = busca) => {
+  const fetchData = useCallback(async (p = page, search = debouncedBusca) => {
     try {
       const params = new URLSearchParams({ page: p, limit });
       if (search) params.append('busca', search);
@@ -35,7 +36,7 @@ const Clientes = () => {
     } finally {
       setLoading(false);
     }
-  }, [busca, headers, page, regiao, status]);
+  }, [debouncedBusca, headers, page, regiao, status]);
 
   useEffect(() => {
     Promise.resolve().then(() => fetchData());
@@ -43,11 +44,13 @@ const Clientes = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setPage(1);
-      fetchData(1, busca);
+      if (debouncedBusca !== busca) {
+        setDebouncedBusca(busca);
+        setPage(1);
+      }
     }, 400);
     return () => clearTimeout(timer);
-  }, [busca, fetchData]);
+  }, [busca, debouncedBusca]);
 
   const handleExport = () => {
     exportToCsv(contratos.map(c => ({
