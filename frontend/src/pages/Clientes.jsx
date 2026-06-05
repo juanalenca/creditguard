@@ -76,10 +76,10 @@ const Clientes = () => {
     <div className="space-y-6 pb-10">
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-3xl font-bold text-white tracking-tight">Portfólio de Contratos</h2>
-          <p className="text-gray-400 mt-1">Gestão de cobrança e análise de inadimplência por contrato</p>
+          <h2 className="text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-indigo-400 tracking-tight">Portfólio de Contratos</h2>
+          <p className="text-indigo-200/60 mt-1 font-medium tracking-wide">Gestão de cobrança e análise de inadimplência por contrato</p>
         </div>
-        <button onClick={handleExport} className="flex items-center px-4 py-2 bg-gray-800 border border-gray-700 text-gray-300 rounded-lg hover:bg-gray-700 transition-colors w-full sm:w-auto justify-center">
+        <button onClick={handleExport} className="flex items-center px-5 py-2.5 bg-gray-900/50 backdrop-blur-sm border border-white/10 text-gray-300 rounded-xl hover:bg-white/5 transition-all shadow-lg hover:shadow-purple-500/10 hover:-translate-y-0.5 w-full sm:w-auto justify-center">
           <Download className="w-4 h-4 mr-2" /> Exportar CSV
         </button>
       </div>
@@ -88,11 +88,11 @@ const Clientes = () => {
       <div className="flex flex-col sm:flex-row gap-3">
         <div className="relative w-full sm:flex-1">
           <input type="text" placeholder="Buscar por ID do contrato ou assessoria..." value={busca} onChange={(e) => setBusca(e.target.value)}
-            className="w-full pl-10 pr-4 py-2.5 bg-gray-800 border border-gray-700 rounded-lg text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all" />
+            className="w-full pl-10 pr-4 py-2.5 bg-gray-900/40 backdrop-blur-sm border border-white/10 rounded-xl text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all" />
           <Search className="w-5 h-5 text-gray-500 absolute left-3 top-3" />
         </div>
         <select value={regiao} onChange={(e) => { setRegiao(e.target.value); setPage(1); }}
-          className="w-full sm:w-auto px-4 py-2.5 bg-gray-800 border border-gray-700 rounded-lg text-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500 appearance-none cursor-pointer">
+          className="w-full sm:w-auto px-4 py-2.5 bg-gray-900/40 backdrop-blur-sm border border-white/10 rounded-xl text-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500 appearance-none cursor-pointer">
           <option value="">Todas Regiões</option>
           <option value="Nordeste">Nordeste</option>
           <option value="Sudeste">Sudeste</option>
@@ -101,7 +101,7 @@ const Clientes = () => {
           <option value="Centro-Oeste">Centro-Oeste</option>
         </select>
         <select value={status} onChange={(e) => { setStatus(e.target.value); setPage(1); }}
-          className="w-full sm:w-auto px-4 py-2.5 bg-gray-800 border border-gray-700 rounded-lg text-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500 appearance-none cursor-pointer">
+          className="w-full sm:w-auto px-4 py-2.5 bg-gray-900/40 backdrop-blur-sm border border-white/10 rounded-xl text-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500 appearance-none cursor-pointer">
           <option value="">Todos Status</option>
           <option value="Em Aberto">Em Aberto</option>
           <option value="Acordo Firmado">Acordo Firmado</option>
@@ -110,10 +110,10 @@ const Clientes = () => {
         </select>
       </div>
 
-      <div className="bg-gray-800 rounded-xl border border-gray-700 shadow-lg overflow-hidden">
+      <div className="bg-gray-900/40 backdrop-blur-xl rounded-3xl border border-white/5 shadow-2xl overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-gray-700">
-            <thead className="bg-gray-900/50">
+          <table className="min-w-full divide-y divide-white/5">
+            <thead className="bg-white/5">
               <tr>
                 <th className="px-4 py-4 text-left text-xs font-semibold text-gray-400 uppercase">Contrato</th>
                 <th className="px-4 py-4 text-left text-xs font-semibold text-gray-400 uppercase">Assessoria</th>
@@ -125,13 +125,13 @@ const Clientes = () => {
                 <th className="px-4 py-4 text-right text-xs font-semibold text-gray-400 uppercase"></th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-700">
+            <tbody className="divide-y divide-white/5">
               {loading ? (
                 <tr><td colSpan={8} className="px-6 py-12 text-center text-gray-500 animate-pulse">Carregando portfólio...</td></tr>
               ) : contratos.length === 0 ? (
                 <tr><td colSpan={8} className="px-6 py-12 text-center text-gray-500">Nenhum contrato encontrado.</td></tr>
               ) : contratos.map((c) => (
-                <tr key={c.id} className="hover:bg-gray-700/40 transition-colors group cursor-pointer" onClick={() => navigate(`/clientes/${c.id}`)}>
+                <tr key={c.id} className="hover:bg-white/5 transition-colors group cursor-pointer" onClick={() => navigate(`/clientes/${c.id}`)}>
                   <td className="px-4 py-3 whitespace-nowrap text-sm font-mono text-purple-400">{c.id_contrato}</td>
                   <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-200">{c.nome_assessoria}</td>
                   <td className="px-4 py-3 whitespace-nowrap text-sm">
@@ -158,13 +158,13 @@ const Clientes = () => {
           </table>
         </div>
 
-        <div className="px-6 py-4 border-t border-gray-700 bg-gray-900/30 flex items-center justify-between">
+        <div className="px-6 py-4 border-t border-white/5 bg-white/5 flex items-center justify-between">
           <span className="text-sm text-gray-400">
             <span className="font-medium text-gray-200">{(page - 1) * limit + 1}</span> a <span className="font-medium text-gray-200">{Math.min(page * limit, total)}</span> de <span className="font-medium text-gray-200">{total.toLocaleString()}</span> contratos
           </span>
           <div className="flex gap-2">
-            <button onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page === 1} className="px-3 py-1.5 border border-gray-700 rounded-md text-sm text-gray-300 hover:bg-gray-700 disabled:opacity-50 transition-colors">Anterior</button>
-            <button onClick={() => setPage(p => p + 1)} disabled={page * limit >= total} className="px-3 py-1.5 border border-gray-700 rounded-md text-sm text-gray-300 hover:bg-gray-700 disabled:opacity-50 transition-colors">Próxima</button>
+            <button onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page === 1} className="px-4 py-2 border border-white/10 rounded-lg text-sm text-gray-300 hover:bg-white/10 disabled:opacity-50 transition-all">Anterior</button>
+            <button onClick={() => setPage(p => p + 1)} disabled={page * limit >= total} className="px-4 py-2 border border-white/10 rounded-lg text-sm text-gray-300 hover:bg-white/10 disabled:opacity-50 transition-all">Próxima</button>
           </div>
         </div>
       </div>

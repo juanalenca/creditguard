@@ -73,15 +73,15 @@ const Analytics = () => {
     <div className="space-y-8 pb-10">
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-3xl font-bold text-white tracking-tight flex items-center">
-            <Lightbulb className="w-8 h-8 mr-3 text-amber-400" />
+          <h2 className="text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-amber-400 to-orange-400 tracking-tight flex items-center">
+            <Lightbulb className="w-8 h-8 mr-3 text-amber-500" />
             Central de Inteligência
           </h2>
-          <p className="text-gray-400 mt-1">Insights automáticos, KPIs derivativos e análise comportamental</p>
+          <p className="text-amber-200/60 mt-1 font-medium tracking-wide">Insights automáticos, KPIs derivativos e análise comportamental</p>
         </div>
         <button
           onClick={handleExportInsights}
-          className="flex items-center px-4 py-2 bg-gray-800 border border-gray-700 text-gray-300 rounded-lg hover:bg-gray-700 transition-colors w-full sm:w-auto justify-center"
+          className="flex items-center px-5 py-2.5 bg-gray-900/50 backdrop-blur-sm border border-white/10 text-gray-300 rounded-xl hover:bg-white/5 transition-all shadow-lg hover:shadow-amber-500/10 hover:-translate-y-0.5 w-full sm:w-auto justify-center"
         >
           <Download className="w-4 h-4 mr-2" />
           Exportar Insights
@@ -96,19 +96,19 @@ const Analytics = () => {
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {insights.map((insight, idx) => (
-            <div key={idx} className={`p-5 rounded-xl border-l-4 bg-gray-800 border border-gray-700 hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5 ${getInsightColor(insight.tipo)}`}>
-              <div className="flex items-start gap-3">
-                <div className={`p-2 rounded-lg ${getInsightColor(insight.tipo)}`}>
+            <div key={idx} className={`p-6 rounded-2xl border-l-4 bg-gray-900/40 backdrop-blur-md border border-white/5 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 ${getInsightColor(insight.tipo)}`}>
+              <div className="flex items-start gap-4">
+                <div className={`p-3 rounded-xl shadow-inner ${getInsightColor(insight.tipo).replace('border-', 'bg-').replace('/20', '/30')}`}>
                   {getInsightIcon(insight.tipo)}
                 </div>
-                <p className="text-sm text-gray-200 leading-relaxed flex-1">
+                <p className="text-sm font-medium text-gray-300 leading-relaxed flex-1 tracking-wide">
                   {insight.texto}
                 </p>
               </div>
             </div>
           ))}
           {insights.length === 0 && (
-            <div className="col-span-3 p-8 bg-gray-800 rounded-xl border border-gray-700 text-center text-gray-500">
+            <div className="col-span-3 p-8 bg-gray-900/40 backdrop-blur-md rounded-2xl border border-white/5 text-center text-gray-500 font-medium">
               Nenhum insight disponível. Verifique se os dados estão populados no banco.
             </div>
           )}
@@ -123,29 +123,29 @@ const Analytics = () => {
             KPIs Derivativos Executivos
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-            <div className="bg-gray-800 p-5 rounded-xl border border-gray-700 border-t-4 border-t-emerald-500">
-              <p className="text-xs font-medium text-gray-400 uppercase">Taxa de Recuperação</p>
-              <p className="text-2xl font-bold text-emerald-400 mt-1">{Number(kpisAvancados.taxa_recuperacao || 0).toFixed(1)}%</p>
+            <div className="bg-gray-900/40 backdrop-blur-md p-6 rounded-2xl border border-white/5 border-t-4 border-t-emerald-500 shadow-lg hover:-translate-y-1 transition-all">
+              <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">Taxa de Recuperação</p>
+              <p className="text-3xl font-bold text-emerald-400 mt-2">{Number(kpisAvancados.taxa_recuperacao || 0).toFixed(1)}%</p>
             </div>
-            <div className="bg-gray-800 p-5 rounded-xl border border-gray-700 border-t-4 border-t-amber-500">
-              <p className="text-xs font-medium text-gray-400 uppercase">Clientes Reincidentes</p>
-              <p className="text-2xl font-bold text-amber-400 mt-1">{kpisAvancados.clientes_reincidentes || 0}</p>
+            <div className="bg-gray-900/40 backdrop-blur-md p-6 rounded-2xl border border-white/5 border-t-4 border-t-amber-500 shadow-lg hover:-translate-y-1 transition-all">
+              <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">Clientes Reincidentes</p>
+              <p className="text-3xl font-bold text-amber-400 mt-2">{kpisAvancados.clientes_reincidentes || 0}</p>
             </div>
-            <div className="bg-gray-800 p-5 rounded-xl border border-gray-700 border-t-4 border-t-red-500">
-              <p className="text-xs font-medium text-gray-400 uppercase">Contratos em Risco</p>
-              <p className="text-2xl font-bold text-red-400 mt-1">{kpisAvancados.contratos_em_risco || 0}</p>
+            <div className="bg-gray-900/40 backdrop-blur-md p-6 rounded-2xl border border-white/5 border-t-4 border-t-red-500 shadow-lg hover:-translate-y-1 transition-all">
+              <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">Contratos em Risco</p>
+              <p className="text-3xl font-bold text-red-400 mt-2">{kpisAvancados.contratos_em_risco || 0}</p>
             </div>
-            <div className="bg-gray-800 p-5 rounded-xl border border-gray-700 border-t-4 border-t-purple-500">
-              <p className="text-xs font-medium text-gray-400 uppercase">Variação da Inadimplência</p>
-              <p className={`text-2xl font-bold mt-1 flex items-center ${Number(kpisAvancados.variacao_mensal) > 0 ? 'text-red-400' : 'text-emerald-400'}`}>
-                {Number(kpisAvancados.variacao_mensal) > 0 ? <TrendingUp className="w-5 h-5 mr-1" /> : <TrendingDown className="w-5 h-5 mr-1" />}
+            <div className="bg-gray-900/40 backdrop-blur-md p-6 rounded-2xl border border-white/5 border-t-4 border-t-purple-500 shadow-lg hover:-translate-y-1 transition-all">
+              <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">Variação da Inadimplência</p>
+              <p className={`text-3xl font-bold mt-2 flex items-center ${Number(kpisAvancados.variacao_mensal) > 0 ? 'text-red-400' : 'text-emerald-400'}`}>
+                {Number(kpisAvancados.variacao_mensal) > 0 ? <TrendingUp className="w-6 h-6 mr-1" /> : <TrendingDown className="w-6 h-6 mr-1" />}
                 {Number(kpisAvancados.variacao_mensal || 0).toFixed(1)}%
               </p>
-              <p className="text-[10px] text-gray-500 mt-1">Queda indica melhoria vs mês anterior</p>
+              <p className="text-[11px] text-gray-500 mt-2 font-medium tracking-wide">Queda = melhoria vs mês anterior</p>
             </div>
-            <div className="bg-gray-800 p-5 rounded-xl border border-gray-700 border-t-4 border-t-purple-500">
-              <p className="text-xs font-medium text-gray-400 uppercase">Regiões Monitoradas</p>
-              <p className="text-2xl font-bold text-purple-400 mt-1">{kpisAvancados.inadimplencia_por_regiao?.length || 0}</p>
+            <div className="bg-gray-900/40 backdrop-blur-md p-6 rounded-2xl border border-white/5 border-t-4 border-t-indigo-500 shadow-lg hover:-translate-y-1 transition-all">
+              <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">Regiões Monitoradas</p>
+              <p className="text-3xl font-bold text-indigo-400 mt-2">{kpisAvancados.inadimplencia_por_regiao?.length || 0}</p>
             </div>
           </div>
         </div>
@@ -155,8 +155,8 @@ const Analytics = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Inadimplência por Região (Pie) */}
         {kpisAvancados?.inadimplencia_por_regiao && (
-          <div className="bg-gray-800 p-6 rounded-xl border border-gray-700 shadow-lg">
-            <h3 className="text-lg font-bold text-gray-200 mb-6">Distribuição de Inadimplência por Região</h3>
+          <div className="bg-gray-900/40 backdrop-blur-xl p-6 rounded-3xl border border-white/5 shadow-2xl">
+            <h3 className="text-lg font-bold text-white mb-6">Distribuição de Inadimplência por Região</h3>
             <div className="h-72">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
@@ -175,10 +175,10 @@ const Analytics = () => {
                     ))}
                   </Pie>
                   <RechartsTooltip
-                    formatter={(value) => `R$ ${Number(value).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`}
-                    contentStyle={{ backgroundColor: '#1f2937', borderColor: '#374151', borderRadius: 8 }}
-                    itemStyle={{ color: '#e5e7eb' }}
-                    labelStyle={{ color: '#9ca3af' }}
+                    formatter={(value) => [`R$ ${Number(value).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`]}
+                    contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.8)', backdropFilter: 'blur(12px)', borderColor: 'rgba(255,255,255,0.1)', borderRadius: '12px', color: '#fff' }}
+                    itemStyle={{ color: '#e5e7eb', fontWeight: 600 }}
+                    labelStyle={{ color: '#9ca3af', marginBottom: '4px' }}
                   />
                   <Legend />
                 </PieChart>
@@ -188,8 +188,8 @@ const Analytics = () => {
         )}
 
         {/* Tendência Temporal */}
-        <div className="bg-gray-800 p-6 rounded-xl border border-gray-700 shadow-lg">
-          <h3 className="text-lg font-bold text-gray-200 mb-6">Tendência de Inadimplência</h3>
+        <div className="bg-gray-900/40 backdrop-blur-xl p-6 rounded-3xl border border-white/5 shadow-2xl">
+          <h3 className="text-lg font-bold text-white mb-6">Tendência de Inadimplência</h3>
           <div className="h-72">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={evolucao}>
@@ -198,9 +198,9 @@ const Analytics = () => {
                 <YAxis stroke="#9ca3af" tickFormatter={(v) => v >= 1000000 ? `R$${(v / 1000000).toFixed(1)}M` : `R$${(v / 1000).toFixed(0)}K`} fontSize={12} />
                 <RechartsTooltip
                   formatter={(value) => [`R$ ${Number(value).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`, 'Valor']}
-                  contentStyle={{ backgroundColor: '#1f2937', borderColor: '#374151', borderRadius: 8 }}
-                  itemStyle={{ color: '#e5e7eb' }}
-                  labelStyle={{ color: '#9ca3af' }}
+                  contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.8)', backdropFilter: 'blur(12px)', borderColor: 'rgba(255,255,255,0.1)', borderRadius: '12px', color: '#fff' }}
+                  itemStyle={{ color: '#e5e7eb', fontWeight: 600 }}
+                  labelStyle={{ color: '#9ca3af', marginBottom: '4px' }}
                 />
                 <Line type="monotone" dataKey="total" stroke="#8b5cf6" strokeWidth={3} dot={{ r: 5, fill: '#8b5cf6' }} activeDot={{ r: 8 }} />
               </LineChart>
@@ -211,9 +211,9 @@ const Analytics = () => {
 
       {/* Ranking Regional */}
       {kpisAvancados?.inadimplencia_por_regiao && (
-        <div className="bg-gray-800 p-6 rounded-xl border border-gray-700 shadow-lg">
-          <h3 className="text-lg font-bold text-gray-200 mb-4 flex items-center">
-            <Award className="w-5 h-5 mr-2 text-amber-400" />
+        <div className="bg-gray-900/40 backdrop-blur-xl p-8 rounded-3xl border border-white/5 shadow-2xl">
+          <h3 className="text-xl font-bold text-white mb-6 flex items-center">
+            <Award className="w-6 h-6 mr-3 text-amber-400" />
             Ranking de Inadimplência por Região
           </h3>
           <div className="space-y-3">

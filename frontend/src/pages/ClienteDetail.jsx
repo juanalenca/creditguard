@@ -56,29 +56,29 @@ const ClienteDetail = () => {
       </button>
 
       {/* Cabeçalho do Contrato */}
-      <div className="bg-gray-800 p-8 rounded-xl border border-gray-700 shadow-lg">
+      <div className="bg-gray-900/40 backdrop-blur-xl p-8 rounded-3xl border border-white/5 shadow-2xl">
         <div className="flex flex-col lg:flex-row justify-between gap-6">
           <div>
-            <h2 className="text-3xl font-bold text-white font-mono">{contrato.id_contrato}</h2>
+            <h2 className="text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-indigo-400 font-mono tracking-tight">{contrato.id_contrato}</h2>
             <p className="text-gray-400 mt-2">Assessoria: <span className="text-gray-200 font-medium">{contrato.nome_assessoria}</span></p>
             <p className="text-gray-400 mt-1">Região: <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-purple-900/30 text-purple-400 border border-purple-800/50">{contrato.regiao}</span></p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="bg-gray-900 p-4 rounded-lg text-center">
-              <p className="text-xs text-gray-500 uppercase">Valor Inadimplente</p>
-              <p className="text-xl font-bold text-red-400">R$ {Number(contrato.valor_inadimplente).toLocaleString('pt-BR', {minimumFractionDigits: 2})}</p>
+            <div className="bg-gray-900/60 p-4 rounded-2xl text-center border border-white/5 shadow-inner">
+              <p className="text-xs text-gray-500 uppercase font-semibold">Valor Inadimplente</p>
+              <p className="text-xl font-bold text-red-400 mt-1">R$ {Number(contrato.valor_inadimplente).toLocaleString('pt-BR', {minimumFractionDigits: 2})}</p>
             </div>
-            <div className="bg-gray-900 p-4 rounded-lg text-center">
-              <p className="text-xs text-gray-500 uppercase">Dias Atraso</p>
-              <p className={`text-xl font-bold ${contrato.dias_atraso_inicial > 60 ? 'text-red-400' : 'text-amber-400'}`}>{contrato.dias_atraso_inicial}d</p>
+            <div className="bg-gray-900/60 p-4 rounded-2xl text-center border border-white/5 shadow-inner">
+              <p className="text-xs text-gray-500 uppercase font-semibold">Dias Atraso</p>
+              <p className={`text-xl font-bold mt-1 ${contrato.dias_atraso_inicial > 60 ? 'text-red-400' : 'text-amber-400'}`}>{contrato.dias_atraso_inicial}d</p>
             </div>
-            <div className="bg-gray-900 p-4 rounded-lg text-center">
-              <p className="text-xs text-gray-500 uppercase">Score Risco</p>
-              <p className="text-xl font-bold text-amber-400">{Number(contrato.score_risco).toFixed(0)}</p>
+            <div className="bg-gray-900/60 p-4 rounded-2xl text-center border border-white/5 shadow-inner">
+              <p className="text-xs text-gray-500 uppercase font-semibold">Score Risco</p>
+              <p className="text-xl font-bold text-amber-400 mt-1">{Number(contrato.score_risco).toFixed(0)}</p>
             </div>
-            <div className="bg-gray-900 p-4 rounded-lg text-center">
-              <p className="text-xs text-gray-500 uppercase">Status</p>
-              <p className="text-lg font-bold text-white">{contrato.status_cobranca}</p>
+            <div className="bg-gray-900/60 p-4 rounded-2xl text-center border border-white/5 shadow-inner">
+              <p className="text-xs text-gray-500 uppercase font-semibold">Status</p>
+              <p className="text-lg font-bold text-white mt-1">{contrato.status_cobranca}</p>
             </div>
           </div>
         </div>
@@ -86,31 +86,31 @@ const ClienteDetail = () => {
 
       {/* Resumo de Parcelas */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-gray-800 p-5 rounded-xl border border-gray-700 flex items-center gap-4">
-          <div className="p-3 rounded-full bg-purple-900/30"><FileText className="w-6 h-6 text-purple-400" /></div>
-          <div><p className="text-sm text-gray-400">Total Parcelas</p><p className="text-2xl font-bold text-white">{totalParcelas}</p></div>
+        <div className="bg-gray-900/40 backdrop-blur-md p-5 rounded-2xl border border-white/5 flex items-center gap-4 shadow-lg hover:-translate-y-1 transition-all">
+          <div className="p-3 rounded-2xl bg-purple-900/30 shadow-[0_0_15px_rgba(147,51,234,0.2)]"><FileText className="w-6 h-6 text-purple-400" /></div>
+          <div><p className="text-sm font-medium text-gray-400">Total Parcelas</p><p className="text-3xl font-bold text-white">{totalParcelas}</p></div>
         </div>
-        <div className="bg-gray-800 p-5 rounded-xl border border-gray-700 flex items-center gap-4">
-          <div className="p-3 rounded-full bg-emerald-900/30"><CheckCircle2 className="w-6 h-6 text-emerald-400" /></div>
-          <div><p className="text-sm text-gray-400">Pagas</p><p className="text-2xl font-bold text-emerald-400">{parcelasPagas}</p></div>
+        <div className="bg-gray-900/40 backdrop-blur-md p-5 rounded-2xl border border-white/5 flex items-center gap-4 shadow-lg hover:-translate-y-1 transition-all">
+          <div className="p-3 rounded-2xl bg-emerald-900/30 shadow-[0_0_15px_rgba(16,185,129,0.2)]"><CheckCircle2 className="w-6 h-6 text-emerald-400" /></div>
+          <div><p className="text-sm font-medium text-gray-400">Pagas</p><p className="text-3xl font-bold text-emerald-400">{parcelasPagas}</p></div>
         </div>
-        <div className="bg-gray-800 p-5 rounded-xl border border-gray-700 flex items-center gap-4">
-          <div className="p-3 rounded-full bg-red-900/30"><XCircle className="w-6 h-6 text-red-400" /></div>
-          <div><p className="text-sm text-gray-400">Atrasadas</p><p className="text-2xl font-bold text-red-400">{parcelasAtrasadas}</p></div>
+        <div className="bg-gray-900/40 backdrop-blur-md p-5 rounded-2xl border border-white/5 flex items-center gap-4 shadow-lg hover:-translate-y-1 transition-all">
+          <div className="p-3 rounded-2xl bg-red-900/30 shadow-[0_0_15px_rgba(239,68,68,0.2)]"><XCircle className="w-6 h-6 text-red-400" /></div>
+          <div><p className="text-sm font-medium text-gray-400">Atrasadas</p><p className="text-3xl font-bold text-red-400">{parcelasAtrasadas}</p></div>
         </div>
       </div>
 
       {/* Tabela de Parcelas */}
-      <div className="bg-gray-800 rounded-xl border border-gray-700 shadow-lg overflow-hidden">
-        <div className="p-5 border-b border-gray-700 flex items-center justify-between">
-          <h3 className="text-lg font-bold text-gray-200 flex items-center"><FileText className="w-5 h-5 mr-2 text-purple-500" /> Histórico de Parcelas</h3>
-          <button onClick={handleExportParcelas} className="flex items-center px-3 py-1.5 bg-gray-700 text-gray-300 rounded-lg hover:bg-gray-600 text-sm transition-colors">
-            <Download className="w-4 h-4 mr-1" /> CSV
+      <div className="bg-gray-900/40 backdrop-blur-xl rounded-3xl border border-white/5 shadow-2xl overflow-hidden">
+        <div className="p-6 border-b border-white/5 flex items-center justify-between">
+          <h3 className="text-xl font-bold text-white flex items-center"><FileText className="w-5 h-5 mr-3 text-purple-400" /> Histórico de Parcelas</h3>
+          <button onClick={handleExportParcelas} className="flex items-center px-4 py-2 bg-gray-900/50 backdrop-blur-sm border border-white/10 text-gray-300 rounded-xl hover:bg-white/5 transition-all shadow-lg text-sm">
+            <Download className="w-4 h-4 mr-2" /> CSV
           </button>
         </div>
         <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-gray-700/50">
-            <thead className="bg-gray-900/30">
+          <table className="min-w-full divide-y divide-white/5">
+            <thead className="bg-white/5">
               <tr>
                 <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">#</th>
                 <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Vencimento</th>
@@ -121,12 +121,12 @@ const ClienteDetail = () => {
                 <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase">Status</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-700/50">
+            <tbody className="divide-y divide-white/5">
               {contrato.parcelas?.map((p) => {
                 const isAtrasado = !p.data_pagamento && new Date(p.data_vencimento) < new Date();
                 const isPago = !!p.data_pagamento;
                 return (
-                  <tr key={p.id} className="hover:bg-gray-700/30">
+                  <tr key={p.id} className="hover:bg-white/5 transition-colors">
                     <td className="px-4 py-3 text-sm text-gray-500 font-mono">{p.numero_parcela}</td>
                     <td className="px-4 py-3 text-sm text-gray-300">{new Date(p.data_vencimento).toLocaleDateString('pt-BR')}</td>
                     <td className="px-4 py-3 text-sm text-gray-400">{p.data_pagamento ? new Date(p.data_pagamento).toLocaleDateString('pt-BR') : '-'}</td>
@@ -152,8 +152,8 @@ const ClienteDetail = () => {
 
       {/* Alertas do Contrato */}
       {contrato.alertas?.length > 0 && (
-        <div className="bg-gray-800 rounded-xl border border-gray-700 shadow-lg p-5">
-          <h3 className="text-lg font-bold text-gray-200 mb-4 flex items-center"><AlertTriangle className="w-5 h-5 mr-2 text-red-500" /> Alertas Emitidos</h3>
+        <div className="bg-gray-900/40 backdrop-blur-xl rounded-3xl border border-white/5 shadow-2xl p-6">
+          <h3 className="text-xl font-bold text-white mb-6 flex items-center"><AlertTriangle className="w-5 h-5 mr-3 text-red-500" /> Alertas Emitidos</h3>
           <div className="space-y-3">
             {contrato.alertas.map(a => (
               <div key={a.id} className={`p-4 rounded-lg border-l-4 ${a.nivel_risco === 'Alto' ? 'border-red-500 bg-red-900/10' : a.nivel_risco === 'Medio' ? 'border-amber-500 bg-amber-900/10' : 'border-emerald-500 bg-emerald-900/10'}`}>

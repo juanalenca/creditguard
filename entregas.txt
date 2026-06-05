@@ -1,0 +1,1280 @@
+-Entrega1:
+"
+1. Introdução
+
+O presente documento apresenta a especificação inicial do projeto CreditGuard AI, desenvolvido no contexto acadêmico das disciplinas de Engenharia de Requisitos, Ciência de Dados e Sistemas de Informação.
+O objetivo principal da solução é apoiar a gestão financeira de administradoras de consórcio por meio de análises gerenciais, monitoramento de inadimplência e geração de indicadores estratégicos para apoio à tomada de decisão.
+
+1.1 Propósito do Documento
+
+Este documento tem como finalidade definir os requisitos iniciais, o contexto organizacional, os problemas identificados e as funcionalidades previstas para o sistema CreditGuard AI.
+Além disso, o documento estabelece uma visão estruturada do projeto, servindo como referência para:
+desenvolvimento da solução;
+alinhamento entre equipe e stakeholders;
+planejamento das sprints;
+validação acadêmica do projeto.
+
+1.2 Público-Alvo
+
+Os principais públicos envolvidos são:
+
+Público
+Objetivo
+Equipe de Desenvolvimento
+Implementação técnica do sistema
+Analistas
+Definição de regras e validação dos requisitos
+Professores
+Avaliação acadêmica do projeto
+Gestores
+Acompanhamento estratégico da solução
+Usuários Administrativos
+Utilização operacional da plataforma
+
+
+2. Descrição Geral do Produto
+
+O CreditGuard AI consiste em uma plataforma analítica voltada ao monitoramento financeiro, análise de inadimplência e apoio à recuperação de crédito em administradoras de consórcio. 
+A solução centraliza informações financeiras e operacionais em um único ambiente, permitindo visualização estratégica dos indicadores, identificação de contratos críticos e geração de insights gerenciais automatizados.
+
+O sistema terá foco em:
+dashboards executivos;
+análise financeira;
+classificação de risco;
+monitoramento de inadimplência;
+relatórios gerenciais;
+inteligência analítica;
+acompanhamento regional da inadimplência;
+geração automática de alertas e insights.
+
+A solução foi desenvolvida utilizando datasets reais contendo:
+
+10.000 contratos;
+100.000 registros de pagamentos;
+informações de assessorias de cobrança;
+indicadores regionais de inadimplência.
+
+2.1 Situação Atual (AS-IS)
+
+Atualmente, as administradoras de consórcio e assessorias de cobrança operam de forma descentralizada, utilizando planilhas e controles manuais para acompanhamento financeiro.
+
+Os principais problemas identificados são:
+ausência de dashboards integrados;
+dificuldade em identificar contratos críticos;
+baixa previsibilidade financeira;
+excesso de processos manuais;
+dificuldade de monitoramento regional;
+ausência de inteligência analítica automatizada;
+lentidão na geração de relatórios;
+baixa integração entre setores financeiros e operacionais.
+
+Além disso, a recuperação de crédito ocorre majoritariamente de forma reativa, dificultando ações preventivas e reduzindo a eficiência operacional.
+
+A falta de indicadores centralizados compromete diretamente:
+a tomada de decisão estratégica;
+o acompanhamento da inadimplência;
+a priorização das cobranças;
+a análise do desempenho das assessorias.
+
+2.2 Escopo
+Funcionalidades previstas
+
+O sistema deverá:
+autenticar usuários via JWT;
+apresentar dashboards executivos;
+monitorar inadimplência;
+classificar contratos por risco;
+gerar alertas automáticos;
+exibir KPIs financeiros;
+gerar insights automáticos;
+permitir filtros analíticos;
+exportar relatórios em CSV;
+apresentar tendências temporais;
+monitorar risco regional;
+exibir histórico financeiro de contratos e parcelas.
+
+Módulos da solução
+
+Módulo de Autenticação;
+Módulo de Dashboard Executivo;
+Módulo de Inteligência Analítica;
+Módulo de Gestão de Contratos;
+Módulo de Alertas;
+Módulo de Indicadores Financeiros;
+Módulo de Classificação de Risco;
+Módulo de Exportação de Dados.
+
+Fora do escopo
+
+O sistema não realizará:
+processamento bancário;
+cobrança automática;
+pagamentos online;
+integração bancária real;
+processamento financeiro em tempo real;
+funcionalidades completas de ERP;
+modelos avançados de Machine Learning.
+
+2.3 Stakeholders / Atores
+
+Categoria
+Stakeholders
+Internos
+Diretoria, setor financeiro, equipe de cobrança, analistas financeiros, administradores do sistema, equipe de TI
+Externos
+Clientes da administradora de consórcios e assessorias de cobrança
+Tomadores de Decisão
+Diretoria, gestores financeiros e supervisores operacionais
+Impactados Indiretos
+Equipe administrativa, analistas operacionais e clientes inadimplentes
+
+
+Os stakeholders identificados possuem diferentes níveis de impacto e participação no projeto.
+A diretoria utiliza os dashboards para apoio estratégico e análise financeira. O setor de cobrança utiliza os alertas e classificações de risco para priorização operacional. Já os analistas financeiros utilizam os indicadores para monitoramento da inadimplência e recuperação de crédito.
+
+2.4 Premissas
+
+Os dados utilizados no projeto são reais e fornecidos para fins acadêmicos.
+O sistema foi desenvolvido utilizando metodologia ágil baseada em Scrum.
+O acesso ocorrerá exclusivamente via navegador web.
+Os usuários possuirão autenticação e controle de acesso via JWT.
+O sistema será utilizado como ferramenta de apoio analítico e gerencial.
+O banco PostgreSQL armazenará contratos, pagamentos, alertas e indicadores financeiros.
+Os dashboards serão alimentados automaticamente pelos dados processados via ETL.
+Os notebooks de Ciência de Dados utilizarão Pandas e Matplotlib para análises exploratórias.
+O sistema utilizará consultas SQL analíticas para geração de KPIs e insights automáticos.
+3. Estruturação do Problema
+3.1 Problemas Identificados
+
+Os principais problemas organizacionais identificados foram:
+crescimento da inadimplência;
+dificuldade de recuperação de crédito;
+ausência de inteligência analítica;
+baixa previsibilidade financeira;
+processos manuais excessivos;
+ausência de monitoramento regional;
+dificuldade de identificar contratos críticos;
+falta de integração entre setores;
+inexistência de indicadores centralizados;
+baixa capacidade de análise temporal da inadimplência.
+
+3.2 Impactos Operacionais e Financeiros
+
+Os problemas identificados geram impactos diretos como:
+redução do fluxo de caixa;
+aumento do risco financeiro;
+crescimento da inadimplência;
+baixa eficiência operacional;
+dificuldade de recuperação de crédito;
+lentidão na tomada de decisão;
+aumento do custo operacional da cobrança;
+redução da previsibilidade financeira;
+dificuldade de priorização de contratos críticos.
+
+A ausência de monitoramento analítico integrado compromete ações preventivas e dificulta decisões estratégicas relacionadas à recuperação financeira.
+
+3.3 Mapa do Problema
+
+A administradora de consórcios enfrenta dificuldades no controle da inadimplência devido à ausência de monitoramento analítico integrado e à dependência de processos manuais. Isso reduz a capacidade de identificar clientes críticos de forma preventiva, comprometendo a recuperação financeira e a tomada de decisão estratégica. A partir do método dos 5 porquês, foi possível identificar a relação entre as causas operacionais, o problema central e os impactos organizacionais gerados pela inadimplência.
+
+Fluxo de Causa → Problema → Impacto
+
+
+Aplicação Simplificada dos 5 Porquês
+
+Pergunta
+Resposta
+Por que existe dificuldade na recuperação de crédito?
+Porque os clientes inadimplentes não são identificados rapidamente.
+Por que os clientes não são identificados rapidamente?
+Porque não existem dashboards integrados e monitoramento contínuo.
+Por que não existe monitoramento contínuo?
+Porque os processos financeiros são majoritariamente manuais.
+Por que os processos são manuais?
+Porque há baixa integração entre os setores e sistemas utilizados.
+Por que isso impacta a organização?
+Porque reduz a previsibilidade financeira e aumenta os prejuízos relacionados à inadimplência.
+
+
+3.4 Hipóteses Analíticas
+
+Hipótese
+Objetivo Analítico
+Indicador
+Contratos com atrasos recorrentes possuem maior risco de inadimplência
+Identificar contratos críticos
+Dias de atraso
+Regiões com maior concentração de contratos apresentam maior inadimplência absoluta
+Identificar risco regional
+Inadimplência por região
+Clientes contemplados apresentam maior risco financeiro após contemplação
+Avaliar comportamento financeiro
+Taxa de inadimplência
+Indicadores integrados melhoram decisões gerenciais
+Aumentar eficiência operacional
+Tempo médio de análise
+Alertas preventivos aumentam a recuperação de crédito
+Melhorar eficiência da cobrança
+Taxa de recuperação
+Assessorias possuem desempenhos diferentes na recuperação financeira
+Avaliar eficiência operacional
+Índice de recuperação por assessoria
+
+
+3.5 Objetivos Estratégicos
+
+reduzir índices de inadimplência;
+melhorar a previsibilidade financeira;
+centralizar indicadores gerenciais;
+melhorar a recuperação de crédito;
+apoiar decisões estratégicas;
+automatizar análises operacionais;
+aumentar eficiência da cobrança;
+identificar contratos críticos preventivamente;
+monitorar tendências regionais da inadimplência;
+gerar inteligência analítica baseada em dados reais.
+
+4. Gestão do Projeto
+4.1 Divisão de Papéis da Equipe
+
+Integrante
+Papel
+Justificativa
+Juan Alencar
+Product Owner
+Coordenação geral do projeto
+Matheus Henrique
+Scrum Master
+Organização das sprints
+Fabiano Vitor
+Analista de Requisitos
+Levantamento e documentação
+João Guilherme
+Desenvolvedor Front-end
+Interfaces e dashboards
+Allan Victor
+Desenvolvedor Back-end
+APIs e regras de negócio
+Ruan Deud
+Cientista de Dados / BI
+Indicadores e análises
+
+
+Responsabilidades Complementares
+
+Função
+Responsável
+QA/Testes
+Equipe compartilhada
+Analista de BI
+Ruan Deud
+Administrador Técnico
+Allan Victor
+
+
+4.2 Ambiente de Gestão do Projeto
+
+Item
+Definição
+Metodologia
+Scrum
+Gestão de tarefas
+Trello
+Controle de versão
+GitHub
+Organização do backlog
+Product Backlog e Sprint Backlog
+Duração das sprints
+2 semanas
+Comunicação
+WhatsApp e Google Meet
+Banco de Dados
+PostgreSQL / Supabase
+Frontend
+React + Vite + TailwindCSS
+Backend
+Node.js + Express
+Ciência de Dados
+Python + Pandas + Matplotlib
+Controle de autenticação
+JWT + Bcrypt
+"
+
+-Entrega2:
+"
+1. Requisitos
+1.1 Requisitos Funcionais
+
+ID
+Nome
+Descrição
+RF01
+Login de Usuário
+Permitir autenticação utilizando JWT
+RF02
+Dashboard Executivo
+Exibir KPIs financeiros e operacionais em tempo real
+RF03
+Consulta de Contratos
+Permitir busca de contratos por ID
+RF04
+Filtros Analíticos
+Filtrar contratos por região, risco e status
+RF05
+Classificação de Risco
+Classificar contratos em Baixo, Médio e Alto risco
+RF06
+Histórico Financeiro
+Exibir parcelas, vencimentos e pagamentos
+RF07
+KPIs Derivativos
+Exibir métricas de recuperação, reincidência e variação mensal
+RF08
+Alertas de Inadimplência
+Gerar alertas automáticos de risco
+RF09
+Insights Automáticos
+Gerar insights analíticos a partir de queries SQL
+RF10
+Tendência Temporal
+Exibir evolução da inadimplência por período
+RF11
+Risco Regional
+Exibir inadimplência segmentada por região
+RF12
+Exportação CSV
+Permitir exportação de tabelas e insights
+RF13
+Central Analítica
+Exibir rankings, gráficos e análises estratégicas
+RF14
+Gestão de Sessão
+Controlar acesso via rotas protegidas
+RF15
+Monitoramento Financeiro
+Consolidar contratos, pagamentos e indicadores
+
+
+1.2 Requisitos Não Funcionais
+
+ID
+Categoria
+Descrição
+RNF01
+Segurança
+Utilizar autenticação JWT e senhas criptografadas com Bcrypt
+RNF02
+Desempenho
+Responder consultas em até 3 segundos
+RNF03
+Escalabilidade
+Suportar grandes volumes de contratos e pagamentos 
+RNF04
+Usabilidade
+Interface responsiva e intuitiva em Dark Mode 
+RNF05
+Compatibilidade 
+Compatível com Chrome, Edge e Firefox 
+RNF06
+Integridade
+Garantir consistência dos dados financeiros 
+RNF07
+Governança 
+Registrar acessos e ações críticas 
+RNF08
+Portabilidade 
+Execução em Linux ou Windows 
+RNF09
+Disponibilidade 
+Disponibilidade mínima de 95% 
+RNF10
+Manutenibilidade 
+Código modular e documentado 
+
+
+1.3 Regras de Negócio
+
+ID
+Regra
+RN01
+Apenas usuários autenticados poderão acessar dashboards
+RN02
+Contratos com atraso superior a 60 dias serão classificados como Alto risco 
+RN03
+Contratos entre 16 e 60 dias serão classificados como Médio risco 
+RN04
+Contratos até 15 dias permanecerão como Baixo risco 
+RN05
+Insights analíticos serão gerados automaticamente via SQL 
+RN06
+Indicadores financeiros utilizarão a última data válida do dataset 
+RN07
+O sistema deverá gerar alertas automáticos para contratos críticos 
+RN08
+Exportações CSV só poderão ser realizadas por usuários autenticados 
+RN09
+KPIs deverão ser atualizados conforme os dados do PostgreSQL 
+
+
+1.4 Restrições de Hardware
+
+Ambiente
+Requisito / Especificação
+Servidor
+Processador Dual Core
+Servidor
+8 GB RAM
+Servidor
+100 GB armazenamento SSD
+Cliente
+Navegador web atualizado
+Cliente
+4 GB RAM mínimos
+
+
+1.5 Restrições de Software
+
+Componente / Camada
+Tecnologias e Versões Permitidas
+Front-end 
+React + Vite + TailwindCSS + Recharts 
+Banco de Dados 
+Node.js + Express 
+Banco de Dados 
+PostgreSQL (Supabase) 
+Ciência de Dados 
+Python + Pandas + Matplotlib 
+Autenticação 
+JWT + Bcrypt 
+API 
+REST 
+Versionamento 
+GitHub 
+
+
+2. Casos de Uso
+2.1 Identificação dos Casos de Uso
+
+ID
+Caso de Uso
+Ator Principal
+Descrição
+UC01
+Realizar Login
+Administrador
+Autenticar usuários na plataforma
+UC02
+Visualizar Dashboard
+Diretoria
+Visualizar KPIs executivos
+UC03
+Consultar Contratos
+Analista
+Buscar contratos e visualizar detalhes
+UC04
+Monitorar Inadimplência
+Cobrança
+Acompanhar contratos críticos
+UC05
+Visualizar Tendências
+Diretoria
+Consultar evolução temporal da inadimplência
+UC06
+Visualizar Insights
+Analista Financeiro
+Consultar insights automáticos
+UC07
+Exportar CSV
+Analista
+Exportar dados financeiros
+UC08
+Visualizar Alertas
+Cobrança
+Consultar alertas de risco
+UC09
+Consultar Histórico Financeiro
+Financeiro
+Visualizar pagamentos e atrasos
+UC10
+Visualizar Central Analítica
+Diretoria
+Consultar rankings e gráficos estratégicos
+
+
+2.2 Diagrama de Casos de Uso
+
+O Diagrama de Casos de Uso representa as principais interações entre os atores organizacionais e a plataforma CreditGuard AI, evidenciando as funcionalidades disponibilizadas para apoio ao monitoramento financeiro e análise de inadimplência.
+A modelagem foi elaborada com base nos requisitos funcionais definidos durante a etapa de Engenharia de Requisitos, permitindo visualizar como os diferentes perfis de usuários interagem com o sistema de acordo com suas responsabilidades operacionais e estratégicas.
+Os atores identificados no diagrama representam setores e usuários da administradora de consórcios, sendo eles:
+Administrador;
+Diretoria;
+Analista Financeiro;
+Equipe de Cobrança.
+
+O ator Administrador possui responsabilidade sobre autenticação e gerenciamento de usuários do sistema. A Diretoria utiliza a plataforma para acompanhamento de dashboards, indicadores financeiros e relatórios gerenciais. O Analista Financeiro realiza consultas financeiras, análise de indicadores e emissão de relatórios. Já a Equipe de Cobrança utiliza funcionalidades relacionadas ao monitoramento da inadimplência e identificação de clientes críticos.
+
+Os principais casos de uso modelados no sistema incluem:
+Realizar Login;
+Visualizar Dashboard;
+Consultar Clientes Críticos;
+Consultar Histórico Financeiro;
+Gerar Relatórios;
+Monitorar Inadimplência;
+Gerenciar Usuários;
+Exportar PDF.
+
+O diagrama também apresenta relacionamentos do tipo <<include>>, utilizados para representar dependências obrigatórias entre funcionalidades. Nesse contexto:
+o caso de uso “Gerar Relatórios” inclui “Exportar PDF”;
+o caso de uso “Monitorar Inadimplência” inclui “Consultar Clientes Críticos”.
+
+Esses relacionamentos demonstram funcionalidades complementares executadas em conjunto durante determinadas operações do sistema.
+A modelagem busca representar de forma simplificada e objetiva as funcionalidades centrais da plataforma, mantendo coerência com o escopo acadêmico do projeto e facilitando a compreensão das interações entre usuários e sistema.
+
+Diagrama de Casos de Uso do Sistema
+
+3. Modelagem Conceitual
+3.1 Diagrama de Classes
+
+A modelagem conceitual do CreditGuard AI representa as principais entidades relacionadas ao monitoramento financeiro e análise de inadimplência.
+A entidade Cliente armazena os dados principais dos clientes cadastrados no sistema, incluindo informações de identificação e classificação de risco financeiro.
+Cada Cliente pode possuir um ou mais Contratos, que representam os vínculos financeiros ativos com a administradora de consórcios. Os contratos armazenam informações relacionadas ao status contratual e quantidade de parcelas.
+A entidade Pagamento registra os pagamentos realizados pelos clientes vinculados aos contratos existentes, permitindo o acompanhamento de atrasos e análise de inadimplência.
+A classe IndicadorFinanceiro representa os KPIs e métricas utilizadas nos dashboards gerenciais, auxiliando na análise estratégica da organização.
+A entidade Usuario controla os acessos à plataforma, definindo quais usuários poderão visualizar dashboards, relatórios e funcionalidades administrativas.
+A classe AlertaRisco é responsável por registrar ocorrências relacionadas a clientes considerados críticos ou com elevado risco de inadimplência.
+Os relacionamentos entre as entidades permitem consolidar informações financeiras, gerar relatórios e apoiar análises gerenciais dentro da plataforma.
+
+Classe
+Objetivo
+Principais Atributos
+Contrato
+Representar contratos financeiros
+id_contrato, regiao, score_risco, status
+Pagamento
+Registrar parcelas e pagamentos
+id_pagamento, valor_pago, data_pagamento
+AlertaRisco
+Registrar alertas críticos
+nivel_risco, dias_atraso
+IndicadorFinanceiro
+Consolidar KPIs executivos
+nome, valor, tendencia
+Usuario
+Controlar autenticação
+login, senha, perfil
+
+
+
+Diagrama Conceitual de Classes
+
+
+
+
+4. Histórias de Usuário
+
+Como diretor, quero visualizar KPIs executivos para acompanhar a inadimplência e recuperação financeira.
+Como analista financeiro, quero visualizar insights automáticos para apoiar decisões estratégicas.
+Como equipe de cobrança, quero identificar contratos críticos para priorizar ações.
+Como analista, quero exportar relatórios CSV para integração com planilhas.
+Como administrador, quero controlar autenticação e acesso ao sistema.
+Como gestor, quero visualizar tendências temporais da inadimplência.
+Como financeiro, quero consultar o histórico completo de pagamentos e parcelas.
+Como diretoria, quero visualizar o risco regional para entender a concentração financeira.
+
+5. Backlog Priorizado
+
+ID
+Funcionalidade
+Prioridade
+Sprint
+BL01
+Autenticação JWT
+Alta
+Sprint 1
+BL02
+Dashboard Executivo
+Alta
+Sprint 1
+BL03
+Integração PostgreSQL
+Alta
+Sprint 1
+BL04
+ETL dos Datasets Reais
+Alta
+Sprint 2
+BL05
+KPIs Financeiros
+Alta
+Sprint 2
+BL06
+Alertas de Risco
+Média
+Sprint 2
+BL07
+Filtros Analíticos
+Média
+Sprint 3
+BL08
+Exportação CSV
+Média
+Sprint 3
+BL09
+Central Analítica
+Média
+Sprint 3
+BL10
+Insights Automáticos
+Média
+Sprint 4
+BL11
+Tendências Temporais
+Média
+Sprint 4
+BL12
+Notebooks de Data Science
+Média
+Sprint 4
+
+
+6. Critérios de Aceitação
+
+O sistema deverá autenticar usuários via JWT.
+Usuários não autenticados não poderão acessar rotas protegidas.
+O dashboard deverá exibir KPIs reais oriundos do PostgreSQL.
+Os gráficos deverão renderizar corretamente dados regionais e temporais.
+O sistema deverá carregar contratos e pagamentos reais do dataset.
+O módulo de Insights deverá exibir análises automáticas válidas.
+O sistema deverá permitir exportação CSV funcional.
+O tempo de resposta médio deverá ser inferior a 3 segundos.
+Os notebooks de Data Science deverão executar sem erros utilizando Pandas e Matplotlib.
+O sistema deverá suportar no mínimo 10.000 contratos e 100.000 pagamentos.
+"
+
+-Entrega 3:
+"
+1. Introdução
+O processo de Ciência de Dados do projeto CreditGuard AI teve como objetivo transformar grandes volumes de dados financeiros em informações estratégicas para apoio à recuperação de crédito, monitoramento da inadimplência e tomada de decisão gerencial.
+A análise foi desenvolvida utilizando Python, Pandas e Matplotlib, permitindo executar etapas de limpeza, integração, análise exploratória, geração de indicadores financeiros e construção de regras analíticas aplicadas diretamente ao dashboard executivo da plataforma. 
+
+Os dados utilizados foram fornecidos em dois datasets reais:
+cobranca_assessorias.csv
+fluxo_pagamentos.xlsx
+
+Após o tratamento, os dados foram integrados ao PostgreSQL e utilizados pelo backend Node.js para alimentar os dashboards e métricas analíticas do sistema. Embora o projeto utilize classificação heurística de risco e análises estatísticas aplicadas aos dados financeiros, não foram implementados modelos de Machine Learning supervisionado nesta etapa do projeto.
+
+
+2. Base de Dados Utilizada
+2.1 Dataset de Cobrança
+Arquivo: cobranca_assessorias.csv
+
+Características:
+10.000 registros de contratos;
+informações de assessorias de cobrança;
+indicadores de risco;
+dias de atraso;
+status de cobrança;
+regiões financeiras;
+valores inadimplentes.
+
+Principais campos:
+ID_Contrato
+Assessoria
+Dias_Atraso
+Valor_Inadimplente
+Status_Cobranca
+Score_Risco
+Regiao
+
+2.2 Dataset de Fluxo de Pagamentos
+Arquivo: fluxo_pagamentos.xlsx
+
+Características:
+100.000 registros de pagamentos;
+histórico de parcelas;
+vencimentos;
+pagamentos realizados;
+métodos de pagamento;
+contratos contemplados.
+
+Principais campos:
+ID_Pagamento
+ID_Contrato
+Numero_Parcela
+Data_Vencimento
+Data_Pagamento
+Valor_Parcela
+Valor_Pago
+Forma_Pagamento
+Indicador_Contemplado
+
+
+3. Ciência de Dados
+Esta etapa do projeto CreditGuard AI teve como objetivo realizar o tratamento, análise e interpretação dos dados financeiros fornecidos para suporte à tomada de decisão estratégica relacionada à inadimplência e recuperação de crédito.
+
+Foram utilizados dois datasets reais disponibilizados para o projeto:
+cobranca_assessorias.csv, contendo informações de contratos, risco e cobrança;
+fluxo_pagamentos.xlsx, contendo o histórico de pagamentos e parcelas.
+
+O processo contemplou limpeza dos dados, análise exploratória, definição de KPIs, identificação de padrões financeiros e geração de insights analíticos utilizados posteriormente pelo backend e pelo dashboard executivo do sistema. Os notebooks desenvolvidos em Python atuaram como camada analítica e de preparação dos dados, sendo responsáveis pela limpeza, transformação, validação e consolidação das informações financeiras antes da integração com o banco PostgreSQL. Após o processamento, os dados passaram a ser consumidos pelo backend Node.js através de consultas SQL analíticas utilizadas na geração dinâmica dos dashboards e indicadores executivos. 
+
+3.1 Limpeza dos Dados
+O processo de limpeza e preparação dos dados foi realizado no notebook 01_data_cleaning_real.ipynb.
+
+Durante a etapa de limpeza, os datasets foram carregados utilizando Pandas com tratamento explícito de encoding e validação estrutural dos arquivos. O processamento identificou inicialmente:
+10.000 registros de contratos financeiros;
+100.000 registros de pagamentos consolidados e validados após o processo de limpeza e integração dos datasets..
+
+Trecho implementado para leitura e validação inicial dos dados:
+“
+contratos = pd.read_csv(cobranca_path, encoding='latin1')
+pagamentos = pd.read_excel(pagamentos_path)
+
+print(f"Contratos originais: {contratos.shape}")
+print(f"Pagamentos originais: {pagamentos.shape}")
+“
+
+Resultado obtido:
+Contratos originais: (10000, 8)
+Pagamentos originais: (100000, 9)
+
+Também foram implementadas rotinas de padronização textual utilizando operações com str.lower(), str.strip() e substituições condicionais para unificar nomes de assessorias e regiões financeiras.
+
+3.2 Análise Exploratória dos Dados (EDA)
+A análise exploratória foi desenvolvida no notebook 02_eda_real.ipynb, utilizando Pandas e Matplotlib.
+O objetivo foi identificar padrões relacionados à inadimplência, recuperação financeira, concentração regional e comportamento operacional das assessorias de cobrança.
+
+As análises realizadas incluíram:
+distribuição regional da inadimplência;
+concentração financeira por assessoria;
+comportamento temporal dos pagamentos;
+frequência de atrasos;
+distribuição dos níveis de risco;
+análise de contratos classificados como risco alto;
+volume financeiro recuperado;
+comparação entre pagamentos realizados e parcelas em aberto.
+
+Os gráficos gerados permitiram identificar tendências relevantes para apoio à tomada de decisão. 
+A análise exploratória permitiu identificar tendências financeiras relevantes e serviu como base para definição dos KPIs, regras heurísticas e insights analíticos implementados posteriormente no sistema.
+
+Principais observações identificadas:
+a região Nordeste apresentou a maior concentração de inadimplência;
+o Sudeste apresentou elevado volume financeiro em atraso;
+a maior parte dos pagamentos ocorreu via boleto bancário;
+contratos com maior tempo de atraso apresentaram forte correlação com risco elevado;
+a carteira financeira possui elevada concentração de contratos classificados como risco alto.
+
+Os gráficos gerados durante a análise exploratória foram utilizados como base para os dashboards executivos e para a documentação analítica do projeto.
+
+Figura 1 — Inadimplência por Região
+
+
+A Figura 1 apresenta a distribuição regional da inadimplência financeira. Observa-se maior concentração nas regiões Nordeste e Sudeste, indicando maior exposição financeira nessas localidades.
+
+
+Figura 2 — Evolução Temporal de Pagamentos e Inadimplência
+
+
+A Figura 2 demonstra o comportamento temporal dos pagamentos e parcelas inadimplentes ao longo dos períodos processados, permitindo visualizar tendências de recuperação e crescimento da inadimplência.
+
+
+Figura 3 — Distribuição Heurística de Risco
+
+
+A Figura 3 representa a distribuição dos contratos classificados pelas regras heurísticas de risco implementadas no sistema.
+
+3.3 KPIs Desenvolvidos
+Os indicadores financeiros implementados foram integrados diretamente ao Dashboard Executivo do CreditGuard AI.
+
+Os principais KPIs desenvolvidos foram:
+
+KPI
+Objetivo
+Inadimplência Total
+Monitorar o valor financeiro em aberto
+Taxa de Recuperação
+Medir eficiência da recuperação de crédito
+Atraso Médio
+Calcular média de atraso dos contratos
+Contratos classificados como risco alto
+Identificar contratos de alto risco
+Risco Regional
+Mapear inadimplência por região
+Tendência Temporal
+Monitorar evolução da inadimplência
+Reincidência
+Identificar atrasos recorrentes
+Variação Mensal
+Comparar desempenho financeiro entre períodos
+
+
+Indicadores identificados durante a análise:
+Inadimplência Total aproximada: R$ 62 milhões;
+Taxa de Recuperação aproximada: 25,4%;
+Contratos classificados como risco alto: aproximadamente 8.900;
+mais de 9.900 alertas automáticos gerados pelo sistema.
+
+Os KPIs são calculados diretamente no PostgreSQL e consumidos dinamicamente pelo backend através do serviço analítico kpiService.js.
+
+3.4 Padrões Identificados
+A análise dos datasets permitiu identificar padrões importantes relacionados ao comportamento financeiro da carteira analisada.
+
+Os principais padrões observados foram:
+concentração da inadimplência em determinadas regiões;
+crescimento do risco proporcional ao aumento do atraso;
+maior reincidência em contratos já classificados como risco alto;
+maior eficiência de recuperação em assessorias específicas;
+predominância de pagamentos realizados via boleto;
+concentração de contratos de alto risco em determinadas faixas de score.
+
+Também foi identificado que contratos com atrasos superiores a 60 dias possuem forte associação com classificações de risco elevado e geração automática de alertas. Os padrões identificados foram utilizados na construção das regras heurísticas do sistema.
+A classificação heurística implementada no notebook “03_business_rules_real.ipynb” permitiu automatizar a categorização dos contratos conforme atraso, score interno de risco e status de cobrança.
+
+Trecho utilizado:
+“
+if dias > 60 or status == 'Ajuizado' or score > 70:
+    return 'Alto'
+elif dias > 15 or status == 'Insucesso':
+    return 'Medio'
+else:
+    return 'Baixo'
+“
+
+Essa abordagem permitiu identificar automaticamente contratos classificados como risco alto e priorizar ações operacionais no dashboard executivo.
+
+3.5 Insights Analíticos
+Com base nas análises realizadas, o sistema passou a gerar insights automáticos integrados ao módulo de Inteligência Analítica da plataforma. Os insights são produzidos através de consultas SQL agregadas e regras heurísticas executadas sobre os dados financeiros processados. O backend analítico consolida métricas de inadimplência, reincidência, atraso e recuperação financeira para gerar interpretações descritivas utilizadas no módulo de Inteligência Analítica da plataforma. 
+
+Principais insights identificados:
+a região Nordeste concentra a maior parcela da inadimplência da carteira;
+determinadas assessorias apresentam maior taxa de recuperação financeira;
+contratos com maior tempo de atraso apresentam maior reincidência;
+a inadimplência possui concentração regional significativa;
+o ticket médio de inadimplência varia entre regiões;
+contratos classificados como de alto risco representam a maior parcela da carteira crítica.
+
+Esses insights são exibidos diretamente no dashboard executivo para apoio à tomada de decisão da diretoria, setor financeiro e operação de cobrança.
+
+
+4. Regras Heurísticas de Negócio
+As regras analíticas foram implementadas no notebook 03_business_rules_real.ipynb. O sistema utiliza uma matriz heurística para classificação automática de risco financeiro.
+
+Classificações utilizadas:
+
+Nível 
+Critério 
+Baixo 
+Atraso até 15 dias 
+Médio 
+Entre 16 e 60 dias 
+Alto 
+Superior a 60 dias, status ajuizado ou score elevado 
+
+
+Regras aplicadas:
+Dias_Atraso > 60;
+Status_Cobranca = “Ajuizado”;
+Score_Risco > 70.
+
+Quando essas condições são identificadas, o sistema gera alertas automáticos e destaca os contratos classificados como risco alto no dashboard.
+
+
+5. Integração com o Sistema
+Após o tratamento dos dados, foi desenvolvido um pipeline integrado entre Ciência de Dados, banco de dados e dashboard executivo.
+
+Fluxo implementado:
+Python/Pandas → ETL → PostgreSQL → Backend Node.js → Frontend React
+
+Os notebooks desenvolvidos em Python atuaram como camada analítica responsável pela preparação, transformação e consolidação dos dados financeiros. Após o processamento, os dados estruturados foram armazenados no PostgreSQL e disponibilizados ao backend Node.js através de consultas SQL analíticas. O frontend React consumiu essas informações em tempo real para geração dos dashboards executivos e gráficos interativos.
+
+O pipeline permitiu:
+integração dos datasets reais;
+atualização dinâmica dos KPIs;
+geração automática de insights;
+alimentação do dashboard executivo;
+consolidação analítica da inadimplência.
+
+
+6. Ferramentas Utilizadas
+Ferramenta
+Finalidade
+Python
+Processamento de dados
+Pandas
+Limpeza e manipulação dos datasets
+Matplotlib
+Geração de gráficos
+PostgreSQL
+Armazenamento analítico
+Node.js
+Backend e APIs REST
+React
+Dashboard executivo
+Supabase
+Hospedagem do banco PostgreSQL
+
+
+
+7. Conclusão
+A etapa de Ciência de Dados do projeto CreditGuard AI permitiu transformar dados financeiros brutos em informações estratégicas capazes de apoiar a recuperação de crédito e o monitoramento da inadimplência. A integração entre ETL, análise exploratória, KPIs, regras heurísticas e dashboards executivos possibilitou a construção de uma plataforma analítica completa, alinhada às necessidades operacionais e gerenciais propostas no projeto.
+
+O sistema passou a oferecer:
+monitoramento financeiro centralizado;
+identificação automática de Contratos classificados como risco alto;
+indicadores executivos em tempo real;
+análises regionais;
+geração automática de insights estratégicos.
+
+A solução desenvolvida consolida conceitos de Ciência de Dados, Engenharia de Software e Inteligência Analítica aplicados a um cenário real de gestão financeira e recuperação de crédito.
+"
+
+---
+
+
+-Entrega 4:
+"
+1. Arquitetura do Dashboard e Segurança
+O Dashboard Executivo atua como a interface de consumo analítico principal do CreditGuard AI, construído através de uma arquitetura modular utilizando React, estilização utilitária via TailwindCSS e processamento
+gráfico pelo motor Recharts. O sistema implementa o paradigma de Single Page Application (SPA) com rotas protegidas nativamente.
+Autenticação e Segurança
+O acesso à interface gerencial exige autenticação prévia validada por credenciais. O backend Node.js emprega criptografia unidirecional com bcrypt para validar senhas armazenadas no PostgreSQL, emitindo um JSON Web Token (JWT). Este token Bearer encapsula a identidade do usuário, protegendo todos os endpoints da API (KPIs, contratos, alertas e insights) contra acessos anônimos.
+
+2. Fluxo Real de Dados e Datasets
+Toda a renderização e cálculos matemáticos exibidos na interface são produto de processamento de dados reais.
+O fluxo de consumo inicia-se nos datasets cobranca_assessorias.csv (10.000 contratos financeiros) e fluxo_pagamentos.xlsx (100.000 eventos transacionais de parcelas). Após o tratamento na etapa de Data Science (Python/Pandas), estes dados são armazenados no banco PostgreSQL. O Dashboard consome os agrupamentos SQL (SUM, COUNT) através do Axios em requisições concorrentes Promise.all, viabilizando o processamento dinâmico sem depender de mock data.
+
+3. Perfis Atendidos e Benefícios Estratégicos
+O design do dashboard foi desenhado para orquestrar as necessidades de três perfis cruciais da instituição, entregando valor tático e operacional diferenciado:
+Diretoria: Visibilidade macro da saúde do caixa (Inadimplência vs. Recuperação), permitindo decisões estratégicas sobre os contratos vigentes.
+Financeiro: Acompanhamento rigoroso das projeções de fluxo de caixa baseando-se no Atraso Médio Global e visualização de tendências.
+Cobrança (Coordenadores/Operadores): Identificação tática de Assessorias ineficientes e atuação imediata em "Clientes classificados como risco alto" através dos relatórios mapeados por estado.
+
+4. KPIs Obrigatórios e Métricas
+A tela de visão geral traduz os dados financeiros da plataforma em indicadores analíticos utilizados para acompanhamento operacional, financeiro e gerencial.
+Os KPIs implementados no dashboard foram desenvolvidos para representar visualmente os principais indicadores da plataforma, incluindo inadimplência total, recuperação financeira, atraso médio, risco regional e tendência temporal.
+
+Inadimplência Total: representa o volume financeiro das parcelas vencidas e não pagas, funcionando como o principal indicador de inadimplência da carteira.
+Recuperação no Mês: demonstra o volume financeiro efetivamente recuperado no período processado.
+Atraso Médio: calcula o DPD (Days Past Due) médio da carteira, permitindo acompanhar o envelhecimento das dívidas.
+Clientes classificados como risco alto: contabiliza contratos classificados como risco alto, incluindo contratos com atraso superior a 60 dias, status ajuizado ou score interno de risco superior a 70.
+Risco Regional: consolida os valores inadimplentes por região geográfica, permitindo identificar áreas de maior concentração financeira.
+Tendência Temporal: acompanha a evolução da inadimplência e recuperação financeira ao longo dos períodos processados.
+
+Os indicadores apresentados no dashboard são alimentados dinamicamente através de consultas SQL analíticas executadas no PostgreSQL e consumidas pelo backend Node.js.
+
+Figura 1 — Dashboard Executivo Geral
+
+
+Figura 2 — Inadimplência por Região
+
+
+Figura 3 — Evolução Temporal de Pagamentos e Inadimplência
+
+
+Figura 4 — Distribuição Heurística de Risco
+
+
+Figura 5 — Tela de Alertas e Clientes classificados como risco alto
+
+
+ Figura 6 — Portfólio de Contratos (Tela de Clientes)
+
+
+Figura 7 — Insights automáticos, KPIs derivativos e análise comportamental
+
+
+5. Contextualização de Gráficos e Tendências
+Os visuais acompanham semântica direcional positiva e negativa dependendo da métrica:
+Evolução de Inadimplência: Um Gráfico Linear (LineChart) que mapeia os últimos seis meses, expondo cruzamentos temporais para evidenciar se o risco encontra-se em aceleração.
+Risco Regional (Inadimplência por Região): Gráfico de Barras (BarChart) que evidencia com precisão o peso pecuniário passivo por localização. Por exemplo, a disparidade visual explícita entre a alta da região Nordeste frente às demais regiões.
+
+6. A Central Analítica (Aba Inteligência)
+Dedicada à análise analítica e relatórios inteligentes, a Aba Inteligência mergulha em comportamentos operacionais. Além de exibir a Variação Mensal da Inadimplência e um Pie Chart do passivo monetário regional, esta seção concentra os chamados Insights Automáticos. 
+O backend traduz regras heurísticas em linguagem natural, informando prontamente à liderança constatações estatísticas, tais como concentrações de dívidas ou recordes de taxa de acordos revertidos por certas assessorias terceirizadas.
+
+7. Filtros, Funcionalidades Operacionais e Exportação
+O CreditGuard AI dota o gestor de capacidades operacionais para manipulação ativa da carteira:
+Telas de Clientes e Alertas: Sistemas de Grid paginados nativamente que exibem a volumetria integral de dados, filtráveis via requisição por Região, Status de Cobrança e Busca Textual de identificadores, garantindo agilidade na prospecção de um título específico.
+Exportação CSV: Utilizando formatação com Byte Order Mark (BOM) UTF-8, o sistema converte arrays e dicionários das consultas analíticas nativas (KPIs ou Insights) em relatórios .csv com colunas perfeitamente tabuladas, autorizando que as premissas da Ciência de Dados desemboquem em macros secundárias de planilhas como Microsoft Excel.
+
+8. Conclusão
+O Dashboard Executivo transcende uma tela informativa: é a camada visual da solução analítica de Dados e Engenharia de Software. Comprova, matematicamente e visualmente, que a aplicação de Ciência de Dados orientada a rotinas de cobrança reduz o esforço analítico manual e amplia a segurança para a alocação de esforços financeiros corporativos.
+"
+
+---
+
+-Entrega 5:
+"
+1. Introdução
+O projeto CreditGuard AI foi desenvolvido com o objetivo de apoiar processos de recuperação de crédito, monitoramento da inadimplência e análise operacional de contratos financeiros por meio da integração entre Ciência de Dados, Backend, Banco de Dados e Dashboard Executivo.
+A solução utiliza dados financeiros reais provenientes dos arquivos “cobranca_assessorias.csv” e “fluxo_pagamentos.xlsx”, contendo aproximadamente 10.000 contratos financeiros e 100.000 registros de pagamentos. Esses dados foram processados utilizando Python e Pandas, armazenados no PostgreSQL e posteriormente disponibilizados para consumo do backend Node.js e do frontend React.
+A arquitetura implementada permitiu consolidar processos de ETL, análises estatísticas, geração de KPIs, regras heurísticas de risco e visualização analítica em dashboards executivos destinados à diretoria, setor financeiro e operação de cobrança.
+
+2. Arquitetura da Solução
+A solução foi construída utilizando arquitetura modular, permitindo separação entre processamento analítico, persistência de dados, APIs REST e interface visual.
+
+O fluxo principal da arquitetura segue a seguinte estrutura:
+Python/Pandas → PostgreSQL → Node.js/Express → React Dashboard
+
+O módulo de Ciência de Dados é responsável pelo tratamento e preparação dos dados financeiros. O PostgreSQL atua como banco analítico centralizado. O backend Node.js realiza consultas SQL analíticas e disponibiliza os dados através de APIs REST. O frontend React consome essas informações e gera os dashboards executivos.
+
+Figura 1 — Arquitetura Geral do Sistema
+
+
+
+3. Fluxo do Sistema
+O funcionamento do sistema inicia-se pela ingestão dos datasets financeiros utilizados na etapa de Ciência de Dados.
+Inicialmente, os arquivos CSV e XLSX são processados através do pipeline ETL desenvolvido em Python/Pandas. Durante essa etapa são executados processos de:
+limpeza de dados;
+padronização textual;
+tratamento de valores nulos;
+normalização de datas;
+conversão monetária;
+integração relacional entre contratos e pagamentos.
+
+Após o tratamento, os dados são armazenados no PostgreSQL, permitindo consultas analíticas estruturadas.
+
+O backend Node.js/Express consome os dados através de consultas SQL agregadas, responsáveis pela geração de:
+KPIs financeiros;
+métricas de inadimplência;
+indicadores regionais;
+tendências temporais;
+alertas heurísticos;
+insights analíticos.
+
+As informações processadas são disponibilizadas ao frontend React, responsável pela renderização dos dashboards executivos e gráficos interativos.
+
+4. Pipeline de Dados e Automações
+
+O pipeline de dados foi desenvolvido para automatizar o processamento financeiro da plataforma.
+
+As principais etapas automatizadas incluem:
+leitura dos datasets financeiros;
+tratamento de encoding;
+padronização de assessorias e regiões;
+limpeza de inconsistências;
+transformação de valores monetários;
+normalização de datas;
+integração entre contratos e pagamentos;
+geração de indicadores analíticos;
+classificação heurística de risco;
+atualização dinâmica dos dashboards.
+
+O ETL foi implementado utilizando Python e Pandas. Exemplo simplificado da etapa de ingestão:
+contratos = pd.read_csv(cobranca_path, encoding='latin1')
+pagamentos = pd.read_excel(pagamentos_path)
+
+O processamento foi realizado utilizando Pandas para ingestão, transformação e consolidação dos dados financeiros antes da persistência no PostgreSQL. Após o processamento, os dados tratados são exportados para o PostgreSQL, permitindo atualização dinâmica das métricas exibidas na aplicação.
+
+As automações implementadas também incluem:
+geração automática de KPIs;
+geração automática de insights;
+classificação heurística de risco;
+alertas automáticos para contratos classificados como risco alto.
+
+5. Modelo Lógico Relacional
+O PostgreSQL foi utilizado como banco de dados relacional e analítico da solução. A modelagem foi estruturada para integrar contratos financeiros, pagamentos, usuários e alertas de risco.
+
+Figura 2 — Modelo Lógico Relacional
+
+
+
+A estrutura relacional permitiu garantir integridade entre contratos financeiros e registros de pagamentos, além de suportar consultas analíticas utilizadas pelo dashboard executivo.
+
+6. Backend e APIs
+O backend foi desenvolvido utilizando Node.js e Express, seguindo arquitetura baseada em APIs REST.
+
+O sistema possui endpoints responsáveis pelo fornecimento de:
+KPIs financeiros;
+contratos;
+alertas heurísticos;
+evolução temporal;
+insights analíticos;
+dados regionais.
+
+Exemplos de endpoints implementados:
+GET /api/kpis
+GET /api/insights
+GET /api/dashboard/evolucao
+GET /api/contratos
+GET /api/alertas
+
+As consultas SQL executadas pelo backend utilizam agregações como:
+SUM();
+COUNT();
+AVG();
+GROUP BY;
+COALESCE().
+
+Os dados retornados pelas consultas são consumidos dinamicamente pelo dashboard executivo. O backend também é responsável pela autenticação de usuários e controle de acesso às rotas protegidas da aplicação.
+
+7. Frontend e Dashboard Executivo
+O frontend foi desenvolvido utilizando React e Vite. A interface executiva foi estruturada como Single Page Application (SPA), permitindo navegação dinâmica entre os módulos analíticos. O consumo das APIs REST é realizado utilizando Axios. Os gráficos e componentes visuais foram implementados utilizando Recharts e TailwindCSS.
+
+O dashboard executivo foi projetado para atender três perfis principais:
+diretoria;
+setor financeiro;
+operação de cobrança.
+
+As principais telas implementadas incluem:
+Dashboard Executivo Geral;
+KPIs financeiros;
+tela de clientes (Portfólio de Contratos);
+tela de alertas;
+inteligência analítica;
+análises regionais;
+evolução temporal.
+
+Os gráficos implementados representam visualmente:
+inadimplência total;
+recuperação financeira;
+atraso médio;
+risco regional;
+tendência temporal.
+
+
+Figura 3 — Dashboard Executivo Geral
+
+
+
+A Figura 3 apresenta a interface principal do Dashboard Executivo do CreditGuard AI, exibindo indicadores financeiros consolidados, métricas operacionais e gráficos analíticos utilizados para monitoramento da carteira financeira.
+
+
+Figura 4 — Inadimplência Regional
+
+
+
+A Figura 4 apresenta a distribuição regional da inadimplência financeira, permitindo identificar regiões com maior concentração de valores em atraso e apoiar análises estratégicas relacionadas ao risco regional.
+
+
+Figura 5 — Evolução Temporal
+
+
+
+A Figura 5 demonstra a evolução temporal dos pagamentos realizados e das parcelas inadimplentes ao longo dos períodos processados, permitindo acompanhar tendências financeiras e comportamento da recuperação de crédito.
+
+
+Figura 6 — Tela de Alertas
+
+
+
+A Figura 6 apresenta a tela de alertas do sistema, responsável por destacar contratos classificados como risco alto com base nas regras heurísticas de atraso, status de cobrança e score interno de risco.
+
+
+Figura 7 — Portfólio de Contratos (Tela de Clientes)
+
+
+
+
+A Figura 7 apresenta a visão operacional da carteira de clientes, permitindo filtros por região e status de cobrança para gestão direta dos contratos financeiros.
+
+
+Figura 8 — Tela de Inteligência Analítica
+
+
+
+A Figura 8 apresenta o módulo de Inteligência Analítica da plataforma, responsável pela consolidação automática de insights financeiros, indicadores regionais e interpretações analíticas utilizadas no apoio à tomada de decisão.
+
+8. Segurança e Governança
+A autenticação da aplicação foi implementada utilizando JSON Web Token (JWT). As senhas dos usuários são armazenadas utilizando criptografia bcrypt, garantindo proteção das credenciais.
+
+O sistema implementa:
+autenticação baseada em token;
+proteção de rotas;
+controle de acesso autenticado;
+validação de usuários;
+restrição de endpoints protegidos.
+
+A governança dos dados financeiros foi baseada em:
+integridade relacional;
+padronização dos dados;
+consistência analítica;
+validação durante o ETL;
+centralização do armazenamento no PostgreSQL.
+
+As regras heurísticas utilizadas para classificação de risco também foram integradas ao processo de governança operacional da plataforma.
+
+9. Integração Entre os Módulos
+A solução foi construída de forma integrada entre os componentes de Ciência de Dados, Banco de Dados, Backend e Frontend.
+
+O fluxo integrado ocorre da seguinte forma:
+Python/Pandas realiza o ETL;
+PostgreSQL armazena os dados processados;
+Node.js executa consultas analíticas;
+React consome os dados através das APIs REST;
+o dashboard apresenta as métricas em tempo real.
+
+Essa integração permitiu consolidar uma arquitetura full-stack voltada ao monitoramento financeiro e análise operacional da inadimplência.
+
+10. Resultados Obtidos
+A solução implementada permitiu:
+centralização analítica dos dados financeiros;
+automatização do processamento de inadimplência;
+geração automática de insights;
+monitoramento de contratos classificados como risco alto;
+acompanhamento regional da inadimplência;
+visualização temporal dos pagamentos;
+apoio operacional para equipes de cobrança;
+suporte gerencial para tomada de decisão.
+
+A integração entre ETL, PostgreSQL, APIs REST e dashboards executivos possibilitou maior organização e disponibilidade das informações financeiras processadas.
+
+11. Conclusão
+A Entrega 5 consolidou a integração entre Ciência de Dados, Engenharia de Software e Inteligência Analítica no projeto CreditGuard AI.
+A arquitetura desenvolvida permitiu integrar processamento de dados, armazenamento analítico, APIs REST e dashboards executivos em uma solução unificada para recuperação de crédito e monitoramento financeiro.
+A utilização de ETL em Python/Pandas, PostgreSQL como banco analítico, backend Node.js/Express e frontend React possibilitou a construção de uma plataforma capaz de transformar dados financeiros em informações estruturadas para apoio operacional e gerencial.
+A solução implementada demonstrou a aplicação prática de conceitos de integração full-stack, análise de dados, automação analítica e governança de informações financeiras em um ambiente corporativo.
+"
+
+
+Requisitos das entregas:
+"
+Entrega 1 — Estruturação do Problema	
+1,1	divisão de papéis entre o time
+1,2	definição do ambiente de gestão do projeto
+1,3	contexto AS-IS;
+1,4	stakeholders;
+1,5	mapa do problema;
+1,6	hipóteses analíticas.
+Entrega 2 — Engenharia de Requisitos	
+2,1	requisitos funcionais;
+2,2	requisitos não funcionais;
+2,3	histórias de usuário;
+2,4	backlog priorizado;
+2,5	critérios de aceitação.
+Entrega 3 — Ciência de Dados	
+3,1	limpeza dos dados;
+3,2	análise exploratória;
+3,3	KPIs;
+3,4	padrões identificados;
+3,5	insights
+Entrega 4 — Dashboard Executivo	
+4,1	O dashboard deve apoiar: diretoria; financeiro; operação de cobrança.
+4,2	"KPIs obrigatórios:
+inadimplência;
+recuperação;
+atraso médio;
+risco regional;
+tendência temporal."
+
+Entrega 5 — Solução Integrada	
+5,1	"arquitetura;
+fluxo do sistema;
+automações;
+modelo lógico;
+integrações;
+segurança;
+governança."
+Entrega 6 — Protótipo + Pitch	
+6,1	"Protótipo:
+
+dashboard;
+portal;
+app;
+sistema decisório;
+central analítica."
+6,2	"Pitch:
+
+20 minutos;
+estilo banca executiva."
+"

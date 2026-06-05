@@ -79,12 +79,12 @@ const Dashboard = () => {
     <div className="space-y-8 pb-10">
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-3xl font-bold text-white tracking-tight">Visão Geral - KPIs</h2>
-          <p className="text-gray-400 mt-1">Métricas de risco de crédito e recuperação</p>
+          <h2 className="text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-indigo-400 tracking-tight">Visão Geral - KPIs</h2>
+          <p className="text-indigo-200/60 mt-1 font-medium tracking-wide">Métricas de risco de crédito e recuperação</p>
         </div>
         <button
           onClick={handleExportKpis}
-          className="flex items-center px-4 py-2 bg-gray-800 border border-gray-700 text-gray-300 rounded-lg hover:bg-gray-700 transition-colors w-full sm:w-auto justify-center"
+          className="flex items-center px-5 py-2.5 bg-gray-900/50 backdrop-blur-sm border border-white/10 text-gray-300 rounded-xl hover:bg-white/5 transition-all shadow-lg hover:shadow-purple-500/10 hover:-translate-y-0.5 w-full sm:w-auto justify-center"
         >
           <Download className="w-4 h-4 mr-2" />
           Exportar KPIs
@@ -130,8 +130,8 @@ const Dashboard = () => {
 
       {/* Gráficos */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-gray-800 p-6 rounded-xl border border-gray-700 shadow-lg">
-          <h3 className="text-lg font-bold text-gray-200 mb-6">Evolução de Inadimplência (Últimos 6 meses)</h3>
+        <div className="bg-gray-900/40 backdrop-blur-xl p-6 rounded-3xl border border-white/5 shadow-2xl">
+          <h3 className="text-lg font-bold text-white mb-6">Evolução de Inadimplência <span className="text-gray-500 font-normal text-sm ml-2">(Últimos 6 meses)</span></h3>
           <div className="h-64 sm:h-80">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={evolucao}>
@@ -140,9 +140,9 @@ const Dashboard = () => {
                 <YAxis stroke="#9ca3af" tickFormatter={(v) => v >= 1000000 ? `R$${(v / 1000000).toFixed(1)}M` : `R$${(v / 1000).toFixed(0)}K`} fontSize={12} />
                 <RechartsTooltip
                   formatter={(value) => [`R$ ${Number(value).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`, 'Inadimplência']}
-                  contentStyle={{ backgroundColor: '#1f2937', borderColor: '#374151', borderRadius: 8 }}
-                  itemStyle={{ color: '#e5e7eb' }}
-                  labelStyle={{ color: '#9ca3af' }}
+                  contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.8)', backdropFilter: 'blur(12px)', borderColor: 'rgba(255,255,255,0.1)', borderRadius: '12px', color: '#fff' }}
+                  itemStyle={{ color: '#e5e7eb', fontWeight: 600 }}
+                  labelStyle={{ color: '#9ca3af', marginBottom: '4px' }}
                 />
                 <Legend />
                 <Line type="monotone" dataKey="total" name="Valor (R$)" stroke="#ef4444" strokeWidth={3} dot={{ r: 5, fill: '#ef4444', stroke: '#1f2937', strokeWidth: 2 }} activeDot={{ r: 8, stroke: '#ef4444', strokeWidth: 2 }} />
@@ -151,8 +151,8 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="bg-gray-800 p-6 rounded-xl border border-gray-700 shadow-lg">
-          <h3 className="text-lg font-bold text-gray-200 mb-6">Risco Regional (Inadimplência por Região)</h3>
+        <div className="bg-gray-900/40 backdrop-blur-xl p-6 rounded-3xl border border-white/5 shadow-2xl">
+          <h3 className="text-lg font-bold text-white mb-6">Risco Regional <span className="text-gray-500 font-normal text-sm ml-2">(Inadimplência por Região)</span></h3>
           <div className="h-64 sm:h-80">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={riscoRegional} layout="vertical">
@@ -161,10 +161,10 @@ const Dashboard = () => {
                 <YAxis type="category" dataKey="regiao" stroke="#9ca3af" width={90} fontSize={12} />
                 <RechartsTooltip
                   formatter={(value) => [`R$ ${Number(value).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`, 'Inadimplência']}
-                  contentStyle={{ backgroundColor: '#1f2937', borderColor: '#374151', borderRadius: 8 }}
-                  itemStyle={{ color: '#e5e7eb' }}
-                  labelStyle={{ color: '#9ca3af' }}
-                  cursor={{ fill: '#374151' }}
+                  contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.8)', backdropFilter: 'blur(12px)', borderColor: 'rgba(255,255,255,0.1)', borderRadius: '12px', color: '#fff' }}
+                  itemStyle={{ color: '#e5e7eb', fontWeight: 600 }}
+                  labelStyle={{ color: '#9ca3af', marginBottom: '4px' }}
+                  cursor={{ fill: 'rgba(255,255,255,0.05)' }}
                 />
                 <Bar dataKey="total" name="Inadimplência (R$)" fill="#a855f7" radius={[0, 4, 4, 0]} />
               </BarChart>
@@ -174,10 +174,10 @@ const Dashboard = () => {
       </div>
 
       {/* Tabela de Alertas */}
-      <div className="bg-gray-800 p-6 rounded-xl border border-gray-700 shadow-lg">
-        <h3 className="text-lg font-bold text-gray-200 mb-4">Últimos Alertas de Risco</h3>
-        <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-gray-700">
+      <div className="bg-gray-900/40 backdrop-blur-xl p-6 rounded-3xl border border-white/5 shadow-2xl">
+        <h3 className="text-lg font-bold text-white mb-4">Últimos Alertas de Risco</h3>
+        <div className="overflow-x-auto rounded-xl">
+          <table className="min-w-full divide-y divide-white/5">
             <thead>
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Contrato</th>
@@ -186,9 +186,9 @@ const Dashboard = () => {
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Data</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-700">
+            <tbody className="divide-y divide-white/5">
               {alertas.map((alerta) => (
-                <tr key={alerta.id} className="hover:bg-gray-700/50 transition-colors">
+                <tr key={alerta.id} className="hover:bg-white/5 transition-colors group">
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-mono text-purple-400">{alerta.id_contrato}</td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span className={`px-2.5 py-1 inline-flex text-xs leading-5 font-semibold rounded-full border ${alerta.nivel_risco === 'Alto' ? 'bg-red-900/50 text-red-400 border-red-800' : alerta.nivel_risco === 'Medio' ? 'bg-amber-900/50 text-amber-400 border-amber-800' : 'bg-emerald-900/50 text-emerald-400 border-emerald-800'}`}>

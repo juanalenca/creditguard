@@ -13,10 +13,10 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
   const closeSidebar = () => setIsOpen(false);
 
   const navClass = ({ isActive }) =>
-    `flex items-center w-full p-3 rounded-lg transition-all duration-200 ${
+    `flex items-center w-full p-3 rounded-xl transition-all duration-300 ${
       isActive
-        ? 'bg-purple-600 text-white shadow-md shadow-purple-900/50'
-        : 'text-gray-400 hover:bg-gray-800 hover:text-white'
+        ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-[0_0_15px_rgba(147,51,234,0.5)] font-semibold'
+        : 'text-gray-400 hover:bg-white/5 hover:text-white hover:translate-x-1'
     }`;
 
   return (
@@ -30,11 +30,11 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
       )}
 
       <aside 
-        className={`fixed md:static inset-y-0 left-0 z-50 w-64 bg-gray-900 border-r border-gray-800 flex flex-col transform transition-transform duration-300 ease-in-out ${
+        className={`fixed md:static inset-y-0 left-0 z-50 w-64 bg-gray-900/50 backdrop-blur-xl border-r border-white/5 flex flex-col transform transition-transform duration-300 ease-in-out ${
           isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
         }`}
       >
-        <div className="p-6 border-b border-gray-800 flex items-center justify-between">
+        <div className="p-6 border-b border-white/5 flex items-center justify-between">
           <div className="flex flex-col items-center justify-center w-full">
             <img src="/logo-projeto.png" alt="CreditGuard AI" className="h-36 w-auto object-contain mb-2" />
           </div>
@@ -60,10 +60,10 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           <span className="font-medium">Inteligência</span>
         </NavLink>
       </nav>
-      <div className="p-4 border-t border-gray-800">
+      <div className="p-4 border-t border-white/5">
         <button
           onClick={handleLogout}
-          className="flex items-center w-full p-3 text-red-400 hover:bg-gray-800 hover:text-red-300 rounded-lg transition-colors"
+          className="flex items-center w-full p-3 text-red-400 hover:bg-red-500/10 hover:text-red-300 rounded-xl transition-all duration-300 hover:translate-x-1"
         >
           <LogOut className="w-5 h-5 mr-3" />
           <span>Sair</span>

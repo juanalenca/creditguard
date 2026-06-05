@@ -7,7 +7,10 @@ const Layout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
-    <div className="flex h-screen bg-gray-950 text-gray-100 overflow-hidden font-sans flex-col md:flex-row">
+    <div className="flex h-screen bg-gray-950 text-gray-100 overflow-hidden font-sans flex-col md:flex-row relative">
+      {/* Dynamic Background */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-indigo-900/20 via-gray-950 to-gray-950 -z-20 pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_var(--tw-gradient-stops))] from-purple-900/10 via-transparent to-transparent -z-20 pointer-events-none" />
       {/* Mobile Header */}
       <div className="md:hidden flex items-center justify-start gap-4 p-4 bg-gray-900 border-b border-gray-800 z-10">
         <button 
@@ -24,7 +27,7 @@ const Layout = () => {
       <Sidebar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
       
       <main className="flex-1 overflow-auto p-4 sm:p-8 relative">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-purple-900/20 via-gray-950 to-gray-950 -z-10 pointer-events-none" />
+        {/* The background is now globally defined above */}
         <div className="max-w-7xl mx-auto">
           <Outlet />
         </div>
